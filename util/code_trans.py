@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 '''
 @File    :   code_trans.py    
-@Contact :   raogx.vip@hotmail.com
+@Contact :   https://github.com/liyansong2018/ReverseWidget
 @License :   (C)Copyright 2021, liyansong
 
 @Modify Time      @Author    @Version    @Desciption
