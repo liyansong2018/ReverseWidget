@@ -1,4 +1,4 @@
-English | Chinese
+English | [中文](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
 
 # Reverse Widget
 
