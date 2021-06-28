@@ -63,6 +63,6 @@ See [COMPILE.md](...) file for how to compile and install Reverse Widget.
 
 ## Convenient Tool
 
-Comming...
+See [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
 
 This is a software written in my spare time. There may be some bugs. It is being improved. Please understand.

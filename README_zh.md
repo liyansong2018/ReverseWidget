@@ -54,7 +54,8 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 
 ## 开箱即用的发行版
 
-参见已发布的版本
+参见已发布的版本 [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
+
 
 
 
