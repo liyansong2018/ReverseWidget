@@ -64,18 +64,6 @@ class MainUi(QtWidgets.QMainWindow):
         self.openfile = None
         self.function = CRYPT
 
-    def init_ui_language(self):
-        '''
-        Fix display bug caused by language switching
-        :return: null
-        '''
-        if self.function == CRYPT:
-            self.init_crypt()
-        elif self.function == CODE:
-            self.init_code()
-        elif self.function == ASM:
-            self.init_asm()
-
     def listen_action_open(self):
         self.openfile = QFileDialog.getOpenFileName()[0]
 
@@ -87,10 +75,8 @@ class MainUi(QtWidgets.QMainWindow):
         """
         if language.text() == "Chinese":
             self.translate_chinese()
-        elif language.text() == "English":
+        else:
             self.translate_english()
-
-        self.init_ui_language()
 
     def translate_chinese(self):
         self.trans_main_window.load("ui/resources/language/main_window.qm")
