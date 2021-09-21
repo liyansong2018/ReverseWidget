@@ -141,16 +141,20 @@ class MainUi(QtWidgets.QMainWindow):
         ui_helper = UiHelper(self.ui)
         ui_helper.groupbox_show(ui_code, self.all_groupbox)
 
+        self.ui.x86Button.click()
+        self.listen_arch(self.ui.x86Button)
         self.ui.x86Button.toggled.connect(lambda: self.listen_arch(self.ui.x86Button))
         self.ui.armButton.toggled.connect(lambda: self.listen_arch(self.ui.armButton))
         self.ui.mipsButton.toggled.connect(lambda: self.listen_arch(self.ui.mipsButton))
         self.ui.sparcButton.toggled.connect(lambda: self.listen_arch(self.ui.sparcButton))
         self.ui.powerPcButton.toggled.connect(lambda: self.listen_arch(self.ui.powerPcButton))
 
+        self.ui.mode32Button.click()
         self.ui.mode16Button.toggled.connect(lambda: self.listen_mode(self.ui.mode16Button))
         self.ui.mode32Button.toggled.connect(lambda: self.listen_mode(self.ui.mode32Button))
         self.ui.mode64Button.toggled.connect(lambda: self.listen_mode(self.ui.mode64Button))
 
+        self.ui.littleButton.click()
         self.ui.littleButton.toggled.connect(lambda: self.listen_endian(self.ui.littleButton))
         self.ui.bigButton.toggled.connect(lambda: self.listen_endian(self.ui.bigButton))
 
@@ -217,19 +221,21 @@ class MainUi(QtWidgets.QMainWindow):
         :param arch: x86, ARM, MIPS, Sparc, PowerPC
         :return: null
         """
-        if arch.isChecked():
+        if True:
             global ARCH_BEFORE
             ARCH_BEFORE = arch.text()
 
             # x86 or ARM64 architecture only supports little endian
             if ARCH_BEFORE == "x86" or (ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit"):
                 self.ui.bigButton.close()
+                self.ui.littleButton.click()
             else:
                 self.ui.bigButton.show()
 
             # 32 bit PowerPC architecture only supports big endian
             if ARCH_BEFORE == "PowerPC" and MODE_BEFORE == "32bit":
                 self.ui.littleButton.close()
+                self.ui.bigButton.click()
             else:
                 self.ui.littleButton.show()
 
@@ -239,19 +245,21 @@ class MainUi(QtWidgets.QMainWindow):
         :param mode: 32bit, 64bit
         :return: null
         """
-        if mode.isChecked():
+        if True:
             global MODE_BEFORE
             MODE_BEFORE = mode.text()
 
-            # ARM64 architecture only supports little endian
-            if ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit":
+            # x86 or ARM64 architecture only supports little endian
+            if ARCH_BEFORE == "x86" or (ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit"):
                 self.ui.bigButton.close()
+                self.ui.littleButton.click()
             else:
                 self.ui.bigButton.show()
 
             # 32 bit PowerPC architecture only supports big endian
             if ARCH_BEFORE == "PowerPC" and MODE_BEFORE == "32bit":
                 self.ui.littleButton.close()
+                self.ui.bigButton.click()
             else:
                 self.ui.littleButton.show()
 
