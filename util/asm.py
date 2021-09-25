@@ -8,6 +8,7 @@
 @Modify Time      @Author    @Version    @Desciption
 ------------      -------    --------    -----------
 2021/6/25 21:57   liyansong     1.0         None
+2021/9/25 17:42   liyansong     1.1         None
 '''
 
 from keystone import *
@@ -105,18 +106,9 @@ class Asm():
 
         md = Cs(self.arch, self.mode)
 
-        if base_addr == None:
-            start_address = 0x1000
-            if self.mode == 4:
-                start_address = 0x10000000
-            elif self.mode == 8:
-                start_address = 0x1000000000000000
-        else:
-            start_address = base_addr
-
         ret = ""
         change = Code()
-        for i in md.disasm(self.data, start_address):
+        for i in md.disasm(self.data, base_addr):
             ret += "0x%x:\t%-30s\t%s\t%s\n" % (i.address, change.bytes_to_hex_space(i.bytes), i.mnemonic, i.op_str)
 
         return ret

@@ -8,6 +8,7 @@
 @Modify Time      @Author    @Version    @Desciption
 ------------      -------    --------    -----------
 2021/6/25 21:47   liyansong     1.0         None
+2021/9/25 17:42   liyansong     1.1         None
 '''
 
 from ui.main_window import *
@@ -151,7 +152,7 @@ class MainUi(QtWidgets.QMainWindow):
         ARCH_BEFORE = self.ui.x86Button.text()
         MODE_BEFORE = self.ui.mode32Button.text()
         ENDIAN_BEFORE = self.ui.littleButton.text()
-        self.ui.lineEditBaseAddr.setText("0x1000")
+        self.ui.lineEditBaseAddr.setText("0x0804800")
 
         self.listen_arch(self.ui.x86Button)
         self.ui.x86Button.toggled.connect(lambda: self.listen_arch(self.ui.x86Button))
@@ -271,6 +272,13 @@ class MainUi(QtWidgets.QMainWindow):
                 self.ui.bigButton.click()
             else:
                 self.ui.littleButton.show()
+
+            if MODE_BEFORE == "16bit":
+                self.ui.lineEditBaseAddr.setText("0x1000")
+            elif MODE_BEFORE == "32bit":
+                self.ui.lineEditBaseAddr.setText("0x0804800")
+            else:
+                self.ui.lineEditBaseAddr.setText("0x400000")
 
     def listen_endian(self, endian):
         """
