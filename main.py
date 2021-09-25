@@ -141,7 +141,18 @@ class MainUi(QtWidgets.QMainWindow):
         ui_helper = UiHelper(self.ui)
         ui_helper.groupbox_show(ui_code, self.all_groupbox)
 
+        # defalut options
         self.ui.x86Button.click()
+        self.ui.mode32Button.click()
+        self.ui.littleButton.click()
+        global ARCH_BEFORE
+        global MODE_BEFORE
+        global ENDIAN_BEFORE
+        ARCH_BEFORE = self.ui.x86Button.text()
+        MODE_BEFORE = self.ui.mode32Button.text()
+        ENDIAN_BEFORE = self.ui.littleButton.text()
+        self.ui.lineEditBaseAddr.setText("0x1000")
+
         self.listen_arch(self.ui.x86Button)
         self.ui.x86Button.toggled.connect(lambda: self.listen_arch(self.ui.x86Button))
         self.ui.armButton.toggled.connect(lambda: self.listen_arch(self.ui.armButton))
@@ -149,12 +160,10 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.sparcButton.toggled.connect(lambda: self.listen_arch(self.ui.sparcButton))
         self.ui.powerPcButton.toggled.connect(lambda: self.listen_arch(self.ui.powerPcButton))
 
-        self.ui.mode32Button.click()
         self.ui.mode16Button.toggled.connect(lambda: self.listen_mode(self.ui.mode16Button))
         self.ui.mode32Button.toggled.connect(lambda: self.listen_mode(self.ui.mode32Button))
         self.ui.mode64Button.toggled.connect(lambda: self.listen_mode(self.ui.mode64Button))
 
-        self.ui.littleButton.click()
         self.ui.littleButton.toggled.connect(lambda: self.listen_endian(self.ui.littleButton))
         self.ui.bigButton.toggled.connect(lambda: self.listen_endian(self.ui.bigButton))
 
@@ -499,7 +508,7 @@ class MainUi(QtWidgets.QMainWindow):
 
         try:
             asm = Asm(arch, mode, binary_bytes, endian)
-            result = asm.disassemble()
+            result = asm.disassemble(int(self.ui.lineEditBaseAddr.text(), 16))
             self.ui.outputAsmHex.setText(result)
             self.ui.outputAsmEscaped.close()
         except Exception as e:

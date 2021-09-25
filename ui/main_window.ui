@@ -688,6 +688,19 @@ Disassemble</string>
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
+              <widget class="QLabel" name="label_2">
+               <property name="text">
+                <string>Base Address</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEditBaseAddr"/>
+             </item>
+             <item>
+              <layout class="QHBoxLayout" name="horizontalLayout_21"/>
+             </item>
+             <item>
               <widget class="QRadioButton" name="littleButton">
                <property name="text">
                 <string>Little Endian</string>

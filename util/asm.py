@@ -75,7 +75,7 @@ class Asm():
             # must raise
             raise
 
-    def disassemble(self):
+    def disassemble(self, base_addr):
         # ARM
         if self.arch == CS_ARCH_ARM:
             if self.mode == 2 or self.mode == 4:
@@ -105,11 +105,14 @@ class Asm():
 
         md = Cs(self.arch, self.mode)
 
-        start_address = 0x1000
-        if self.mode == 4:
-            start_address = 0x10000000
-        elif self.mode == 8:
-            start_address = 0x1000000000000000
+        if base_addr == None:
+            start_address = 0x1000
+            if self.mode == 4:
+                start_address = 0x10000000
+            elif self.mode == 8:
+                start_address = 0x1000000000000000
+        else:
+            start_address = base_addr
 
         ret = ""
         change = Code()
