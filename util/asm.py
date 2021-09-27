@@ -102,7 +102,7 @@ class Asm():
         # Mips
         elif self.arch == CS_ARCH_MIPS:
             if self.endian == CS_MODE_BIG_ENDIAN:
-                self.mode += KS_MODE_BIG_ENDIAN
+                self.mode += CS_MODE_BIG_ENDIAN
 
         md = Cs(self.arch, self.mode)
 
