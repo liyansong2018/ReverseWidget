@@ -35,7 +35,7 @@ class DialogWindow(QWidget):
 
 
     def diaglog_about(self):
-        info = self.tr("Reverse Widget\nVersion: V1.0\nAuthor: Yansong Li\nPowered by open-source software")
+        info = self.tr("Reverse Widget\nVersion: V1.1\nAuthor: Yansong Li\nPowered by open-source software")
         self.msg_about(info)
 
     def dialog_user_key(self):
