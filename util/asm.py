@@ -32,11 +32,11 @@ class Asm():
     def assemble(self):
         # ARM
         if self.arch == KS_ARCH_ARM:
-            if self.mode == 2 or self.mode == 4:
-                if self.endian == KS_MODE_BIG_ENDIAN:
-                    self.mode = KS_MODE_ARM + self.endian
-                else:
-                    self.mode = KS_MODE_ARM
+            if self.mode == 2:
+                self.mode = KS_MODE_THUMB + self.endian
+
+            elif self.mode == 4:
+                self.mode = KS_MODE_ARM + self.endian
 
             elif self.mode == 8:
                 # ARM64 only supports little endian
@@ -79,11 +79,11 @@ class Asm():
     def disassemble(self, base_addr):
         # ARM
         if self.arch == CS_ARCH_ARM:
-            if self.mode == 2 or self.mode == 4:
-                if self.endian == CS_MODE_BIG_ENDIAN:
-                    self.mode = CS_MODE_ARM + self.endian
-                else:
-                    self.mode = CS_MODE_ARM
+            if self.mode == 2:
+                self.mode = CS_MODE_THUMB + self.endian
+
+            elif self.mode == 4:
+                self.mode = CS_MODE_ARM + self.endian
 
             elif self.mode == 8:
                 # 64bit ARM64 only supports little endian
