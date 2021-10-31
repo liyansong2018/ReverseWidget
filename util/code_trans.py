@@ -56,7 +56,7 @@ class Code():
         """
         bytes -> base64 string
         :param bytes: bytes
-        :return: base64 string
+        :return: base64 string (76bit max!)
         """
         data = base64.encodebytes(bytes)
         data = data.decode("utf-8")

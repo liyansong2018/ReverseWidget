@@ -179,7 +179,7 @@ class MainUi(QtWidgets.QMainWindow):
         """
         output_choice = button.objectName()
         algorithm_choice = self.ui.choiceAlgorithm.currentText()
-        Log.debug("listen_button()", output_choice, algorithm_choice)
+        Log.debug("listen_button()", output_choice)
 
         if self.function == CRYPT:
             if output_choice == "outputButton_1":
@@ -374,7 +374,14 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = self.ui.base64TabText.toPlainText()
                 _input = _input.encode("utf-8")
                 output = code.bytes_to_base64(_input)
-                self.ui.codeOutput.setText(output)
+                # delete CR LF
+                strip_output = ''
+                for char in output:
+                    if char == '\r' or char == '\n':
+                        continue
+                    strip_output += char
+
+                self.ui.codeOutput.setText(strip_output)
             except Exception as e:
                 dialog = DialogWindow()
                 dialog.diaglog_user_input()
