@@ -4,10 +4,6 @@
 @File    :   code_trans.py    
 @Contact :   https://github.com/liyansong2018/ReverseWidget
 @License :   (C)Copyright 2021, liyansong
-
-@Modify Time      @Author    @Version    @Desciption
-------------      -------    --------    -----------
-2021/6/25 21:58   liyansong     1.0         None
 '''
 
 import base64

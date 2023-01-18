@@ -4,10 +4,6 @@
 @File    :   log.py    
 @Contact :   https://github.com/liyansong2018/ReverseWidget
 @License :   (C)Copyright 2021, liyansong
-
-@Modify Time      @Author    @Version    @Desciption
-------------      -------    --------    -----------
-2021/6/25 21:59   liyansong     1.0         None
 '''
 
 

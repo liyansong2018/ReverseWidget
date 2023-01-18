@@ -4,10 +4,6 @@
 @File    :   ui_helper.py    
 @Contact :   https://github.com/liyansong2018/ReverseWidget
 @License :   (C)Copyright 2021, liyansong
-
-@Modify Time      @Author    @Version    @Desciption
-------------      -------    --------    -----------
-2021/6/25 22:00   liyansong     1.0         None
 '''
 
 from PyQt5.QtCore import QVariant
@@ -54,3 +50,9 @@ class UiHelper():
 
         self.ui.formGroupBox.show()
         self.ui.welcomeGroupBox.close()
+
+class Helper():
+    @staticmethod
+    def get_version():
+        with open("VERSION") as fp:
+            return (fp.readline(), fp.readline())

@@ -4,11 +4,6 @@
 @File    :   asm.py    
 @Contact :   https://github.com/liyansong2018/ReverseWidget
 @License :   (C)Copyright 2021, liyansong
-
-@Modify Time      @Author    @Version    @Desciption
-------------      -------    --------    -----------
-2021/6/25 21:57   liyansong     1.0         None
-2021/9/25 17:42   liyansong     1.1         None
 '''
 
 from keystone import *

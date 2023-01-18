@@ -4,11 +4,6 @@
 @File    :   main.py    
 @Contact :   https://github.com/liyansong2018/ReverseWidget
 @License :   (C)Copyright 2021, liyansong
-
-@Modify Time      @Author    @Version    @Desciption
-------------      -------    --------    -----------
-2021/6/25 21:47   liyansong     1.0         None
-2021/9/25 17:42   liyansong     1.1         None
 '''
 
 from ui.main_window import *
@@ -20,12 +15,14 @@ from util.map import *
 from util.asm import *
 from urllib import parse
 
-VERSION = "1.0"
+from ui.about_window import *
 
 CRYPT = 1
 CODE = 2
 ASM = 3
 
+FONT = None
+ABOUT_TEXT_PATH = "./ui/resources/html/about.html"
 
 class MainUi(QtWidgets.QMainWindow):
     def __init__(self):
@@ -39,15 +36,19 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_main = QTranslator()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.resize(1000, 600)
 
         self.ui.formGroupBox.close()
         self.ui.welcomeGroupBox.show()
 
+        # Menu
         self.ui.actionOpen.triggered.connect(self.listen_action_open)
         self.ui.actionChinese.triggered.connect(lambda: self.listen_action_language(self.ui.actionChinese))
         self.ui.actionEnglish.triggered.connect(lambda: self.listen_action_language(self.ui.actionEnglish))
+        self.ui.actionFont.triggered.connect(self.listen_action_font)
         self.ui.actionAbout.triggered.connect(self.listen_action_about)
 
+        # Button
         self.ui.cryptButton.clicked.connect(self.init_crypt)
         self.ui.codeButton.clicked.connect(self.init_code)
         self.ui.asmButton.clicked.connect(self.init_asm)
@@ -77,8 +78,23 @@ class MainUi(QtWidgets.QMainWindow):
         elif self.function == ASM:
             self.init_asm()
 
+    def init_ui_font(self, font=FONT):
+        self.ui.centralwidget.setFont(font)
+        self.ui.menubar.setFont(font)
+        self.ui.statusbar.setFont(font)
+        # Bug: can't modify font globally??
+        self.ui.asmButton.setFont(font)
+        self.ui.codeButton.setFont(font)
+        self.ui.cryptButton.setFont(font)
+
     def listen_action_open(self):
         self.openfile = QFileDialog.getOpenFileName()[0]
+
+    def listen_action_font(self):
+        global FONT
+        FONT, ok = QFontDialog.getFont()
+        if ok:
+            self.init_ui_font(FONT)
 
     def listen_action_language(self, language):
         """
@@ -111,8 +127,13 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.retranslateUi(self)
 
     def listen_action_about(self):
-        dialog = DialogWindow()
-        dialog.diaglog_about()
+        """
+        open new ui of 'About'
+        :return: null
+        """
+        about = AboutUi()
+        about.show()
+        about.exec_()
 
     def init_crypt(self):
         self.function = CRYPT
@@ -531,6 +552,23 @@ class MainUi(QtWidgets.QMainWindow):
             dialog = DialogWindow()
             dialog.diaglog_user_input()
 
+class AboutUi(QDialog):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_AboutWindow()
+        self.ui.setupUi(self)
+        self.resize(400, 300)
+        with open(ABOUT_TEXT_PATH) as fp:
+            _info = Helper.get_version()
+            self.ui.textBrowserAbout.setHtml(fp.read() % (_info[0], _info[1]))
+        if FONT:
+            self.init_ui_font(FONT)
+
+    def init_ui_font(self, font=FONT):
+        self.ui.textBrowserAbout.setFont(font)
 
 class ParamProcess():
     def __init__(self, ui):

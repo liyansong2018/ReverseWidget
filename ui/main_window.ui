@@ -13,7 +13,7 @@
     <x>0</x>
     <y>0</y>
     <width>1139</width>
-    <height>800</height>
+    <height>822</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,6 +30,11 @@
    <bool>false</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+    </font>
+   </property>
    <layout class="QHBoxLayout" name="horizontalLayout">
     <property name="spacing">
      <number>0</number>
@@ -90,6 +95,14 @@ QPushButton::checked,QToolButton::checked{
        </property>
        <item>
         <widget class="QPushButton" name="cryptButton">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>-1</pointsize>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
@@ -150,6 +163,17 @@ Decode</string>
        </item>
        <item>
         <widget class="QPushButton" name="asmButton">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>-1</pointsize>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="styleSheet">
           <string notr="true"/>
          </property>
@@ -214,6 +238,11 @@ Disassemble</string>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
            <widget class="QLabel" name="nameLable">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>AES</string>
             </property>
@@ -234,6 +263,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QComboBox" name="choiceAlgorithm">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <item>
              <property name="text">
               <string>AES</string>
@@ -267,6 +301,11 @@ Disassemble</string>
          <layout class="QHBoxLayout" name="horizontalLayout_2">
           <item>
            <widget class="QLabel" name="patternLabel">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>model</string>
             </property>
@@ -274,6 +313,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QComboBox" name="modelComboBox">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <item>
              <property name="text">
               <string>ECB</string>
@@ -764,7 +808,7 @@ Disassemble</string>
           <item>
            <widget class="QTabWidget" name="tabWidget">
             <property name="currentIndex">
-             <number>0</number>
+             <number>1</number>
             </property>
             <widget class="QWidget" name="hexTab">
              <attribute name="title">
@@ -969,6 +1013,7 @@ background-color: transparent;</string>
     <addaction name="actionOpen"/>
     <addaction name="separator"/>
     <addaction name="menuLanguage"/>
+    <addaction name="actionFont"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -998,6 +1043,11 @@ background-color: transparent;</string>
   <action name="actionOpen">
    <property name="text">
     <string>Open</string>
+   </property>
+  </action>
+  <action name="actionFont">
+   <property name="text">
+    <string>Font</string>
    </property>
   </action>
  </widget>
