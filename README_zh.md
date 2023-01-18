@@ -48,15 +48,23 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 - ARM64 只有小端模式（当前 AArch64 架构本身只有小端 ）
 - PowerPC32 只有大端模式（当前 PowerPC32 架构本身只有小端）
 
-## 编译
+## 如何使用
 
-关于怎样编译和安装，请查看 [Compile & Docs_zh](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh)
+### Windows
+
+1. 运行 `setup.bat`，安装基本库
+2. 运行程序 `run.bat`
+
+### Linux
+
+1. 运行 `setup.sh`，安装基本库
+2. 运行程序 `run.sh`
+
+关于怎样编译和安装，请查看 [Compile & Docs_zh](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh)。您既可以使用上述方法使用 Reverse Widget，也可以通过下面的程序打开 Reverse Widget。
 
 ## 开箱即用的发行版
 
-参见已发布的版本 [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
+参见已发布的版本 [Releases](https://github.com/liyansong2018/ReverseWidget/releases)，不推荐使用，启动速度较慢，推荐使用原生的 python 环境。
 
 
-
-
-这是业余时间编写的一个软件，可能存在一些Bug，正在不断完善中，请谅解
+这是业余时间编写的一个软件，可能存在一些Bug，正在不断完善中，请谅解。

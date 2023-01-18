@@ -57,9 +57,17 @@ Limitations
 
 ## Compilation & Docs
 
-Comming...
+### Windows
 
-See [COMPILE.md](...) file for how to compile and install Reverse Widget. 
+1. run `setup.bat`
+2. run `run.bat`
+
+### Linux
+
+1. run `setup.bat`
+2. run `run.sh`
+
+See [COMPILE.md](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh) file for how to compile and install Reverse Widget. 
 
 ## Convenient Tool
 
