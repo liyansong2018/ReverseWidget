@@ -36,7 +36,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_main = QTranslator()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.resize(1000, 600)
+        self.resize(900, 600)
 
         self.ui.formGroupBox.close()
         self.ui.welcomeGroupBox.show()
@@ -144,7 +144,7 @@ class MainUi(QtWidgets.QMainWindow):
 
         self.listen_algorithm()
 
-        self.ui.lineEdit_2.setPlaceholderText("Only support for CBC/CFB/OFB/OPENPGP")
+        self.ui.lineEdit_2.setPlaceholderText("CBC/CFB/OFB/OPENPGP")
         self.ui.outputButton_1.setText(self.tr("Encrypt"))
         self.ui.outputButton_2.setText(self.tr("Decrypt"))
 
@@ -561,11 +561,15 @@ class AboutUi(QDialog):
         self.ui = Ui_AboutWindow()
         self.ui.setupUi(self)
         self.resize(400, 300)
-        with open(ABOUT_TEXT_PATH) as fp:
-            _info = Helper.get_version()
-            self.ui.textBrowserAbout.setHtml(fp.read() % (_info[0], _info[1]))
-        if FONT:
-            self.init_ui_font(FONT)
+        try:
+            with open(ABOUT_TEXT_PATH) as fp:
+                Log.info("Open file %s" % ABOUT_TEXT_PATH)
+                _info = Helper.get_version()
+                self.ui.textBrowserAbout.setHtml(fp.read() % (_info[0], _info[1]))
+            if FONT:
+                self.init_ui_font(FONT)
+        except OSError:
+            Log.error("Open error! No file: %s" % ABOUT_TEXT_PATH)
 
     def init_ui_font(self, font=FONT):
         self.ui.textBrowserAbout.setFont(font)

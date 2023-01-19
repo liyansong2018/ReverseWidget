@@ -43,6 +43,12 @@
      <height>381</height>
     </rect>
    </property>
+   <property name="openExternalLinks">
+    <bool>true</bool>
+   </property>
+   <property name="openLinks">
+    <bool>true</bool>
+   </property>
   </widget>
  </widget>
  <resources/>

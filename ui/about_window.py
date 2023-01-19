@@ -25,6 +25,8 @@ class Ui_AboutWindow(object):
         AboutWindow.setWindowIcon(icon)
         self.textBrowserAbout = QtWidgets.QTextBrowser(AboutWindow)
         self.textBrowserAbout.setGeometry(QtCore.QRect(-5, -9, 521, 381))
+        self.textBrowserAbout.setOpenExternalLinks(True)
+        self.textBrowserAbout.setOpenLinks(True)
         self.textBrowserAbout.setObjectName("textBrowserAbout")
 
         self.retranslateUi(AboutWindow)

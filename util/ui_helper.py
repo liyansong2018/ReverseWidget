@@ -48,8 +48,8 @@ class UiHelper():
         for i in groupbox_show:
             i.show()
 
-        self.ui.formGroupBox.show()
         self.ui.welcomeGroupBox.close()
+        self.ui.formGroupBox.show()
 
 class Helper():
     @staticmethod

@@ -12,9 +12,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1139</width>
-    <height>822</height>
+    <width>1147</width>
+    <height>794</height>
    </rect>
+  </property>
+  <property name="baseSize">
+   <size>
+    <width>0</width>
+    <height>0</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>Reverse Widget</string>
@@ -53,16 +59,31 @@
     </property>
     <item>
      <widget class="QGroupBox" name="gridGroupBox">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>400</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
       <property name="styleSheet">
        <string notr="true">QPushButton{
 	text-align:left;
     text-decoration:none;
-    background:#ffffff;
-    color:#000000;
+    /* background:#ffffff; */
+    /* color:#000000; */
 
     padding: 5px 30px 5px 20px;
-    font-size:12px;
-    font-family: 微软雅黑,宋体,Arial,Helvetica,Verdana,sans-serif;
     font-weight:light;
     border-radius:0px;
 	border:2px solid #f5f5f5;
@@ -71,7 +92,6 @@ QPushButton::checked,QToolButton::checked{
 	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
 	color:#ffffff;
 	font-weight: bold;
-	font-family:Microsoft YaHei;
 }</string>
       </property>
       <property name="flat">
@@ -98,7 +118,6 @@ QPushButton::checked,QToolButton::checked{
          <property name="font">
           <font>
            <family>微软雅黑</family>
-           <pointsize>-1</pointsize>
            <underline>false</underline>
            <strikeout>false</strikeout>
           </font>
@@ -133,6 +152,13 @@ Decrypt</string>
        </item>
        <item>
         <widget class="QPushButton" name="codeButton">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
          <property name="styleSheet">
           <string notr="true">QPushButton{
 	border-top-width: 0px;
@@ -166,7 +192,6 @@ Decode</string>
          <property name="font">
           <font>
            <family>微软雅黑</family>
-           <pointsize>-1</pointsize>
            <underline>false</underline>
            <strikeout>false</strikeout>
           </font>
@@ -223,6 +248,16 @@ Disassemble</string>
     </item>
     <item>
      <widget class="QGroupBox" name="formGroupBox">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">QGroupBox {
+	border: 0px;
+}</string>
+      </property>
       <layout class="QVBoxLayout" name="verticalLayout">
        <property name="leftMargin">
         <number>0</number>
@@ -234,6 +269,9 @@ Disassemble</string>
         <widget class="QGroupBox" name="cryptGroupBox">
          <property name="title">
           <string/>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_4">
           <item>
@@ -382,6 +420,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QLabel" name="paddingLabel">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>padding</string>
             </property>
@@ -389,6 +432,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QComboBox" name="paddingComboBox">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <item>
              <property name="text">
               <string>pkcs7padding</string>
@@ -408,6 +456,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QLabel" name="keyLabel_2">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>length</string>
             </property>
@@ -415,6 +468,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QComboBox" name="keySizeComboBox">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <item>
              <property name="text">
               <string>64bit</string>
@@ -439,29 +497,54 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QLabel" name="keyLabel">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>key</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="lineEdit">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+           </widget>
           </item>
           <item>
            <widget class="QLabel" name="ivLabel">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>iv</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="lineEdit_2">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
        </item>
        <item>
         <widget class="QGroupBox" name="asmGroupBox">
+         <property name="inputMethodHints">
+          <set>Qt::ImhNone</set>
+         </property>
          <property name="title">
           <string/>
          </property>
@@ -480,6 +563,11 @@ Disassemble</string>
           </property>
           <item>
            <widget class="QGroupBox" name="archGroupBox">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="title">
              <string/>
             </property>
@@ -498,6 +586,11 @@ Disassemble</string>
              </property>
              <item>
               <widget class="QRadioButton" name="x86Button">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>x86</string>
                </property>
@@ -505,6 +598,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="armButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>ARM</string>
                </property>
@@ -512,6 +610,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="mipsButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>MIPS</string>
                </property>
@@ -519,6 +622,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="sparcButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>Sparc</string>
                </property>
@@ -526,6 +634,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="powerPcButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>PowerPC</string>
                </property>
@@ -567,6 +680,11 @@ Disassemble</string>
              </property>
              <item>
               <widget class="QRadioButton" name="mode16Button">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>16bit</string>
                </property>
@@ -574,6 +692,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="mode32Button">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>32bit</string>
                </property>
@@ -581,6 +704,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="mode64Button">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>64bit</string>
                </property>
@@ -599,7 +727,13 @@ Disassemble</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_5">
           <item>
-           <widget class="QPlainTextEdit" name="inputData"/>
+           <widget class="QPlainTextEdit" name="inputData">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -612,10 +746,21 @@ Disassemble</string>
          <layout class="QHBoxLayout" name="horizontalLayout_16">
           <item>
            <widget class="QTabWidget" name="tabWidget_2">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true"/>
+            </property>
             <property name="currentIndex">
              <number>0</number>
             </property>
             <widget class="QWidget" name="urlTab">
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
              <attribute name="title">
               <string>URL</string>
              </attribute>
@@ -636,11 +781,29 @@ Disassemble</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QTextEdit" name="urlTabText"/>
+               <widget class="QTextEdit" name="urlTabText">
+                <property name="font">
+                 <font>
+                  <family>微软雅黑</family>
+                 </font>
+                </property>
+                <property name="styleSheet">
+                 <string notr="true"/>
+                </property>
+                <property name="lineWidth">
+                 <number>0</number>
+                </property>
+                <property name="cursorWidth">
+                 <number>1</number>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
             <widget class="QWidget" name="base64Tab_2">
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
              <attribute name="title">
               <string>Base64</string>
              </attribute>
@@ -666,6 +829,9 @@ Disassemble</string>
              </layout>
             </widget>
             <widget class="QWidget" name="hashTab">
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
              <attribute name="title">
               <string>Hash</string>
              </attribute>
@@ -700,6 +866,11 @@ Disassemble</string>
          <layout class="QHBoxLayout" name="horizontalLayout_3">
           <item>
            <widget class="QPushButton" name="outputButton_1">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>Encrypt</string>
             </property>
@@ -707,6 +878,11 @@ Disassemble</string>
           </item>
           <item>
            <widget class="QPushButton" name="outputButton_2">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
             <property name="text">
              <string>Decrypt</string>
             </property>
@@ -733,19 +909,35 @@ Disassemble</string>
             <layout class="QHBoxLayout" name="horizontalLayout_14">
              <item>
               <widget class="QLabel" name="label_2">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>Base Address</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEditBaseAddr"/>
+              <widget class="QLineEdit" name="lineEditBaseAddr">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
+              </widget>
              </item>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_21"/>
              </item>
              <item>
               <widget class="QRadioButton" name="littleButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>Little Endian</string>
                </property>
@@ -753,6 +945,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QRadioButton" name="bigButton">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>Big Endian</string>
                </property>
@@ -769,6 +966,11 @@ Disassemble</string>
             <layout class="QHBoxLayout" name="horizontalLayout_15">
              <item>
               <widget class="QLabel" name="formatLabel">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <property name="text">
                 <string>input format</string>
                </property>
@@ -776,6 +978,11 @@ Disassemble</string>
              </item>
              <item>
               <widget class="QComboBox" name="inputComboBox">
+               <property name="font">
+                <font>
+                 <family>微软雅黑</family>
+                </font>
+               </property>
                <item>
                 <property name="text">
                  <string>Hex</string>
@@ -807,10 +1014,21 @@ Disassemble</string>
          <layout class="QHBoxLayout" name="horizontalLayout_6">
           <item>
            <widget class="QTabWidget" name="tabWidget">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">border: 0px;</string>
+            </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="hexTab">
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
              <attribute name="title">
               <string>Hex</string>
              </attribute>
@@ -831,7 +1049,13 @@ Disassemble</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QTextBrowser" name="hexText"/>
+               <widget class="QTextBrowser" name="hexText">
+                <property name="font">
+                 <font>
+                  <family>微软雅黑</family>
+                 </font>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
@@ -861,6 +1085,9 @@ Disassemble</string>
              </layout>
             </widget>
             <widget class="QWidget" name="stringTab">
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
              <attribute name="title">
               <string>String</string>
              </attribute>
@@ -897,10 +1124,22 @@ Disassemble</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_13">
           <item>
-           <widget class="QTextBrowser" name="outputAsmHex"/>
+           <widget class="QTextBrowser" name="outputAsmHex">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+           </widget>
           </item>
           <item>
-           <widget class="QTextBrowser" name="outputAsmEscaped"/>
+           <widget class="QTextBrowser" name="outputAsmEscaped">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -912,7 +1151,13 @@ Disassemble</string>
          </property>
          <layout class="QHBoxLayout" name="horizontalLayout_19">
           <item>
-           <widget class="QTextBrowser" name="codeOutput"/>
+           <widget class="QTextBrowser" name="codeOutput">
+            <property name="font">
+             <font>
+              <family>微软雅黑</family>
+             </font>
+            </property>
+           </widget>
           </item>
          </layout>
         </widget>
@@ -995,7 +1240,7 @@ background-color: transparent;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1139</width>
+     <width>1147</width>
      <height>23</height>
     </rect>
    </property>
