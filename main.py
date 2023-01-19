@@ -16,6 +16,7 @@ from util.asm import *
 from urllib import parse
 
 from ui.about_window import *
+from ui.hash_window import *
 
 CRYPT = 1
 CODE = 2
@@ -52,6 +53,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.cryptButton.clicked.connect(self.init_crypt)
         self.ui.codeButton.clicked.connect(self.init_code)
         self.ui.asmButton.clicked.connect(self.init_asm)
+        self.ui.hashButton.clicked.connect(self.init_hash)
 
         self.ui.outputButton_1.clicked.connect(lambda: self.listen_button(self.ui.outputButton_1))
         self.ui.outputButton_2.clicked.connect(lambda: self.listen_button(self.ui.outputButton_2))
@@ -191,6 +193,10 @@ class MainUi(QtWidgets.QMainWindow):
 
         self.ui.outputButton_1.setText(self.tr("Assemble"))
         self.ui.outputButton_2.setText(self.tr("Disassemble"))
+
+    def init_hash(self):
+        self.hash_ui = HashUi()
+        self.hash_ui.show()
 
     def listen_button(self, button):
         """
@@ -552,6 +558,7 @@ class MainUi(QtWidgets.QMainWindow):
             dialog = DialogWindow()
             dialog.diaglog_user_input()
 
+
 class AboutUi(QDialog):
     def __init__(self):
         super().__init__()
@@ -573,6 +580,30 @@ class AboutUi(QDialog):
 
     def init_ui_font(self, font=FONT):
         self.ui.textBrowserAbout.setFont(font)
+
+
+class HashUi(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_HashWindow()
+        self.ui.setupUi(self)
+        self.openfile = None
+        self.ui.openButton.clicked.connect(self.listen_action_open)
+        self.ui.hashButton.clicked.connect(self.listen_action_hash)
+
+    def listen_action_open(self):
+        self.openfile = QFileDialog.getOpenFileName()[0]
+        self.ui.textEdit.setText(self.openfile)
+
+    def listen_action_hash(self):
+        if self.openfile:
+            code = Code()
+            ret = code.get_file_hash(self.openfile)
+            self.ui.textBrowser.setText(ret)
+
 
 class ParamProcess():
     def __init__(self, ui):

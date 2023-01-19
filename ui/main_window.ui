@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1147</width>
-    <height>794</height>
+    <width>1294</width>
+    <height>946</height>
    </rect>
   </property>
   <property name="baseSize">
@@ -86,7 +86,11 @@
     padding: 5px 30px 5px 20px;
     font-weight:light;
     border-radius:0px;
-	border:2px solid #f5f5f5;
+	border:2px solid #ffffff;
+	border-top-width: 0px;
+	border-bottom-width: 1px;
+	border-left-width: 0px;
+	border-right-width: 0px;
 }
 QPushButton::checked,QToolButton::checked{
 	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
@@ -160,10 +164,7 @@ Decrypt</string>
           </font>
          </property>
          <property name="styleSheet">
-          <string notr="true">QPushButton{
-	border-top-width: 0px;
-	border-bottom-width: 0px;
-}</string>
+          <string notr="true"/>
          </property>
          <property name="text">
           <string>Encode
@@ -227,6 +228,36 @@ Disassemble</string>
          </property>
          <property name="autoRepeatInterval">
           <number>100</number>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="hashButton">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="text">
+          <string>Hash</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>resources/pictures/md5.png</normaloff>resources/pictures/md5.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>30</width>
+           <height>30</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
@@ -1240,8 +1271,8 @@ background-color: transparent;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1147</width>
-     <height>23</height>
+     <width>1294</width>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

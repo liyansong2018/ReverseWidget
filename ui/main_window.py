@@ -16,7 +16,7 @@ class Ui_MainWindow(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowModality(QtCore.Qt.NonModal)
         MainWindow.setEnabled(True)
-        MainWindow.resize(1147, 794)
+        MainWindow.resize(1294, 946)
         MainWindow.setBaseSize(QtCore.QSize(0, 0))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
@@ -47,7 +47,11 @@ class Ui_MainWindow(object):
 "    padding: 5px 30px 5px 20px;\n"
 "    font-weight:light;\n"
 "    border-radius:0px;\n"
-"    border:2px solid #f5f5f5;\n"
+"    border:2px solid #ffffff;\n"
+"    border-top-width: 0px;\n"
+"    border-bottom-width: 1px;\n"
+"    border-left-width: 0px;\n"
+"    border-right-width: 0px;\n"
 "}\n"
 "QPushButton::checked,QToolButton::checked{\n"
 "    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
@@ -82,10 +86,7 @@ class Ui_MainWindow(object):
         font.setUnderline(False)
         font.setStrikeOut(False)
         self.codeButton.setFont(font)
-        self.codeButton.setStyleSheet("QPushButton{\n"
-"    border-top-width: 0px;\n"
-"    border-bottom-width: 0px;\n"
-"}")
+        self.codeButton.setStyleSheet("")
         icon2 = QtGui.QIcon()
         icon2.addPixmap(QtGui.QPixmap("ui/resources/pictures/code.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         self.codeButton.setIcon(icon2)
@@ -112,6 +113,20 @@ class Ui_MainWindow(object):
         self.asmButton.setAutoRepeatInterval(100)
         self.asmButton.setObjectName("asmButton")
         self.verticalLayout_2.addWidget(self.asmButton)
+        self.hashButton = QtWidgets.QPushButton(self.gridGroupBox)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        self.hashButton.setFont(font)
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("ui/resources/pictures/md5.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.hashButton.setIcon(icon4)
+        self.hashButton.setIconSize(QtCore.QSize(30, 30))
+        self.hashButton.setCheckable(True)
+        self.hashButton.setAutoExclusive(True)
+        self.hashButton.setObjectName("hashButton")
+        self.verticalLayout_2.addWidget(self.hashButton)
         spacerItem = QtWidgets.QSpacerItem(20, 40, QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Expanding)
         self.verticalLayout_2.addItem(spacerItem)
         self.horizontalLayout.addWidget(self.gridGroupBox)
@@ -557,7 +572,7 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addWidget(self.welcomeGroupBox)
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 1147, 23))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 1294, 26))
         self.menubar.setObjectName("menubar")
         self.menu = QtWidgets.QMenu(self.menubar)
         self.menu.setObjectName("menu")
@@ -603,6 +618,7 @@ class Ui_MainWindow(object):
 "Decode"))
         self.asmButton.setText(_translate("MainWindow", "Assemble\n"
 "Disassemble"))
+        self.hashButton.setText(_translate("MainWindow", "Hash"))
         self.nameLable.setText(_translate("MainWindow", "AES"))
         self.choiceAlgorithm.setItemText(0, _translate("MainWindow", "AES"))
         self.choiceAlgorithm.setItemText(1, _translate("MainWindow", "DES"))
