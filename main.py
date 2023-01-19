@@ -10,7 +10,6 @@ from ui.main_window import *
 from util.crypt import *
 from util.log import *
 from ui.dialog_window import *
-from util.ui_helper import *
 from util.map import *
 from util.asm import *
 from urllib import parse
@@ -601,8 +600,8 @@ class HashUi(QtWidgets.QWidget):
     def listen_action_hash(self):
         if self.openfile:
             code = Code()
-            ret = code.get_file_hash(self.openfile)
-            self.ui.textBrowser.setText(ret)
+            ret = code.get_file_hash_html(self.openfile)
+            self.ui.textBrowser.setHtml(ret)
 
 
 class ParamProcess():

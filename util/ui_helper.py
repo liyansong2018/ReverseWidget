@@ -10,7 +10,7 @@ from PyQt5.QtCore import QVariant
 from PyQt5.Qt import *
 
 
-class UiHelper():
+class UiHelper:
     def __init__(self, ui):
         self.ui = ui
 
@@ -51,8 +51,13 @@ class UiHelper():
         self.ui.welcomeGroupBox.close()
         self.ui.formGroupBox.show()
 
-class Helper():
+
+class Helper:
     @staticmethod
     def get_version():
         with open("VERSION") as fp:
             return (fp.readline(), fp.readline())
+
+    @staticmethod
+    def font_bold(font):
+        return "<b>" + font + "</b>"

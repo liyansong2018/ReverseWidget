@@ -9,6 +9,7 @@
 import base64
 import binascii
 import hashlib
+from .ui_helper import *
 
 class Code():
     def __init__(self):
@@ -184,3 +185,13 @@ class Code():
         output += "SHA512: " + sha512.hexdigest()
         return output
 
+    def get_file_hash_html(self, file_path):
+        ret = self.get_file_hash(file_path)
+        ret = ret.replace("MD5", Helper.font_bold("MD5"))
+        ret = ret.replace("SHA1", Helper.font_bold("SHA1"))
+        ret = ret.replace("SHA224", Helper.font_bold("SHA224"))
+        ret = ret.replace("SHA256", Helper.font_bold("SHA256"))
+        ret = ret.replace("SHA384", Helper.font_bold("SHA384"))
+        ret = ret.replace("SHA512", Helper.font_bold("SHA512"))
+        ret = ret.replace("\n", "<br />")
+        return ret
