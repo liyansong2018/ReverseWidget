@@ -126,6 +126,9 @@ QPushButton::checked,QToolButton::checked{
            <strikeout>false</strikeout>
           </font>
          </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
          <property name="layoutDirection">
           <enum>Qt::LeftToRight</enum>
          </property>
@@ -162,6 +165,9 @@ Decrypt</string>
            <underline>false</underline>
            <strikeout>false</strikeout>
           </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="styleSheet">
           <string notr="true"/>
@@ -239,6 +245,9 @@ Disassemble</string>
            <underline>false</underline>
            <strikeout>false</strikeout>
           </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
           <string>Hash</string>
