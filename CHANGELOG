@@ -1,0 +1,19 @@
+[2023-01-20]
+    ReverseWidget 1.3
+        - Beautify the main UI of the application
+        - Add UI of `hash` module
+        - Test the compatibility of Reverse Widget under Linux and Windows
+
+[2023-01-18]
+    ReverseWidget 1.2
+        - Allow users to customize fonts
+        - Add UI of `about` module
+
+[2021-10-10]
+    ReverseWidget 1.1
+        - Fix bugs in mips little endian
+        - Set the default options
+        - Add binary base address
+
+[2021-06-25]
+    ReverseWidget 1.0
