@@ -1,6 +1,6 @@
 # Reverse Widget
 
-[![platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20linux-blue?style=flat-square)](#) [![language](https://img.shields.io/github/languages/count/liyansong2018/ReverseWidget?style=flat-square)](#) [![english](https://img.shields.io/badge/English(US)-100%-blue?style=flat-square)](#) [![chinese](https://img.shields.io/badge/简体中文-60%-blue?style=flat-square)](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
+[![platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20linux-blue?style=flat-square)](#) [![language](https://img.shields.io/github/languages/count/liyansong2018/ReverseWidget?style=flat-square)](#) [![english](https://img.shields.io/badge/English(US)-100%25-blue?style=flat-square)](#) [![chinese](https://img.shields.io/badge/简体中文-60%25-blue?style=flat-square)](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
 
 Reverse Widget is a lightweight GUI Software that implements some typical  block cipher,  coding, hashing, and multi-architecture assemble/disassembly framework. Highlight Features:
 
