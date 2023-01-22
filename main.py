@@ -17,6 +17,8 @@ from urllib import parse
 from ui.about_window import *
 from ui.hash_window import *
 
+import os
+
 CRYPT = 1
 CODE = 2
 ASM = 3
@@ -599,9 +601,29 @@ class HashUi(QtWidgets.QWidget):
 
     def listen_action_hash(self):
         if self.openfile:
-            code = Code()
-            ret = code.get_file_hash_html(self.openfile)
-            self.ui.textBrowser.setHtml(ret)
+            self.ui.hashButton.setEnabled(False)
+            if os.path.getsize(self.openfile) > 1024 * 1024 * 100:
+                self.ui.textBrowser.setText("The file size is large, please waitting...")
+            self.thread_hash = PreventFastClickThreadSignal(self.openfile)
+            self.thread_hash._signal.connect(self.set_btn)
+            self.thread_hash.start()
+
+    def set_btn(self, value):
+        self.ui.hashButton.setEnabled(True)
+        self.ui.textBrowser.setText(value)
+
+
+class PreventFastClickThreadSignal(QThread):
+    _signal = pyqtSignal(str)
+
+    def __init__(self, path):
+        super().__init__()
+        self.path = path
+
+    def run(self):
+        code = Code()
+        ret = code.get_file_hash_html(self.path)
+        self._signal.emit(ret)
 
 
 class ParamProcess():

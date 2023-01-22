@@ -156,7 +156,7 @@ class Code():
     def get_file_hash(self, file_path):
         """
         caculate hash: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
-        :param file_path: file
+        :param file_path: file path
         :return: hash
         """
         md5 = hashlib.md5()
@@ -186,6 +186,11 @@ class Code():
         return output
 
     def get_file_hash_html(self, file_path):
+        """
+        wrapper for `get_file_hash`
+        :param file_path: file path
+        :return: html format
+        """
         ret = self.get_file_hash(file_path)
         ret = ret.replace("MD5", Helper.font_bold("MD5"))
         ret = ret.replace("SHA1", Helper.font_bold("SHA1"))
