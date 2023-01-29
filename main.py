@@ -17,6 +17,9 @@ from urllib import parse
 from ui.about_window import *
 from ui.hash_window import *
 
+# For macOS: not found QThread
+from PyQt5.QtCore import *
+
 import os
 
 CRYPT = 1

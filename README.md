@@ -62,16 +62,12 @@ Limitations
 1. run `setup.bat`
 2. run `run.bat`
 
-### Linux
+### Linux & macOS
 
-1. run `setup.bat`
+1. run `setup.sh`
 2. run `run.sh`
 
-### macOS
-
-Coming...
-
-See [COMPILE.md](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh) file for how to compile and install Reverse Widget. 
+Of course, you can also see [COMPILE.md](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh) file for how to compile and install Reverse Widget. 
 
 ## Convenient Tool
 
