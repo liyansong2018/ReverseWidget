@@ -23,6 +23,7 @@ from PyQt5.QtCore import *
 
 import os
 import json
+from lxml import etree
 
 CRYPT = 1
 CODE = 2
@@ -633,12 +634,15 @@ class FormatUi(QtWidgets.QWidget):
         _input = self.ui.textEdit.toPlainText()
         Log.info("Format input: %s" % _input)
         try:
-            _output = self.__log_format(json.loads(_input))
+            _output = self.__log_format_json(json.loads(_input))
         except Exception as e:
-            _output = e
+            try:
+                _output = self.__log_format_xml(_input)
+            except Exception as e:
+                _output = str(e)
         finally:
             Log.info("Format output: %s" % _output)
-            self.ui.textBrowser.setText(str(_output))
+            self.ui.textBrowser.setText(_output)
 
     def init_ui(self):
         """
@@ -648,13 +652,22 @@ class FormatUi(QtWidgets.QWidget):
         self.ui = Ui_FormatWindow()
         self.ui.setupUi(self)
 
-    def __log_format(self, json_data):
+    def __log_format_json(self, json_data):
         """
         Beautify json data
         :param json_data: raw data
         :return: format json
         """
         return json.dumps(json_data, indent=4, ensure_ascii=False)
+
+    def __log_format_xml(self, xml_data):
+        """
+        Beautify xml data
+        :param xml_data:
+        :return: format xml
+        """
+        _root = etree.XML(xml_data)
+        return etree.tostring(_root, pretty_print=True).decode('utf-8')
 
 
 class PreventFastClickThreadSignal(QThread):
