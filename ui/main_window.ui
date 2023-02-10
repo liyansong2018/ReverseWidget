@@ -136,7 +136,7 @@ QPushButton::checked,QToolButton::checked{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Encrypt/Decrypt</string>
+          <string>Encrypt_Decrypt</string>
          </property>
          <property name="icon">
           <iconset>
@@ -172,7 +172,7 @@ QPushButton::checked,QToolButton::checked{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Encode/Decode</string>
+          <string>Encode_Decode</string>
          </property>
          <property name="icon">
           <iconset>
@@ -208,7 +208,7 @@ QPushButton::checked,QToolButton::checked{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Asm/Disasm</string>
+          <string>Asm_Disasm</string>
          </property>
          <property name="icon">
           <iconset>
@@ -247,7 +247,7 @@ QPushButton::checked,QToolButton::checked{
           <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
-          <string>Hash</string>
+          <string>File Hash</string>
          </property>
          <property name="icon">
           <iconset>

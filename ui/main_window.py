@@ -642,10 +642,10 @@ class Ui_MainWindow(object):
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
         MainWindow.setWindowTitle(_translate("MainWindow", "Reverse Widget"))
-        self.cryptButton.setText(_translate("MainWindow", "Encrypt/Decrypt"))
-        self.codeButton.setText(_translate("MainWindow", "Encode/Decode"))
-        self.asmButton.setText(_translate("MainWindow", "Asm/Disasm"))
-        self.hashButton.setText(_translate("MainWindow", "Hash"))
+        self.cryptButton.setText(_translate("MainWindow", "Encrypt_Decrypt"))
+        self.codeButton.setText(_translate("MainWindow", "Encode_Decode"))
+        self.asmButton.setText(_translate("MainWindow", "Asm_Disasm"))
+        self.hashButton.setText(_translate("MainWindow", "File Hash"))
         self.formatButton.setText(_translate("MainWindow", "Format Json"))
         self.nameLable.setText(_translate("MainWindow", "AES"))
         self.choiceAlgorithm.setItemText(0, _translate("MainWindow", "AES"))
