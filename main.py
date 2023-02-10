@@ -16,11 +16,13 @@ from urllib import parse
 
 from ui.about_window import *
 from ui.hash_window import *
+from ui.format_window import *
 
 # For macOS: not found QThread
 from PyQt5.QtCore import *
 
 import os
+import json
 
 CRYPT = 1
 CODE = 2
@@ -58,6 +60,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.codeButton.clicked.connect(self.init_code)
         self.ui.asmButton.clicked.connect(self.init_asm)
         self.ui.hashButton.clicked.connect(self.init_hash)
+        self.ui.formatButton.clicked.connect(self.init_format)
 
         self.ui.outputButton_1.clicked.connect(lambda: self.listen_button(self.ui.outputButton_1))
         self.ui.outputButton_2.clicked.connect(lambda: self.listen_button(self.ui.outputButton_2))
@@ -201,6 +204,10 @@ class MainUi(QtWidgets.QMainWindow):
     def init_hash(self):
         self.hash_ui = HashUi()
         self.hash_ui.show()
+
+    def init_format(self):
+        self.format_ui = FormatUi()
+        self.format_ui.show()
 
     def listen_button(self, button):
         """
@@ -614,6 +621,40 @@ class HashUi(QtWidgets.QWidget):
     def set_btn(self, value):
         self.ui.hashButton.setEnabled(True)
         self.ui.textBrowser.setText(value)
+
+
+class FormatUi(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+        self.ui.formatButton.clicked.connect(self.listen_action_format)
+
+    def listen_action_format(self):
+        _input = self.ui.textEdit.toPlainText()
+        Log.info("Format input: %s" % _input)
+        try:
+            _output = self.__log_format(json.loads(_input))
+        except Exception as e:
+            _output = e
+        finally:
+            Log.info("Format output: %s" % _output)
+            self.ui.textBrowser.setText(str(_output))
+
+    def init_ui(self):
+        """
+        Init format json ui
+        :return:
+        """
+        self.ui = Ui_FormatWindow()
+        self.ui.setupUi(self)
+
+    def __log_format(self, json_data):
+        """
+        Beautify json data
+        :param json_data: raw data
+        :return: format json
+        """
+        return json.dumps(json_data, indent=4, ensure_ascii=False)
 
 
 class PreventFastClickThreadSignal(QThread):

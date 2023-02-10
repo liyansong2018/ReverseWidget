@@ -145,8 +145,8 @@ Decrypt</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>35</width>
+           <height>35</height>
           </size>
          </property>
          <property name="checkable">
@@ -182,8 +182,8 @@ Decode</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>35</width>
+           <height>35</height>
           </size>
          </property>
          <property name="checkable">
@@ -219,8 +219,8 @@ Disassemble</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>35</width>
+           <height>35</height>
           </size>
          </property>
          <property name="checkable">
@@ -258,8 +258,41 @@ Disassemble</string>
          </property>
          <property name="iconSize">
           <size>
-           <width>30</width>
-           <height>30</height>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="formatButton">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="text">
+          <string>Format Json</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>resources/pictures/json-file.png</normaloff>resources/pictures/json-file.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
           </size>
          </property>
          <property name="checkable">
@@ -795,7 +828,7 @@ Disassemble</string>
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>0</number>
+             <number>2</number>
             </property>
             <widget class="QWidget" name="urlTab">
              <property name="styleSheet">
@@ -841,6 +874,11 @@ Disassemble</string>
              </layout>
             </widget>
             <widget class="QWidget" name="base64Tab_2">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">border: 0px;</string>
              </property>
@@ -864,11 +902,22 @@ Disassemble</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QTextEdit" name="base64TabText"/>
+               <widget class="QTextEdit" name="base64TabText">
+                <property name="font">
+                 <font>
+                  <family>微软雅黑</family>
+                 </font>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
             <widget class="QWidget" name="hashTab">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+              </font>
+             </property>
              <property name="styleSheet">
               <string notr="true">border: 0px;</string>
              </property>
@@ -889,7 +938,13 @@ Disassemble</string>
                <number>0</number>
               </property>
               <item>
-               <widget class="QTextEdit" name="hashTabText"/>
+               <widget class="QTextEdit" name="hashTabText">
+                <property name="font">
+                 <font>
+                  <family>微软雅黑</family>
+                 </font>
+                </property>
+               </widget>
               </item>
              </layout>
             </widget>
