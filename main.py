@@ -587,8 +587,8 @@ class AboutUi(QDialog):
                 self.ui.textBrowserAbout.setHtml(fp.read() % (_info[0], _info[1]))
             if FONT:
                 self.init_ui_font(FONT)
-        except OSError:
-            Log.error("Open error! No file: %s" % ABOUT_TEXT_PATH)
+        except OSError as e:
+            Log.error("Open error! %s" % e)
 
     def init_ui_font(self, font=FONT):
         self.ui.textBrowserAbout.setFont(font)
