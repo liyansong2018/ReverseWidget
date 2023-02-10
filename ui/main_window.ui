@@ -83,7 +83,7 @@
     /* background:#ffffff; */
     /* color:#000000; */
 
-    padding: 5px 30px 5px 20px;
+    padding: 5px 10px 5px 20px;
     font-weight:light;
     border-radius:0px;
 	border:2px solid #ffffff;
@@ -136,8 +136,7 @@ QPushButton::checked,QToolButton::checked{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Encrypt
-Decrypt</string>
+          <string>Encrypt/Decrypt</string>
          </property>
          <property name="icon">
           <iconset>
@@ -173,8 +172,7 @@ Decrypt</string>
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Encode
-Decode</string>
+          <string>Encode/Decode</string>
          </property>
          <property name="icon">
           <iconset>
@@ -210,8 +208,7 @@ Decode</string>
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Assemble
-Disassemble</string>
+          <string>Asm/Disasm</string>
          </property>
          <property name="icon">
           <iconset>
