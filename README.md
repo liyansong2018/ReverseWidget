@@ -8,6 +8,7 @@ Reverse Widget is a lightweight GUI Software that implements some typical  block
 - Useful Coding: URL, Base64
 - Common Hash: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - Multi-architecture Assembler and Disassembler: x86, ARM, mips, Sparc, PowerPC
+- Beautify json or xml file
 
 ## Detailed Description
 
@@ -55,6 +56,11 @@ Limitations
 
 - Powerpc32 only supports big endian (currently powerpc32 architecture only has big endian)
 
+### Beautify json/xml
+Json and xml are our common http resource files, which are not well displayed in Burpsuite Community Edition. We can easily format them in ReverseWidget.
+
+![disasm_en](images/format.png)
+
 ## Compilation & Docs
 
 ### Windows
@@ -67,10 +73,10 @@ Limitations
 1. run `setup.sh`
 2. run `run.sh`
 
-Of course, you can also see [COMPILE.md](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh) file for how to compile and install Reverse Widget. 
+Of course, you can also see [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA) for how to integrate development environment. 
 
 ## Convenient Tool
 
-See [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
+If you are a lucky dog and Windows user, you can use the out-of-the-box version directly. See [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
 
-This is a software written in my spare time. There may be some bugs. It is being improved. Please understand.
+This is a software written in my spare time. There may be some bugs which will be improved. Please understand.

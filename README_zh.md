@@ -4,6 +4,7 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 - 编码和解码：URL, Base64
 - 多个哈希算法：MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - 多种架构的汇编和反汇编器：x86, ARM, mips, Sparc, PowerPC
+- 格式化json和xml文件
 
 ## 细节性描述
 
@@ -24,7 +25,7 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 
 ![hash_zh](images/hash_zh.png)
 
-
+![hash_file_en](images/hash_en.png)
 
 ### 汇编和反汇编
 
@@ -48,6 +49,12 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 - ARM64 只有小端模式（当前 AArch64 架构本身只有小端 ）
 - PowerPC32 只有大端模式（当前 PowerPC32 架构本身只有小端）
 
+### 格式化 json/xml 文件
+
+如果我们使用 Burpsuite 社区版抓包，会发现常见的 xml 以及 json 文件并不能很好的展示，因此 ReverseWidget 新增了格式化资源文件的功能，方便我们查看此类文件。
+
+![disasm_en](images/format.png)
+
 ## 如何使用
 
 ### Windows
@@ -60,11 +67,10 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 1. 运行 `setup.sh`，安装基本库
 2. 运行程序 `run.sh`
 
-关于怎样编译和安装，请查看 [Compile & Docs_zh](https://github.com/liyansong2018/ReverseWidget/wiki/Compile-&-Docs_zh)。您既可以使用上述方法使用 Reverse Widget，也可以通过下面的程序打开 Reverse Widget。
+当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 
+
 
 ## 开箱即用的发行版
-
-参见已发布的版本 [Releases](https://github.com/liyansong2018/ReverseWidget/releases)，不推荐使用，启动速度较慢，推荐使用原生的 python 环境。
-
+如果你是幸运的Windows用户，那么可以直接使用我们已经打包好环境的`exe`可执行程序。请在此处下载 [Releases](https://github.com/liyansong2018/ReverseWidget/releases) 可用的 Windows 可执行程序。
 
 这是业余时间编写的一个软件，可能存在一些Bug，正在不断完善中，请谅解。
