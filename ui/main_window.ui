@@ -825,7 +825,7 @@ QPushButton::checked,QToolButton::checked{
              <string notr="true"/>
             </property>
             <property name="currentIndex">
-             <number>2</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="urlTab">
              <property name="styleSheet">
@@ -1358,7 +1358,14 @@ background-color: transparent;</string>
     </property>
     <addaction name="actionAbout"/>
    </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <addaction name="actionAppChecker"/>
+   </widget>
    <addaction name="menu"/>
+   <addaction name="menuTools"/>
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
@@ -1385,6 +1392,15 @@ background-color: transparent;</string>
   <action name="actionFont">
    <property name="text">
     <string>Font</string>
+   </property>
+  </action>
+  <action name="actionAppChecker">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/pictures/android.png</normaloff>resources/pictures/android.png</iconset>
+   </property>
+   <property name="text">
+    <string>APK Checker</string>
    </property>
   </action>
  </widget>

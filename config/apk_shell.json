@@ -1,0 +1,131 @@
+{
+  "ijiami": {
+    "data": [
+      "libexec.so",
+      "libexecmain.so",
+      "ijiami.dat"
+    ],
+    "manufacturer": "爱加密",
+    "url": "http://www.ijiami.cn/"
+  },
+
+  "junhong": {
+    "data": [
+      "libchaosvmp.so",
+      "libddog.so",
+      "libfdog.so"
+    ],
+    "manufacturer": "娜迦",
+    "url": "https://www.nagain.com/"
+  },
+
+  "bangcle": {
+    "data": [
+      "libsecexe.so",
+      "libsecmain.so"
+    ],
+    "manufacturer": "梆梆安全",
+    "url": "https://dev.bangcle.com/"
+  },
+
+  "bangcle-helper": {
+    "data": [
+      "libDexHelper.so",
+      "libDexHelper-x86.so"
+    ],
+    "manufacturer": "梆梆安全-企业版",
+    "url": "https://dev.bangcle.com/"
+  },
+
+  "360": {
+    "data": [
+      "libprotectClass.so",
+      "libjiagu_art.so",
+      "libjiagu_x86.so"
+    ],
+    "manufacturer": "360加固保",
+    "url": "https://jiagu.360.cn/"
+  },
+
+  "tongfudun": {
+    "data": [
+      "libegis.so",
+      "libNSaferOnly.so"
+    ],
+    "manufacturer": "通付盾",
+    "url": "https://cloud.tongfudun.com/devcenterdoc/securityCompliance/4-2-1.html"
+  },
+
+  "qinwang": {
+    "data": [
+      "libnqshield.so"
+    ],
+    "manufacturer": "网秦安全盾",
+    "url": "疑似生命周期结束"
+  },
+
+  "baidu": {
+    "data": [
+      "libbaiduprotect.so"
+    ],
+    "manufacturer": "百度应用加固",
+    "url": "https://apkprotect.baidu.com/"
+  },
+
+  "ali": {
+    "data": [
+      "aliprotect.dat",
+      "libsgmain.so",
+      "libsgsecuritybody.so"
+    ],
+    "manufacturer": "阿里聚安全",
+    "url": "https://jaq-doc.alibaba.com/docs/doc.htm?treeId=243&articleId=105508&docType=1"
+  },
+
+  "ten": {
+    "data": [
+      "libtup.so",
+      "libexec.so",
+      "libshell.so"
+    ],
+    "manufacturer": "腾讯应用加固",
+    "url": "https://wetest.qq.com/products/application-reinforcement"
+  },
+
+  "ten1": {
+    "data": [
+      "libtosprotection.armeabi.so",
+      "libtosprotection.armeabi-v7a.so",
+      "libtosprotection.x86.so"
+    ],
+    "manufacturer": "腾讯御安全",
+    "url": "疑似生命周期结束"
+  },
+
+  "dun163": {
+    "data": [
+      "libnesec.so",
+      "libAPKProtect.so"
+    ],
+    "manufacturer": "网易易盾",
+    "url": "https://dun.163.com/product/android-reinforce?from=baiduP_YYJG_CP3143&sdclkid=ALAR152NxSDibsgpA5e"
+  },
+
+  "kiwisec": {
+    "data": [
+      "libkwscmm.so",
+      "libkwscr.so",
+      "libkwslinker.so"
+    ],
+    "manufacturer": "几维安全",
+    "url": "https://www.kiwisec.com/"
+  },
+
+  "dingxiang": {
+    "data": [
+      "libx3g"
+    ],
+    "manufacturer": "顶象技术",
+    "url": "https://www.dingxiang-inc.com/business/android?utm_source=baidu1sem&utm_medium=%E5%93%81%E7%89%8C%E8%AF%8D&utm_campaign=%E5%93%81%E7%89%8C%E8%AF%8D-%E5%8A%A0%E5%9B%BA&utm_term=%E9%A1%B6%E8%B1%A1%E5%8A%A0%E5%9B%BA&e_matchtype=2&e_keywordid=317912325449&bd_vid=8731357008297133070"
+  }
+}

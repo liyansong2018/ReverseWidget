@@ -17,6 +17,7 @@ from urllib import parse
 from ui.about_window import *
 from ui.hash_window import *
 from ui.format_window import *
+from ui.appchecker_window import *
 
 # For macOS: not found QThread
 from PyQt5.QtCore import *
@@ -25,6 +26,7 @@ import os
 import json
 from lxml import etree
 import locale
+import zipfile
 
 CRYPT = 1
 CODE = 2
@@ -32,6 +34,7 @@ ASM = 3
 
 FONT = None
 ABOUT_TEXT_PATH = "./ui/resources/html/about.html"
+APKINFO_PATH = "./ui/resources/html/apk_info.html"
 
 class MainUi(QtWidgets.QMainWindow):
     def __init__(self):
@@ -43,6 +46,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_main_window = QTranslator()
         self.trans_dialog_window = QTranslator()
         self.trans_main = QTranslator()
+        self.trans_check_window = QTranslator()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.resize(900, 600)
@@ -59,6 +63,7 @@ class MainUi(QtWidgets.QMainWindow):
             self.translate_chinese()
         self.ui.actionFont.triggered.connect(self.listen_action_font)
         self.ui.actionAbout.triggered.connect(self.listen_action_about)
+        self.ui.actionAppChecker.triggered.connect(self.listen_action_appchecker)
 
         # Button
         self.ui.cryptButton.clicked.connect(self.init_crypt)
@@ -127,10 +132,12 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_main_window.load("ui/resources/language/main_window.qm")
         self.trans_dialog_window.load("ui/resources/language/dialog_window.qm")
         self.trans_main.load("ui/resources/language/main.qm")
+        self.trans_check_window.load("ui/resources/language/appchecker_window.qm")
         _app = QApplication.instance()
         _app.installTranslator(self.trans_main_window)
         _app.installTranslator(self.trans_dialog_window)
         _app.installTranslator(self.trans_main)
+        _app.installTranslator(self.trans_check_window)
         self.ui.retranslateUi(self)
 
     def translate_english(self):
@@ -138,6 +145,7 @@ class MainUi(QtWidgets.QMainWindow):
         _app.removeTranslator(self.trans_main_window)
         _app.removeTranslator(self.trans_dialog_window)
         _app.removeTranslator(self.trans_main)
+        _app.removeTranslator(self.trans_check_window)
         self.ui.retranslateUi(self)
 
     def listen_action_about(self):
@@ -148,6 +156,10 @@ class MainUi(QtWidgets.QMainWindow):
         about = AboutUi()
         about.show()
         about.exec_()
+
+    def listen_action_appchecker(self):
+        self.checker_ui = AppCheckerUi()
+        self.checker_ui.show()
 
     def init_crypt(self):
         self.function = CRYPT
@@ -626,6 +638,57 @@ class HashUi(QtWidgets.QWidget):
     def set_btn(self, value):
         self.ui.hashButton.setEnabled(True)
         self.ui.textBrowser.setText(value)
+
+
+class AppCheckerUi(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_AppcheckerWindow()
+        self.ui.setupUi(self)
+        self.openfile = None
+        self.ui.openButton.clicked.connect(self.listen_action_open)
+        self.ui.checkButton.clicked.connect(self.listen_action_check)
+
+    def listen_action_open(self):
+        self.openfile = QFileDialog.getOpenFileName(filter='APK files (*.apk)')[0]
+        self.ui.textEdit.setText(self.openfile)
+
+    def listen_action_check(self):
+        """
+        Start checking APK packer informaion
+        :return: null
+        """
+        if self.openfile:
+            try:
+                _tmp = self.check(self.openfile, 'config/apk_shell.json')
+                with open(APKINFO_PATH, encoding='utf-8') as fp:
+                    _result = fp.read() % (_tmp['manufacturer'], ', '.join(_tmp['data']), _tmp['url'], _tmp['url'])
+            except Exception as e:
+                Log.error(str(e))
+                _result = str(e)
+            self.ui.textBrowser.setHtml(_result)
+
+    def check(self, apk, packer):
+        """
+        Check APK packer infomation
+        :param apk: android application path
+        :param packer: android packer json file path
+        :return: packer: information
+        """
+        _zip = zipfile.ZipFile(apk)
+        _zip_name = []
+        for file in _zip.namelist():
+            _zip_name.append(os.path.basename(file))
+
+        with open(packer, 'r', encoding='utf-8') as fp:
+            config = json.load(fp)
+            for key in config:
+                for character in config[key]['data']:
+                    if character in _zip_name:
+                        return config[key]
 
 
 class FormatUi(QtWidgets.QWidget):
