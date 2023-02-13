@@ -24,6 +24,7 @@ from PyQt5.QtCore import *
 import os
 import json
 from lxml import etree
+import locale
 
 CRYPT = 1
 CODE = 2
@@ -53,6 +54,9 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.actionOpen.triggered.connect(self.listen_action_open)
         self.ui.actionChinese.triggered.connect(lambda: self.listen_action_language(self.ui.actionChinese))
         self.ui.actionEnglish.triggered.connect(lambda: self.listen_action_language(self.ui.actionEnglish))
+        # Set default language according to OS default settings
+        if locale.getdefaultlocale()[0] == 'zh_CN':
+            self.translate_chinese()
         self.ui.actionFont.triggered.connect(self.listen_action_font)
         self.ui.actionAbout.triggered.connect(self.listen_action_about)
 
@@ -74,7 +78,7 @@ class MainUi(QtWidgets.QMainWindow):
                              self.ui.outputAsmBox, self.ui.codeOutputGroupBox]
 
         self.openfile = None
-        self.function = CRYPT
+        self.function = None
 
     def init_ui_language(self):
         '''
@@ -109,7 +113,7 @@ class MainUi(QtWidgets.QMainWindow):
     def listen_action_language(self, language):
         """
         Listen language menu
-        :param language: language
+        :param language: language, such as Chinese, English.
         :return: null
         """
         if language.text() == "Chinese":
