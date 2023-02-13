@@ -47,6 +47,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_dialog_window = QTranslator()
         self.trans_main = QTranslator()
         self.trans_check_window = QTranslator()
+        self.trans_hash_window = QTranslator()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.resize(900, 600)
@@ -133,11 +134,13 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_dialog_window.load("ui/resources/language/dialog_window.qm")
         self.trans_main.load("ui/resources/language/main.qm")
         self.trans_check_window.load("ui/resources/language/appchecker_window.qm")
+        self.trans_hash_window.load("ui/resources/language/hash_window.qm")
         _app = QApplication.instance()
         _app.installTranslator(self.trans_main_window)
         _app.installTranslator(self.trans_dialog_window)
         _app.installTranslator(self.trans_main)
         _app.installTranslator(self.trans_check_window)
+        _app.installTranslator(self.trans_hash_window)
         self.ui.retranslateUi(self)
 
     def translate_english(self):
@@ -146,6 +149,7 @@ class MainUi(QtWidgets.QMainWindow):
         _app.removeTranslator(self.trans_dialog_window)
         _app.removeTranslator(self.trans_main)
         _app.removeTranslator(self.trans_check_window)
+        _app.removeTranslator(self.trans_hash_window)
         self.ui.retranslateUi(self)
 
     def listen_action_about(self):
