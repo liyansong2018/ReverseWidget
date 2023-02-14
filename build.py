@@ -51,6 +51,7 @@ add_pic_path('ui/about_window.py')
 add_pic_path('ui/format_window.py')
 add_pic_path('ui/hash_window.py')
 add_pic_path('ui/appchecker_window.py')
+add_pic_path('ui/pechecker_window.py')
 
 # Move language file
 mov_lang()

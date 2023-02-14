@@ -123,9 +123,17 @@
 
   "dingxiang": {
     "data": [
-      "libx3g"
+      "libx3g.so"
     ],
     "manufacturer": "顶象技术",
     "url": "https://www.dingxiang-inc.com/business/android?utm_source=baidu1sem&utm_medium=%E5%93%81%E7%89%8C%E8%AF%8D&utm_campaign=%E5%93%81%E7%89%8C%E8%AF%8D-%E5%8A%A0%E5%9B%BA&utm_term=%E9%A1%B6%E8%B1%A1%E5%8A%A0%E5%9B%BA&e_matchtype=2&e_keywordid=317912325449&bd_vid=8731357008297133070"
+  },
+
+  "dingxiang": {
+    "data": [
+      "libmogosec_sodecrypt.so"
+    ],
+    "manufacturer": "魔固云(中国移动加固)",
+    "url": "疑似生命周期结束-中移杭研魔固云应用安全检测平台"
   }
 }

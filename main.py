@@ -18,6 +18,7 @@ from ui.about_window import *
 from ui.hash_window import *
 from ui.format_window import *
 from ui.appchecker_window import *
+from ui.pechecker_window import *
 
 # For macOS: not found QThread
 from PyQt5.QtCore import *
@@ -27,6 +28,7 @@ import json
 from lxml import etree
 import locale
 import zipfile
+import peid
 
 CRYPT = 1
 CODE = 2
@@ -43,11 +45,14 @@ class MainUi(QtWidgets.QMainWindow):
 
     def init_ui(self):
         QtWidgets.QMainWindow.__init__(self)
+        # QTranslator object
         self.trans_main_window = QTranslator()
         self.trans_dialog_window = QTranslator()
         self.trans_main = QTranslator()
         self.trans_check_window = QTranslator()
         self.trans_hash_window = QTranslator()
+        self.trans_checkpe_window = QTranslator()
+
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
         self.resize(900, 600)
@@ -65,6 +70,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.actionFont.triggered.connect(self.listen_action_font)
         self.ui.actionAbout.triggered.connect(self.listen_action_about)
         self.ui.actionAppChecker.triggered.connect(self.listen_action_appchecker)
+        self.ui.actionPEChecker.triggered.connect(self.listen_action_pechecker)
 
         # Button
         self.ui.cryptButton.clicked.connect(self.init_crypt)
@@ -135,12 +141,14 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_main.load("ui/resources/language/main.qm")
         self.trans_check_window.load("ui/resources/language/appchecker_window.qm")
         self.trans_hash_window.load("ui/resources/language/hash_window.qm")
+        self.trans_checkpe_window.load("ui/resources/language/pechecker_window.qm")
         _app = QApplication.instance()
         _app.installTranslator(self.trans_main_window)
         _app.installTranslator(self.trans_dialog_window)
         _app.installTranslator(self.trans_main)
         _app.installTranslator(self.trans_check_window)
         _app.installTranslator(self.trans_hash_window)
+        _app.installTranslator(self.trans_checkpe_window)
         self.ui.retranslateUi(self)
 
     def translate_english(self):
@@ -150,6 +158,7 @@ class MainUi(QtWidgets.QMainWindow):
         _app.removeTranslator(self.trans_main)
         _app.removeTranslator(self.trans_check_window)
         _app.removeTranslator(self.trans_hash_window)
+        _app.removeTranslator(self.trans_checkpe_window)
         self.ui.retranslateUi(self)
 
     def listen_action_about(self):
@@ -163,6 +172,10 @@ class MainUi(QtWidgets.QMainWindow):
 
     def listen_action_appchecker(self):
         self.checker_ui = AppCheckerUi()
+        self.checker_ui.show()
+
+    def listen_action_pechecker(self):
+        self.checker_ui = PeCheckerUi()
         self.checker_ui.show()
 
     def init_crypt(self):
@@ -629,13 +642,14 @@ class HashUi(QtWidgets.QWidget):
     def listen_action_open(self):
         self.openfile = QFileDialog.getOpenFileName()[0]
         self.ui.textEdit.setText(self.openfile)
+        self.listen_action_hash()
 
     def listen_action_hash(self):
         if self.openfile:
             self.ui.hashButton.setEnabled(False)
             if os.path.getsize(self.openfile) > 1024 * 1024 * 100:
                 self.ui.textBrowser.setText("The file size is large, please waitting...")
-            self.thread_hash = PreventFastClickThreadSignal(self.openfile)
+            self.thread_hash = PreventFastClickThreadSignal(self.openfile, 'hash')
             self.thread_hash._signal.connect(self.set_btn)
             self.thread_hash.start()
 
@@ -695,6 +709,37 @@ class AppCheckerUi(QtWidgets.QWidget):
                         return config[key]
 
 
+class PeCheckerUi(QtWidgets.QWidget):
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_PecheckerWindow()
+        self.ui.setupUi(self)
+        self.openfile = None
+        self.ui.openButton.clicked.connect(self.listen_action_open)
+        self.ui.checkButton.clicked.connect(self.listen_action_check)
+
+    def listen_action_open(self):
+        self.openfile = QFileDialog.getOpenFileName()[0]
+        self.ui.textEdit.setText(self.openfile)
+        self.listen_action_check()
+
+    def listen_action_check(self):
+        if self.openfile:
+            self.ui.checkButton.setEnabled(False)
+            if os.path.getsize(self.openfile) > 1024 * 1024:
+                self.ui.textBrowser.setText("The file size is large, please waitting...")
+            self.thread_check = PreventFastClickThreadSignal(self.openfile, "pecheck")
+            self.thread_check._signal.connect(self.set_btn)
+            self.thread_check.start()
+
+    def set_btn(self, value):
+        self.ui.checkButton.setEnabled(True)
+        self.ui.textBrowser.setText(value)
+
+
 class FormatUi(QtWidgets.QWidget):
     def __init__(self):
         super().__init__()
@@ -742,16 +787,51 @@ class FormatUi(QtWidgets.QWidget):
 
 
 class PreventFastClickThreadSignal(QThread):
+    """
+    Processing time-consuming operations
+    """
     _signal = pyqtSignal(str)
 
-    def __init__(self, path):
+    def __init__(self, path, task):
+        """
+        Constructor
+        :param path: file path
+        :param task: hash,pecheck,etc.
+        """
         super().__init__()
         self.path = path
+        self.task = task
 
     def run(self):
-        code = Code()
-        ret = code.get_file_hash_html(self.path)
+        # Caculate file hash
+        if self.task == 'hash':
+            code = Code()
+            ret = code.get_file_hash_html(self.path)
+
+        # Check PE file
+        elif self.task == 'pecheck':
+            ret = self._check(self.path)
+
         self._signal.emit(ret)
+
+    def _check(self, path):
+        '''
+        Use peid to check pe file
+        :param path: file path
+        :return:
+        '''
+        _ret = ''
+        try:
+            _data = peid.identify_packer(path)
+            for i in _data[0]:
+                if isinstance(i, list):
+                    for j in i:
+                        _ret += j + '\n'
+                else:
+                    _ret += i + '\n'
+        except Exception as e:
+            _ret = str(e)
+        return _ret
 
 
 class ParamProcess():

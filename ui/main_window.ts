@@ -284,34 +284,39 @@
         <translation type="unfinished">工具</translation>
     </message>
     <message>
-        <location filename="main_window.ui" line="1374"/>
+        <location filename="main_window.ui" line="1375"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="main_window.ui" line="1379"/>
+        <location filename="main_window.ui" line="1380"/>
         <source>Chinese</source>
         <translation type="unfinished">简体中文</translation>
     </message>
     <message>
-        <location filename="main_window.ui" line="1384"/>
+        <location filename="main_window.ui" line="1385"/>
         <source>About</source>
         <translation type="unfinished">关于</translation>
     </message>
     <message>
-        <location filename="main_window.ui" line="1389"/>
+        <location filename="main_window.ui" line="1390"/>
         <source>Open</source>
         <translation type="unfinished">打开</translation>
     </message>
     <message>
-        <location filename="main_window.ui" line="1394"/>
+        <location filename="main_window.ui" line="1395"/>
         <source>Font</source>
         <translation type="unfinished">字体</translation>
     </message>
     <message>
-        <location filename="main_window.ui" line="1403"/>
+        <location filename="main_window.ui" line="1404"/>
         <source>APK Checker</source>
         <translation type="unfinished">APK加固检测</translation>
+    </message>
+    <message>
+        <location filename="main_window.ui" line="1413"/>
+        <source>PE Checker</source>
+        <translation type="unfinished">PE加壳检测</translation>
     </message>
 </context>
 </TS>
