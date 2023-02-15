@@ -1,3 +1,10 @@
+[2023-02-15]
+    ReverseWidget 1.5
+        - Add Windows pe checker
+        - Add Android app checker
+        - Set script for common language path
+        - Optimize resource path in UI created by PyQt5 UI code generator
+
 [2023-02-10]
     ReverseWidget 1.4
         - Beautify the main UI

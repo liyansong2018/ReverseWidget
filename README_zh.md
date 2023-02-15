@@ -1,10 +1,11 @@
 # Reverse Widget
-Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈希以及支持多种架构的汇编和反汇编引擎**可视化**工具。具有如下特性
+Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测的**可视化**工具。具有如下特性
 - 多个分组加密和解密算法：AES, DES, 3DES, RC2
 - 编码和解码：URL, Base64
 - 多个哈希算法：MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - 多种架构的汇编和反汇编器：x86, ARM, mips, Sparc, PowerPC
 - 格式化json和xml文件
+- Android APP加固检测，支持：梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等，Windows PE 加壳检测
 
 ## 细节性描述
 
@@ -54,6 +55,16 @@ Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈
 如果我们使用 Burpsuite 社区版抓包，会发现常见的 xml 以及 json 文件并不能很好的展示，因此 ReverseWidget 新增了格式化资源文件的功能，方便我们查看此类文件。
 
 ![disasm_en](images/format.png)
+
+### 应用加固检测器
+
+Windows PE二进制程序检测
+
+![pe_checker](images/pe_checker.png)
+
+Android应用加固检测
+
+![app_checker](images/app_checker.png)
 
 ## 如何使用
 
