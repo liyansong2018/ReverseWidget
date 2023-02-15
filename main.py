@@ -29,6 +29,8 @@ from lxml import etree
 import locale
 import zipfile
 import peid
+from opensource.apk import *
+import html
 
 CRYPT = 1
 CODE = 2
@@ -37,6 +39,7 @@ ASM = 3
 FONT = None
 ABOUT_TEXT_PATH = "./ui/resources/html/about.html"
 APKINFO_PATH = "./ui/resources/html/apk_info.html"
+CODE_TEXT_PATH = "./ui/resources/html/code.html"
 
 class MainUi(QtWidgets.QMainWindow):
     def __init__(self):
@@ -667,12 +670,16 @@ class AppCheckerUi(QtWidgets.QWidget):
         self.ui = Ui_AppcheckerWindow()
         self.ui.setupUi(self)
         self.openfile = None
+        self.info_manif = None
         self.ui.openButton.clicked.connect(self.listen_action_open)
         self.ui.checkButton.clicked.connect(self.listen_action_check)
+        self.ui.fullInfoButton.clicked.connect(self.listen_action_full)
 
     def listen_action_open(self):
         self.openfile = QFileDialog.getOpenFileName(filter='APK files (*.apk)')[0]
         self.ui.textEdit.setText(self.openfile)
+        self._axmlprinter(self.openfile)
+        self.listen_action_check()
 
     def listen_action_check(self):
         """
@@ -689,14 +696,27 @@ class AppCheckerUi(QtWidgets.QWidget):
                 _result = str(e)
             self.ui.textBrowser.setHtml(_result)
 
-    def check(self, apk, packer):
+    def listen_action_full(self):
+        """
+        Display full manifest.xml
+        :return: null
+        """
+        with open(CODE_TEXT_PATH) as fp:
+            try:
+                _data = fp.read() % html.escape(self.info_manif)
+            except Exception as e:
+                Log.error(str(e))
+                _data = str(e)
+            self.ui.textBrowser.setHtml(_data)
+
+    def check(self, apk_file, packer):
         """
         Check APK packer infomation
-        :param apk: android application path
+        :param apk_file: android application path
         :param packer: android packer json file path
         :return: packer: information
         """
-        _zip = zipfile.ZipFile(apk)
+        _zip = zipfile.ZipFile(apk_file)
         _zip_name = []
         for file in _zip.namelist():
             _zip_name.append(os.path.basename(file))
@@ -708,6 +728,30 @@ class AppCheckerUi(QtWidgets.QWidget):
                     if character in _zip_name:
                         return config[key]
 
+    def _axmlprinter(self, apk_file):
+        """
+        Parse AndroidManifest.xml
+        :param apk_file: android application path
+        :return: null
+        """
+        _zip = zipfile.ZipFile(apk_file)
+        _ap = AXMLPrinter(_zip.read("AndroidManifest.xml"))
+        _buff = _ap.get_xml_obj()
+        self.info_manif =_ap.get_xml()
+        _manifest = _buff.getElementsByTagName("manifest")
+
+        if _manifest[0].hasAttribute("package"):
+            self.ui.labelPackage.setText(_manifest[0].getAttribute("package"))
+
+        if _manifest[0].hasAttribute("android:versionName"):
+            self.ui.labelVersion.setText(_manifest[0].getAttribute("android:versionName"))
+
+        _uses_sdk = _manifest[0].getElementsByTagName("uses-sdk")
+        if _uses_sdk[0].hasAttribute("android:minSdkVersion"):
+            self.ui.labelMiniSDKVersion.setText(_uses_sdk[0].getAttribute("android:minSdkVersion"))
+
+        if _uses_sdk[0].hasAttribute("android:targetSdkVersion"):
+            self.ui.labelSDKVersion.setText(_uses_sdk[0].getAttribute("android:targetSdkVersion"))
 
 class PeCheckerUi(QtWidgets.QWidget):
     def __init__(self):
