@@ -255,6 +255,9 @@ p, li { white-space: pre-wrap; }
            <property name="scaledContents">
             <bool>true</bool>
            </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -274,6 +277,9 @@ p, li { white-space: pre-wrap; }
            <property name="scaledContents">
             <bool>true</bool>
            </property>
+           <property name="openExternalLinks">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -291,6 +297,9 @@ p, li { white-space: pre-wrap; }
             <pixmap>resources/pictures/apkcombo.png</pixmap>
            </property>
            <property name="scaledContents">
+            <bool>true</bool>
+           </property>
+           <property name="openExternalLinks">
             <bool>true</bool>
            </property>
           </widget>

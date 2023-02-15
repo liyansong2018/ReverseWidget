@@ -31,6 +31,7 @@ import zipfile
 import peid
 from opensource.apk import *
 import html
+import webbrowser
 
 CRYPT = 1
 CODE = 2
@@ -674,6 +675,7 @@ class AppCheckerUi(QtWidgets.QWidget):
         self.ui.openButton.clicked.connect(self.listen_action_open)
         self.ui.checkButton.clicked.connect(self.listen_action_check)
         self.ui.fullInfoButton.clicked.connect(self.listen_action_full)
+        self.activate_link()
 
     def listen_action_open(self):
         self.openfile = QFileDialog.getOpenFileName(filter='APK files (*.apk)')[0]
@@ -752,6 +754,33 @@ class AppCheckerUi(QtWidgets.QWidget):
 
         if _uses_sdk[0].hasAttribute("android:targetSdkVersion"):
             self.ui.labelSDKVersion.setText(_uses_sdk[0].getAttribute("android:targetSdkVersion"))
+
+    def activate_link(self):
+        self.ui.labelGoogle.mousePressEvent = self._clicked_google
+        self.ui.labelApkpure.mousePressEvent = self._clicked_apkpure
+        self.ui.labelCombo.mousePressEvent = self._clicked_apkcombo
+
+    def _clicked_google(self, unkonwn):
+        """
+        Click google label to open link
+        :return: null
+        """
+        webbrowser.open('https://play.google.com/store/apps/details?id=%s' % self.ui.labelPackage.text())
+
+    def _clicked_apkpure(self, unkonwn):
+        """
+        Click apkpure label to open link
+        :return: null
+        """
+        webbrowser.open('https://apkpure.com/a/%s' % self.ui.labelPackage.text())
+
+    def _clicked_apkcombo(self, unkonwn):
+        """
+        Click apkcombo label to open link
+        :return: null
+        """
+        webbrowser.open('https://apkcombo.com/a/%s' % self.ui.labelPackage.text())
+
 
 class PeCheckerUi(QtWidgets.QWidget):
     def __init__(self):
