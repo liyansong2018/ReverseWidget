@@ -1,11 +1,38 @@
-#!/usr/bin/env python
-# -*- encoding: utf-8 -*-
-'''
-@File    :   main.py    
-@Contact :   https://github.com/liyansong2018/ReverseWidget
-@License :   (C)Copyright 2021, liyansong
-'''
+# MIT License
+#
+# Copyright (c) 2021 Yansong Li
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+"""The entry of ReverseWidget application .
+
+This script contains the main running logic of the program. When I first wrote
+this tool, the coding style was a bit confusing. Over time, the style of the code
+added later has been optimized. If time permits, we will optimize the overall
+architecture of the program later.
+"""
+"""程序入口
+
+这个脚本包含了程序的主要运行逻辑。最初编写这个工具的时候，编码风格有些混乱。随着时间的推移，
+后来增加的代码的编码风格已经被优化。如果时间允许，我们后续会优化程序的整体架构。
+"""
+
+# -*- encoding: utf-8 -*-
 from ui.main_window import *
 from util.crypt import *
 from util.log import *
