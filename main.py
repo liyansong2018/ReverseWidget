@@ -676,17 +676,37 @@ class HashUi(QtWidgets.QWidget):
         self.listen_action_hash()
 
     def listen_action_hash(self):
+        """
+        Compute hash and crc of file
+        :return: null
+        """
         if self.openfile:
             self.ui.hashButton.setEnabled(False)
             if os.path.getsize(self.openfile) > 1024 * 1024 * 100:
                 self.ui.textBrowser.setText("The file size is large, please waitting...")
+
+            self.value = ''         # multi thread result
+            self.thread_num = 0     # thread stop num
+            # hash
             self.thread_hash = PreventFastClickThreadSignal(self.openfile, 'hash')
             self.thread_hash._signal.connect(self.set_btn)
             self.thread_hash.start()
+            # crc
+            self.thread_crc = PreventFastClickThreadSignal(self.openfile, 'crc')
+            self.thread_crc._signal.connect(self.set_btn)
+            self.thread_crc.start()
 
     def set_btn(self, value):
-        self.ui.hashButton.setEnabled(True)
-        self.ui.textBrowser.setText(value)
+        """
+        Callback function used to receive the return results of multiple threads
+        :param value: hash results
+        :return: null
+        """
+        self.value += value + '<br />'
+        self.thread_num += 1
+        if self.thread_num == 2:
+            self.ui.hashButton.setEnabled(True)
+            self.ui.textBrowser.setText(self.value)
 
 
 class AppCheckerUi(QtWidgets.QWidget):
@@ -908,6 +928,11 @@ class PreventFastClickThreadSignal(QThread):
             code = Code()
             ret = code.get_file_hash_html(self.path)
 
+        # Compute file crc
+        if self.task == 'crc':
+            code = Code()
+            ret = code.get_file_crc32_html(self.path)
+
         # Check PE file
         elif self.task == 'pecheck':
             ret = self._check(self.path)
@@ -915,11 +940,11 @@ class PreventFastClickThreadSignal(QThread):
         self._signal.emit(ret)
 
     def _check(self, path):
-        '''
+        """
         Use peid to check pe file
         :param path: file path
         :return:
-        '''
+        """
         _ret = ''
         try:
             _data = peid.identify_packer(path)

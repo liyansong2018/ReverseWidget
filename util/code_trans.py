@@ -1,14 +1,38 @@
+# MIT License
+#
+# Copyright (c) 2021 Yansong Li
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+"""The module of hash and crc.
+
+This script contains hash functions and byte conversion.
+"""
+"""编解码类，一些常用的哈希算法和一些字节转换方法。
+"""
+
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-'''
-@File    :   code_trans.py    
-@Contact :   https://github.com/liyansong2018/ReverseWidget
-@License :   (C)Copyright 2021, liyansong
-'''
 
 import base64
 import binascii
 import hashlib
+import zlib
 from .ui_helper import *
 
 class Code():
@@ -132,6 +156,28 @@ class Code():
         for i in data:
             ret += "\\x%2s" % (hex(i)[2:].zfill(2))
         return ret
+
+    def get_file_crc32(self, file):
+        """
+        compute crc of file in python
+        :param file: file path
+        :return: crc32
+        """
+        with open(file, 'rb') as fh:
+            hash = 0
+            while True:
+                s = fh.read(65536)
+                if not s:
+                    break
+                hash = zlib.crc32(s, hash)
+            return "%08X" % (hash & 0xFFFFFFFF)
+
+    def get_file_crc32_html(self, file):
+        """
+        wrapper for `get_file_crc`
+        :return: crc32_html
+        """
+        return Helper.font_bold("CRC32") + ": " + self.get_file_crc32(file)
 
     def get_str_hash(self, data):
         """
