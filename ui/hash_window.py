@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_HashWindow(object):
     def setupUi(self, HashWindow):
         HashWindow.setObjectName("HashWindow")
-        HashWindow.resize(490, 319)
+        HashWindow.resize(550, 360)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         HashWindow.setWindowIcon(icon)

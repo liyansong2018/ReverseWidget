@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_PecheckerWindow(object):
     def setupUi(self, PecheckerWindow):
         PecheckerWindow.setObjectName("PecheckerWindow")
-        PecheckerWindow.resize(490, 319)
+        PecheckerWindow.resize(550, 360)
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         PecheckerWindow.setWindowIcon(icon)

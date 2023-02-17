@@ -21,17 +21,6 @@ Reverse Widget is a lightweight GUI Software that implements some typical  block
 
 ![encrypt_en](images/encrypt_en.png)
 
-
-
-### Encode/Decode
-
-- Support multiple hash algorithms
-- Not only includes the hash calculation of ordinary strings, but also the hash of files, which can quickly calculate the hash value of large files
-
-![hash_en](images/hash_en.png)
-
-
-
 ### Assemble/Disassemble
 
 Support multiple architectures (x86, ARM, mips, Sparc, PowerPC), word length (16/32/64bit), big and little endian
@@ -57,10 +46,12 @@ Limitations
 
 - Powerpc32 only supports big endian (currently powerpc32 architecture only has big endian)
 
-### Beautify json/xml
-Json and xml are our common http resource files, which are not well displayed in Burpsuite Community Edition. We can easily format them in ReverseWidget.
+### Encode/Decode
 
-![disasm_en](images/format.png)
+- Support multiple hash algorithms
+- Not only includes the hash calculation of ordinary strings, but also the hash of files, which can quickly calculate the hash value of large files
+
+![hash_en](images/hash_en.png)
 
 ### Windows/Android APP checker
 
@@ -71,6 +62,12 @@ Check Windows PE file like `PEID`
 Check Android APP shell
 
 ![app_checker](images/app_checker.png)
+
+### Beautify json/xml
+
+Json and xml are our common http resource files, which are not well displayed in Burpsuite Community Edition. We can easily format them in ReverseWidget.
+
+![disasm_en](images/format.png)
 
 ## Compilation & Docs
 
@@ -88,6 +85,6 @@ Of course, you can also see [WIKI](https://github.com/liyansong2018/ReverseWidge
 
 ## Convenient Tool
 
-If you are a lucky dog and Windows user, you can use the out-of-the-box version directly. See [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
+**If you are a lucky dog and Windows user**, you can use the out-of-the-box version directly. See [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
 
 This is a software written in my spare time. There may be some bugs which will be improved. Please understand.

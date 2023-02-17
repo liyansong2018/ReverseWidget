@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AppcheckerWindow(object):
     def setupUi(self, AppcheckerWindow):
         AppcheckerWindow.setObjectName("AppcheckerWindow")
-        AppcheckerWindow.resize(554, 364)
+        AppcheckerWindow.resize(550, 360)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         AppcheckerWindow.setFont(font)
