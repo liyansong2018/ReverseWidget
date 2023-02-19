@@ -1,6 +1,7 @@
 .idea
 ui/__pycache__/
 util/__pycache__/
+opensource/__pycache__/
 build/
 dist/
 main.spec

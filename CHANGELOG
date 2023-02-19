@@ -1,3 +1,10 @@
+[2023-02-19]
+    ReverseWidget 1.6
+        - Add function to compute CRC of file
+        - Add python file comments according 'to Google Python Style Guide'
+        - Add build scripts
+        - Fix the size of some windows and beautify the UI
+
 [2023-02-15]
     ReverseWidget 1.5
         - Add Windows pe checker
