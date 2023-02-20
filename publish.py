@@ -76,7 +76,11 @@ def get_py_path():
 
 def main():
     # 1.PyInstaller bundles a Python application and all its dependencies into a single package.
-    os.system('pyinstaller -D -y -i ui\\resources\\pictures\\hacker.ico main.py')
+    if len(sys.argv) == 1:
+        os.system('pyinstaller -D -y -i ui\\resources\\pictures\\hacker.ico main.py')
+    elif (sys.argv[1]) == 'release':
+        # Need to modify main.spec Console=False
+        os.system('pyinstaller -y main.spec')
     dst_path = 'dist/main/'
     src_path = []
 
@@ -84,10 +88,21 @@ def main():
     copy_dir('ui/resources', dst_path + 'ui/resources')
     copy_file(get_py_path() + '/peid/userdb.txt', dst_path + '/peid')
     src_path.append('VERSION')
-    src_path.append(get_py_path() + '/keystone/keystone.dll')
-    src_path.append(get_py_path() + '/capstone/lib/capstone.dll')
+    if sys.platform == 'win32':
+        src_path.append(get_py_path() + '/keystone/keystone.dll')
+        src_path.append(get_py_path() + '/capstone/lib/capstone.dll')
+    elif sys.platform == 'linux':
+        src_path.append(get_py_path() + '/keystone/libkeystone.so')
+        src_path.append(get_py_path() + '/capstone/lib/libcapstone.so')
+    elif sys.platform == 'darwin':
+        src_path.append(get_py_path() + '/keystone/libkeystone.dylib')
+        src_path.append(get_py_path() + '/capstone/lib/libcapstone.dylib')
     for i in src_path:
         shutil.copy(i, dst_path)
+
+    # 3.Create shortcut
+    # if sys.platform == 'linux':
+        # os.system('ln -s ./main/main ReverseWidget')
 
 
 if __name__ == '__main__':
