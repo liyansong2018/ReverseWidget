@@ -33,11 +33,11 @@ import shutil
 import os
 
 def add_pic_path(file):
-    '''
+    """
     Modify python file from QT Designer for adding complete resources path
     :param file: `.py` converted by `.ui`
     :return: null
-    '''
+    """
     file_data = ''
     need_update = False
     try:
@@ -60,19 +60,19 @@ def add_pic_path(file):
         print(e)
 
 
-def mov_lang():
-    '''
+def mov_lang(src, dst):
+    """
     Move language file to resources directory
+    :param src: source path
+    :param dst: destination path
     :return: null
-    '''
-    ts_path = os.getcwd() + '/ui/'
-    ts_path_new = ts_path + 'resources/language/'
-    for file in os.listdir(ts_path):
+    """
+    for file in os.listdir(src):
         if '.qm' in file:
             print("[+] " + file)
-            if os.path.isfile(ts_path_new + file):
-                os.remove(ts_path_new + file)
-            shutil.move(ts_path + file, ts_path_new)
+            if os.path.isfile(dst + file):
+                os.remove(dst + file)
+            shutil.move(src + file, dst)
 
 
 # Modify pic path
@@ -84,4 +84,10 @@ add_pic_path('ui/appchecker_window.py')
 add_pic_path('ui/pechecker_window.py')
 
 # Move language file
-mov_lang()
+src = os.getcwd() + '/ui/'
+dst = src + 'resources/language/'
+mov_lang(src, dst)
+
+src = os.getcwd()
+dst = src + '/ui/resources/language/'
+mov_lang(src, dst)
