@@ -870,6 +870,43 @@ QPushButton::checked,QToolButton::checked{
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="htmlTab">
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
+             <attribute name="title">
+              <string>HTML</string>
+             </attribute>
+             <layout class="QHBoxLayout" name="horizontalLayout_22">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QTextEdit" name="htmlTabText">
+                <property name="font">
+                 <font>
+                  <family>微软雅黑</family>
+                 </font>
+                </property>
+                <property name="lineWidth">
+                 <number>0</number>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
             <widget class="QWidget" name="base64Tab_2">
              <property name="font">
               <font>

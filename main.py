@@ -228,8 +228,8 @@ class MainUi(QtWidgets.QMainWindow):
         ui_helper = UiHelper(self.ui)
         ui_helper.groupbox_show(ui_code, self.all_groupbox)
 
-        self.ui.outputButton_1.setText(self.tr("Encode | Text-Hash"))
-        self.ui.outputButton_2.setText(self.tr("Decode | File-Hash"))
+        self.ui.outputButton_1.setText(self.tr("Encode"))
+        self.ui.outputButton_2.setText(self.tr("Decode"))
 
     def init_asm(self):
         self.function = ASM
@@ -282,7 +282,6 @@ class MainUi(QtWidgets.QMainWindow):
         """
         output_choice = button.objectName()
         algorithm_choice = self.ui.choiceAlgorithm.currentText()
-        Log.debug("listen_button()", output_choice)
 
         if self.function == CRYPT:
             if output_choice == "outputButton_1":
@@ -455,24 +454,40 @@ class MainUi(QtWidgets.QMainWindow):
             self.ui.stringText.setText(output_string)
 
     def start_encode(self):
-        Log.debug("start_encode()")
+        '''
+        Qtable widget for encode
+        :return: null
+        '''
+        TAG = 'Encode'
+        Log.info(">>> %s" % TAG)
         current_index = self.ui.tabWidget_2.currentIndex()
         code = Code()
+        _input = ''
+        _output = ''
 
         # URL Encode
         if current_index == 0:
             try:
                 _input = self.ui.urlTabText.toPlainText()
                 _input = _input.encode("utf-8")
-                output = parse.quote(_input)
-                self.ui.codeOutput.setText(output)
+                _output = parse.quote(_input)
             except Exception as e:
-                dialog = DialogWindow()
-                dialog.diaglog_user_input()
-                return
+                _output = str(e)
+
+            self.ui.codeOutput.setText(_output)
+
+        # HTML Encode
+        if current_index == 1:
+            try:
+                _input = self.ui.htmlTabText.toPlainText()
+                _output = html.escape(_input)
+            except Exception as e:
+                _output = str(e)
+
+            self.ui.codeOutput.setPlainText(_output)
 
         # Base64 Encode
-        elif current_index == 1:
+        elif current_index == 2:
             try:
                 _input = self.ui.base64TabText.toPlainText()
                 _input = _input.encode("utf-8")
@@ -486,62 +501,83 @@ class MainUi(QtWidgets.QMainWindow):
 
                 self.ui.codeOutput.setText(strip_output)
             except Exception as e:
-                dialog = DialogWindow()
-                dialog.diaglog_user_input()
-                return
+                _output = str(e)
+                self.ui.codeOutput.setText(_output)
 
         # Hash from text: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
-        elif current_index == 2:
+        elif current_index == 3:
             try:
                 _input = self.ui.hashTabText.toPlainText()
                 # 1.data
                 if _input != "":
                     _input = _input.encode("utf-8")
-                    output = code.get_str_hash(_input)
-                    self.ui.codeOutput.setText(output)
+                    _output = code.get_str_hash(_input)
             except Exception as e:
-                dialog = DialogWindow()
-                dialog.diaglog_user_input()
-                return
+                _output = str(e)
+
+            self.ui.codeOutput.setText(_output)
+
+        Log.info("input: %s" % _input)
+        Log.info("outupt: %s" % _output)
 
     def start_decode(self):
-        Log.debug("start_decode()")
+        '''
+        Qtable widget for decode
+        :return:
+        '''
+        TAG = 'Decode'
+        Log.info(">>> %s" % TAG)
         current_index = self.ui.tabWidget_2.currentIndex()
         code = Code()
+        _input = ''
+        _output = ''
 
         # URL Decode
         if current_index == 0:
             try:
                 _input = self.ui.urlTabText.toPlainText()
-                output = parse.unquote(_input)
-                self.ui.codeOutput.setText(output)
+                _output = parse.unquote(_input)
             except Exception as e:
-                dialog = DialogWindow()
-                dialog.diaglog_user_input()
-                return
+                _output = str(e)
+
+            self.ui.codeOutput.setText(_output)
+
+        # HTML Decode
+        if current_index == 1:
+            try:
+                _input = self.ui.htmlTabText.toPlainText()
+                Log.info("input: %s" % _input)
+                _output = html.unescape(_input)
+                Log.info("outupt: %s" % _output)
+
+            except Exception as e:
+                _output = str(e)
+
+            self.ui.codeOutput.setPlainText(_output)
 
         # Base64 Decode
-        elif current_index == 1:
+        elif current_index == 2:
             try:
                 _input = self.ui.base64TabText.toPlainText()
                 output = code.base64_to_bytes(_input)
                 self.ui.codeOutput.setText(output.decode("utf-8"))
             except Exception as e:
-                dialog = DialogWindow()
-                dialog.diaglog_user_input()
-                return
+                _output = str(e)
+                self.ui.codeOutput.setText(_output)
 
         # Hash from file: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
-        elif current_index == 2:
+        elif current_index == 3:
             try:
                 _input = self.openfile
                 self.ui.hashTabText.setText(_input)
-                output = code.get_file_hash(_input)
-                self.ui.codeOutput.setText(output)
+                _output = code.get_file_hash(_input)
             except Exception as e:
-                dialog = DialogWindow()
-                dialog.diaglog_user_input()
-                return
+                _output = str(e)
+
+            self.ui.codeOutput.setText(_output)
+
+        Log.info("input: %s" % _input)
+        Log.info("outupt: %s" % _output)
 
     def start_asm(self):
         arch = map_arch_ks.get(ARCH_BEFORE)
