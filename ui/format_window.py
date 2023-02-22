@@ -14,7 +14,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_FormatWindow(object):
     def setupUi(self, FormatWindow):
         FormatWindow.setObjectName("FormatWindow")
-        FormatWindow.resize(798, 454)
+        FormatWindow.resize(798, 453)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         FormatWindow.setFont(font)
@@ -22,24 +22,35 @@ class Ui_FormatWindow(object):
         icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         FormatWindow.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(FormatWindow)
+        self.gridLayout.setContentsMargins(20, 20, 20, 20)
+        self.gridLayout.setHorizontalSpacing(6)
+        self.gridLayout.setVerticalSpacing(20)
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setSpacing(7)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.groupBox = QtWidgets.QGroupBox(FormatWindow)
-        self.groupBox.setStyleSheet("QPushButton{\n"
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        self.groupBox.setFont(font)
+        self.groupBox.setStyleSheet("QGroupBox{\n"
+"    border:0px\n"
+"}\n"
+"QPushButton{\n"
 "    text-align:center;\n"
 "    text-decoration:none;\n"
-"    background:#f29c1f;\n"
+"    background:#ffffff;\n"
+"    /*color: #fff;*/\n"
 "    /* color:#000000; */\n"
 "\n"
 "    padding: 5px 10px 5px 10px;\n"
 "    font-weight:light;\n"
-"    border-radius:0px;\n"
-"    border:1px solid #c6d4e2;\n"
-"    margin: 0px;\n"
+"    border-radius:4px;\n"
+"    border:1px solid #dadada;\n"
+"    white-space: nowrap;\n"
 "}\n"
-"QPushButton::checked,QToolButton::checked{\n"
+"\n"
+"QPushButton::checked,QPushButton::hover{\n"
 "    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
 "    color:#ffffff;\n"
 "    font-weight: bold;\n"
@@ -51,7 +62,7 @@ class Ui_FormatWindow(object):
         self.horizontalLayout_2.setSpacing(0)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.formatButton = QtWidgets.QPushButton(self.groupBox)
-        self.formatButton.setMinimumSize(QtCore.QSize(100, 40))
+        self.formatButton.setMinimumSize(QtCore.QSize(100, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -64,7 +75,7 @@ class Ui_FormatWindow(object):
         self.formatButton.setObjectName("formatButton")
         self.horizontalLayout_2.addWidget(self.formatButton)
         self.escapeButton = QtWidgets.QPushButton(self.groupBox)
-        self.escapeButton.setMinimumSize(QtCore.QSize(100, 40))
+        self.escapeButton.setMinimumSize(QtCore.QSize(100, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -76,7 +87,7 @@ class Ui_FormatWindow(object):
         self.escapeButton.setObjectName("escapeButton")
         self.horizontalLayout_2.addWidget(self.escapeButton)
         self.unescapeButton = QtWidgets.QPushButton(self.groupBox)
-        self.unescapeButton.setMinimumSize(QtCore.QSize(100, 40))
+        self.unescapeButton.setMinimumSize(QtCore.QSize(100, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -88,7 +99,7 @@ class Ui_FormatWindow(object):
         self.unescapeButton.setObjectName("unescapeButton")
         self.horizontalLayout_2.addWidget(self.unescapeButton)
         self.unicodeButton = QtWidgets.QPushButton(self.groupBox)
-        self.unicodeButton.setMinimumSize(QtCore.QSize(100, 40))
+        self.unicodeButton.setMinimumSize(QtCore.QSize(100, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -100,7 +111,7 @@ class Ui_FormatWindow(object):
         self.unicodeButton.setObjectName("unicodeButton")
         self.horizontalLayout_2.addWidget(self.unicodeButton)
         self.unicodeDecodeButton = QtWidgets.QPushButton(self.groupBox)
-        self.unicodeDecodeButton.setMinimumSize(QtCore.QSize(100, 40))
+        self.unicodeDecodeButton.setMinimumSize(QtCore.QSize(100, 35))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -114,7 +125,7 @@ class Ui_FormatWindow(object):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.label_2 = QtWidgets.QLabel(FormatWindow)
-        self.label_2.setMaximumSize(QtCore.QSize(40, 40))
+        self.label_2.setMaximumSize(QtCore.QSize(35, 34))
         self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap("ui/resources/pictures/xml.png"))
         self.label_2.setScaledContents(True)
@@ -122,20 +133,27 @@ class Ui_FormatWindow(object):
         self.label_2.setObjectName("label_2")
         self.horizontalLayout.addWidget(self.label_2)
         self.label = QtWidgets.QLabel(FormatWindow)
-        self.label.setMaximumSize(QtCore.QSize(40, 40))
+        self.label.setMaximumSize(QtCore.QSize(35, 34))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("ui/resources/pictures/json-file.png"))
         self.label.setScaledContents(True)
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        self.gridLayout.addLayout(self.horizontalLayout, 2, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout, 1, 0, 1, 1)
         self.gridLayout_2 = QtWidgets.QGridLayout()
+        self.gridLayout_2.setSpacing(12)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.textBrowser = QtWidgets.QTextBrowser(FormatWindow)
+        self.textBrowser.setStyleSheet("border-radius: 4px;\n"
+"border:1px solid #ccc;\n"
+"padding: 1px;")
         self.textBrowser.setObjectName("textBrowser")
         self.gridLayout_2.addWidget(self.textBrowser, 1, 1, 1, 1)
         self.textEdit = QtWidgets.QTextEdit(FormatWindow)
+        self.textEdit.setStyleSheet("border-radius: 4px;\n"
+"border:1px solid #ccc;\n"
+"padding: 1px;")
         self.textEdit.setObjectName("textEdit")
         self.gridLayout_2.addWidget(self.textEdit, 1, 0, 1, 1)
         self.label_4 = QtWidgets.QLabel(FormatWindow)
@@ -145,10 +163,6 @@ class Ui_FormatWindow(object):
         self.label_5.setObjectName("label_5")
         self.gridLayout_2.addWidget(self.label_5, 0, 1, 1, 1)
         self.gridLayout.addLayout(self.gridLayout_2, 0, 0, 1, 1)
-        self.label_3 = QtWidgets.QLabel(FormatWindow)
-        self.label_3.setText("")
-        self.label_3.setObjectName("label_3")
-        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
 
         self.retranslateUi(FormatWindow)
         QtCore.QMetaObject.connectSlotsByName(FormatWindow)

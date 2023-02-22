@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>798</width>
-    <height>454</height>
+    <height>453</height>
    </rect>
   </property>
   <property name="font">
@@ -23,27 +23,55 @@
     <normaloff>resources/pictures/hacker.png</normaloff>resources/pictures/hacker.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <item row="2" column="0">
+   <property name="leftMargin">
+    <number>20</number>
+   </property>
+   <property name="topMargin">
+    <number>20</number>
+   </property>
+   <property name="rightMargin">
+    <number>20</number>
+   </property>
+   <property name="bottomMargin">
+    <number>20</number>
+   </property>
+   <property name="horizontalSpacing">
+    <number>6</number>
+   </property>
+   <property name="verticalSpacing">
+    <number>20</number>
+   </property>
+   <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
       <number>7</number>
      </property>
      <item>
       <widget class="QGroupBox" name="groupBox">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+        </font>
+       </property>
        <property name="styleSheet">
-        <string notr="true">QPushButton{
+        <string notr="true">QGroupBox{
+	border:0px
+}
+QPushButton{
 	text-align:center;
     text-decoration:none;
-    background:#f29c1f;
+    background:#ffffff;
+	/*color: #fff;*/
     /* color:#000000; */
 
     padding: 5px 10px 5px 10px;
     font-weight:light;
-    border-radius:0px;
-	border:1px solid #c6d4e2;
-	margin: 0px;
+    border-radius:4px;
+	border:1px solid #dadada;
+	white-space: nowrap;
 }
-QPushButton::checked,QToolButton::checked{
+
+QPushButton::checked,QPushButton::hover{
 	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
 	color:#ffffff;
 	font-weight: bold;
@@ -73,7 +101,7 @@ QPushButton::checked,QToolButton::checked{
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="font">
@@ -105,7 +133,7 @@ QPushButton::checked,QToolButton::checked{
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="font">
@@ -134,7 +162,7 @@ QPushButton::checked,QToolButton::checked{
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="font">
@@ -163,7 +191,7 @@ QPushButton::checked,QToolButton::checked{
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="font">
@@ -192,7 +220,7 @@ QPushButton::checked,QToolButton::checked{
           <property name="minimumSize">
            <size>
             <width>100</width>
-            <height>40</height>
+            <height>35</height>
            </size>
           </property>
           <property name="font">
@@ -233,8 +261,8 @@ QPushButton::checked,QToolButton::checked{
       <widget class="QLabel" name="label_2">
        <property name="maximumSize">
         <size>
-         <width>40</width>
-         <height>40</height>
+         <width>35</width>
+         <height>34</height>
         </size>
        </property>
        <property name="text">
@@ -255,8 +283,8 @@ QPushButton::checked,QToolButton::checked{
       <widget class="QLabel" name="label">
        <property name="maximumSize">
         <size>
-         <width>40</width>
-         <height>40</height>
+         <width>35</width>
+         <height>34</height>
         </size>
        </property>
        <property name="text">
@@ -277,11 +305,26 @@ QPushButton::checked,QToolButton::checked{
    </item>
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
+     <property name="spacing">
+      <number>12</number>
+     </property>
      <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowser"/>
+      <widget class="QTextBrowser" name="textBrowser">
+       <property name="styleSheet">
+        <string notr="true">border-radius: 4px;
+border:1px solid #ccc;
+padding: 1px;</string>
+       </property>
+      </widget>
      </item>
      <item row="1" column="0">
-      <widget class="QTextEdit" name="textEdit"/>
+      <widget class="QTextEdit" name="textEdit">
+       <property name="styleSheet">
+        <string notr="true">border-radius: 4px;
+border:1px solid #ccc;
+padding: 1px;</string>
+       </property>
+      </widget>
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_4">
@@ -298,13 +341,6 @@ QPushButton::checked,QToolButton::checked{
       </widget>
      </item>
     </layout>
-   </item>
-   <item row="1" column="0">
-    <widget class="QLabel" name="label_3">
-     <property name="text">
-      <string/>
-     </property>
-    </widget>
    </item>
   </layout>
  </widget>

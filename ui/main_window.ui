@@ -92,7 +92,7 @@
 	border-left-width: 0px;
 	border-right-width: 0px;
 }
-QPushButton::checked,QToolButton::checked{
+QPushButton::checked,QPushButton::hover{
 	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
 	color:#ffffff;
 	font-weight: bold;
@@ -1404,7 +1404,7 @@ background-color: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1294</width>
-     <height>26</height>
+     <height>23</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
