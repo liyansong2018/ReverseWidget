@@ -27,6 +27,23 @@ class Ui_FormatWindow(object):
         self.horizontalLayout.setSpacing(7)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.groupBox = QtWidgets.QGroupBox(FormatWindow)
+        self.groupBox.setStyleSheet("QPushButton{\n"
+"    text-align:left;\n"
+"    text-decoration:none;\n"
+"    background:#f29c1f;\n"
+"    /* color:#000000; */\n"
+"\n"
+"    padding: 5px 10px 5px 20px;\n"
+"    font-weight:light;\n"
+"    border-radius:0px;\n"
+"    border:1px solid #c6d4e2;\n"
+"    margin: 0px;\n"
+"}\n"
+"QPushButton::checked,QToolButton::checked{\n"
+"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
+"    color:#ffffff;\n"
+"    font-weight: bold;\n"
+"}")
         self.groupBox.setTitle("")
         self.groupBox.setObjectName("groupBox")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.groupBox)
@@ -40,23 +57,7 @@ class Ui_FormatWindow(object):
         font.setUnderline(False)
         font.setStrikeOut(False)
         self.formatButton.setFont(font)
-        self.formatButton.setStyleSheet("QPushButton{\n"
-"    text-align:left;\n"
-"    text-decoration:none;\n"
-"    background:#f29c1f;\n"
-"    /* color:#000000; */\n"
-"\n"
-"    padding: 5px 10px 5px 20px;\n"
-"    font-weight:light;\n"
-"    border-radius:0px;\n"
-"    border:1px solid #c6d4e2;\n"
-"    margin: 0px;\n"
-"}\n"
-"QPushButton::checked,QToolButton::checked{\n"
-"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
-"    color:#ffffff;\n"
-"    font-weight: bold;\n"
-"}")
+        self.formatButton.setStyleSheet("")
         self.formatButton.setCheckable(True)
         self.formatButton.setAutoExclusive(True)
         self.formatButton.setAutoDefault(False)
@@ -69,27 +70,23 @@ class Ui_FormatWindow(object):
         font.setUnderline(False)
         font.setStrikeOut(False)
         self.escapeButton.setFont(font)
-        self.escapeButton.setStyleSheet("QPushButton{\n"
-"    text-align:left;\n"
-"    text-decoration:none;\n"
-"    background:#f29c1f;\n"
-"    /* color:#000000; */\n"
-"\n"
-"    padding: 5px 10px 5px 20px;\n"
-"    font-weight:light;\n"
-"    border-radius:0px;\n"
-"    border:1px solid #c6d4e2;\n"
-"    margin: 0px;\n"
-"}\n"
-"QPushButton::checked,QToolButton::checked{\n"
-"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
-"    color:#ffffff;\n"
-"    font-weight: bold;\n"
-"}")
+        self.escapeButton.setStyleSheet("")
         self.escapeButton.setCheckable(True)
         self.escapeButton.setAutoExclusive(True)
         self.escapeButton.setObjectName("escapeButton")
         self.horizontalLayout_2.addWidget(self.escapeButton)
+        self.unescapeButton = QtWidgets.QPushButton(self.groupBox)
+        self.unescapeButton.setMinimumSize(QtCore.QSize(100, 40))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        self.unescapeButton.setFont(font)
+        self.unescapeButton.setStyleSheet("")
+        self.unescapeButton.setCheckable(True)
+        self.unescapeButton.setAutoExclusive(True)
+        self.unescapeButton.setObjectName("unescapeButton")
+        self.horizontalLayout_2.addWidget(self.unescapeButton)
         self.unicodeButton = QtWidgets.QPushButton(self.groupBox)
         self.unicodeButton.setMinimumSize(QtCore.QSize(100, 40))
         font = QtGui.QFont()
@@ -97,27 +94,22 @@ class Ui_FormatWindow(object):
         font.setUnderline(False)
         font.setStrikeOut(False)
         self.unicodeButton.setFont(font)
-        self.unicodeButton.setStyleSheet("QPushButton{\n"
-"    text-align:left;\n"
-"    text-decoration:none;\n"
-"    background:#f29c1f;\n"
-"    /* color:#000000; */\n"
-"\n"
-"    padding: 5px 10px 5px 20px;\n"
-"    font-weight:light;\n"
-"    border-radius:0px;\n"
-"    border:1px solid #c6d4e2;\n"
-"    margin: 0px;\n"
-"}\n"
-"QPushButton::checked,QToolButton::checked{\n"
-"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
-"    color:#ffffff;\n"
-"    font-weight: bold;\n"
-"}")
+        self.unicodeButton.setStyleSheet("")
         self.unicodeButton.setCheckable(True)
         self.unicodeButton.setAutoExclusive(True)
         self.unicodeButton.setObjectName("unicodeButton")
         self.horizontalLayout_2.addWidget(self.unicodeButton)
+        self.unicodeDecodeButton = QtWidgets.QPushButton(self.groupBox)
+        self.unicodeDecodeButton.setMinimumSize(QtCore.QSize(100, 40))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        self.unicodeDecodeButton.setFont(font)
+        self.unicodeDecodeButton.setCheckable(True)
+        self.unicodeDecodeButton.setAutoExclusive(True)
+        self.unicodeDecodeButton.setObjectName("unicodeDecodeButton")
+        self.horizontalLayout_2.addWidget(self.unicodeDecodeButton)
         self.horizontalLayout.addWidget(self.groupBox)
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
@@ -166,6 +158,8 @@ class Ui_FormatWindow(object):
         FormatWindow.setWindowTitle(_translate("FormatWindow", "Format Output"))
         self.formatButton.setText(_translate("FormatWindow", "Format"))
         self.escapeButton.setText(_translate("FormatWindow", "Escape"))
-        self.unicodeButton.setText(_translate("FormatWindow", "Unicode"))
+        self.unescapeButton.setText(_translate("FormatWindow", "Unescape"))
+        self.unicodeButton.setText(_translate("FormatWindow", "Unicode Encode"))
+        self.unicodeDecodeButton.setText(_translate("FormatWindow", "Unicode Decode"))
         self.label_4.setText(_translate("FormatWindow", "Raw"))
         self.label_5.setText(_translate("FormatWindow", "Format"))

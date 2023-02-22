@@ -903,7 +903,9 @@ class FormatUi(QtWidgets.QWidget):
         self.init_ui()
         self.ui.formatButton.clicked.connect(self.listen_action_format)
         self.ui.escapeButton.clicked.connect(self.listen_action_escape)
+        self.ui.unescapeButton.clicked.connect(self.listen_action_unescape)
         self.ui.unicodeButton.clicked.connect(self.listen_action_unicode)
+        self.ui.unicodeDecodeButton.clicked.connect(self.listen_action_unicode_decode)
 
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
@@ -936,10 +938,24 @@ class FormatUi(QtWidgets.QWidget):
             Log.error(_error_info)
 
     def listen_action_escape(self):
-        pass
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.replace('\"', '\\\"')
+        self.ui.textBrowser.setText(_out)
+
+    def listen_action_unescape(self):
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.replace('\\\"', '\"')
+        self.ui.textBrowser.setText(_out)
 
     def listen_action_unicode(self):
-        pass
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.encode("raw_unicode_escape").decode()
+        self.ui.textBrowser.setText(_out)
+
+    def listen_action_unicode_decode(self):
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.encode("utf-8").decode("unicode_escape")
+        self.ui.textBrowser.setText(_out)
 
     def init_ui(self):
         """

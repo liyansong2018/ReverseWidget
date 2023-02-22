@@ -30,6 +30,25 @@
      </property>
      <item>
       <widget class="QGroupBox" name="groupBox">
+       <property name="styleSheet">
+        <string notr="true">QPushButton{
+	text-align:left;
+    text-decoration:none;
+    background:#f29c1f;
+    /* color:#000000; */
+
+    padding: 5px 10px 5px 20px;
+    font-weight:light;
+    border-radius:0px;
+	border:1px solid #c6d4e2;
+	margin: 0px;
+}
+QPushButton::checked,QToolButton::checked{
+	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
+	color:#ffffff;
+	font-weight: bold;
+}</string>
+       </property>
        <property name="title">
         <string/>
        </property>
@@ -65,23 +84,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton{
-	text-align:left;
-    text-decoration:none;
-    background:#f29c1f;
-    /* color:#000000; */
-
-    padding: 5px 10px 5px 20px;
-    font-weight:light;
-    border-radius:0px;
-	border:1px solid #c6d4e2;
-	margin: 0px;
-}
-QPushButton::checked,QToolButton::checked{
-	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
-	color:#ffffff;
-	font-weight: bold;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Format</string>
@@ -113,26 +116,39 @@ QPushButton::checked,QToolButton::checked{
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton{
-	text-align:left;
-    text-decoration:none;
-    background:#f29c1f;
-    /* color:#000000; */
-
-    padding: 5px 10px 5px 20px;
-    font-weight:light;
-    border-radius:0px;
-	border:1px solid #c6d4e2;
-	margin: 0px;
-}
-QPushButton::checked,QToolButton::checked{
-	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
-	color:#ffffff;
-	font-weight: bold;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
            <string>Escape</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="autoExclusive">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="unescapeButton">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="text">
+           <string>Unescape</string>
           </property>
           <property name="checkable">
            <bool>true</bool>
@@ -158,26 +174,36 @@ QPushButton::checked,QToolButton::checked{
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">QPushButton{
-	text-align:left;
-    text-decoration:none;
-    background:#f29c1f;
-    /* color:#000000; */
-
-    padding: 5px 10px 5px 20px;
-    font-weight:light;
-    border-radius:0px;
-	border:1px solid #c6d4e2;
-	margin: 0px;
-}
-QPushButton::checked,QToolButton::checked{
-	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
-	color:#ffffff;
-	font-weight: bold;
-}</string>
+           <string notr="true"/>
           </property>
           <property name="text">
-           <string>Unicode</string>
+           <string>Unicode Encode</string>
+          </property>
+          <property name="checkable">
+           <bool>true</bool>
+          </property>
+          <property name="autoExclusive">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="unicodeDecodeButton">
+          <property name="minimumSize">
+           <size>
+            <width>100</width>
+            <height>40</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>微软雅黑</family>
+            <underline>false</underline>
+            <strikeout>false</strikeout>
+           </font>
+          </property>
+          <property name="text">
+           <string>Unicode Decode</string>
           </property>
           <property name="checkable">
            <bool>true</bool>
