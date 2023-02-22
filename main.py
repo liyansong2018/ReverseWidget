@@ -465,60 +465,63 @@ class MainUi(QtWidgets.QMainWindow):
         _input = ''
         _output = ''
 
-        # URL Encode
-        if current_index == 0:
-            try:
+        try:
+            # URL Encode
+            if current_index == 0:
                 _input = self.ui.urlTabText.toPlainText()
                 _input = _input.encode("utf-8")
+                Log.info("input: %s" % _input)
                 _output = parse.quote(_input)
-            except Exception as e:
-                _output = str(e)
+                Log.info("outupt: %s" % _output)
+                self.ui.codeOutput.setText(_output)
 
-            self.ui.codeOutput.setText(_output)
-
-        # HTML Encode
-        if current_index == 1:
-            try:
+            # HTML Encode
+            if current_index == 1:
                 _input = self.ui.htmlTabText.toPlainText()
+                Log.info("input: %s" % _input)
                 _output = html.escape(_input)
-            except Exception as e:
-                _output = str(e)
+                Log.info("outupt: %s" % _output)
+                self.ui.codeOutput.setPlainText(_output)
 
-            self.ui.codeOutput.setPlainText(_output)
-
-        # Base64 Encode
-        elif current_index == 2:
-            try:
+            # Base64 Encode
+            elif current_index == 2:
                 _input = self.ui.base64TabText.toPlainText()
                 _input = _input.encode("utf-8")
-                output = code.bytes_to_base64(_input)
+                Log.info("input: %s" % _input)
+                _output = code.bytes_to_base64(_input)
                 # delete CR LF
                 strip_output = ''
-                for char in output:
+                for char in _output:
                     if char == '\r' or char == '\n':
                         continue
                     strip_output += char
 
+                Log.info("outupt: %s" % _output)
                 self.ui.codeOutput.setText(strip_output)
-            except Exception as e:
-                _output = str(e)
-                self.ui.codeOutput.setText(_output)
 
-        # Hash from text: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
-        elif current_index == 3:
-            try:
+            # Hash from text: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+            elif current_index == 3:
                 _input = self.ui.hashTabText.toPlainText()
+                Log.info("input: %s" % _input)
                 # 1.data
                 if _input != "":
                     _input = _input.encode("utf-8")
                     _output = code.get_str_hash(_input)
-            except Exception as e:
-                _output = str(e)
 
-            self.ui.codeOutput.setText(_output)
+                Log.info("outupt: %s" % _output)
+                self.ui.codeOutput.setText(_output)
 
-        Log.info("input: %s" % _input)
-        Log.info("outupt: %s" % _output)
+            # Unicode Encode
+            elif current_index == 4:
+                _input = self.ui.unicodeTabText.toPlainText()
+                Log.info("input: %s" % _input)
+                _output = _input.encode("raw_unicode_escape").decode()
+                Log.info("outupt: %s" % _output)
+                self.ui.codeOutput.setText(_output)
+
+        except Exception as e:
+            self.ui.codeOutput.setText(str(e))
+            Log.error(str(e))
 
     def start_decode(self):
         '''
@@ -532,52 +535,46 @@ class MainUi(QtWidgets.QMainWindow):
         _input = ''
         _output = ''
 
-        # URL Decode
-        if current_index == 0:
-            try:
+        try:
+            # URL Decode
+            if current_index == 0:
                 _input = self.ui.urlTabText.toPlainText()
+                Log.info("input: %s" % _input)
                 _output = parse.unquote(_input)
-            except Exception as e:
-                _output = str(e)
+                Log.info("output: %s" % _output)
+                self.ui.codeOutput.setText(_output)
 
-            self.ui.codeOutput.setText(_output)
-
-        # HTML Decode
-        if current_index == 1:
-            try:
+            # HTML Decode
+            if current_index == 1:
                 _input = self.ui.htmlTabText.toPlainText()
                 Log.info("input: %s" % _input)
                 _output = html.unescape(_input)
                 Log.info("outupt: %s" % _output)
+                self.ui.codeOutput.setPlainText(_output)
 
-            except Exception as e:
-                _output = str(e)
-
-            self.ui.codeOutput.setPlainText(_output)
-
-        # Base64 Decode
-        elif current_index == 2:
-            try:
+            # Base64 Decode
+            elif current_index == 2:
                 _input = self.ui.base64TabText.toPlainText()
-                output = code.base64_to_bytes(_input)
-                self.ui.codeOutput.setText(output.decode("utf-8"))
-            except Exception as e:
-                _output = str(e)
+                Log.info("input: %s" % _input)
+                _output = code.base64_to_bytes(_input)
+                Log.info("outupt: %s" % _output)
+                self.ui.codeOutput.setText(_output.decode("utf-8"))
+
+            # Hash from file: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
+            elif current_index == 3:
+                pass
+
+            # Unicode Decode
+            elif current_index == 4:
+                _input = self.ui.unicodeTabText.toPlainText()
+                Log.info("input: %s" % _input)
+                _output = _input.encode("utf-8").decode("unicode_escape")
+                Log.info("outupt: %s" % _output)
                 self.ui.codeOutput.setText(_output)
 
-        # Hash from file: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
-        elif current_index == 3:
-            try:
-                _input = self.openfile
-                self.ui.hashTabText.setText(_input)
-                _output = code.get_file_hash(_input)
-            except Exception as e:
-                _output = str(e)
-
-            self.ui.codeOutput.setText(_output)
-
-        Log.info("input: %s" % _input)
-        Log.info("outupt: %s" % _output)
+        except Exception as e:
+            self.ui.codeOutput.setText(str(e))
+            Log.error(str(e))
 
     def start_asm(self):
         arch = map_arch_ks.get(ARCH_BEFORE)
