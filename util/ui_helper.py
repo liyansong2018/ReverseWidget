@@ -6,7 +6,7 @@
 @License :   (C)Copyright 2021, liyansong
 '''
 
-from PyQt5.QtCore import QVariant
+import html
 from PyQt5.Qt import *
 
 
@@ -61,3 +61,12 @@ class Helper:
     @staticmethod
     def font_bold(font):
         return "<b>" + font + "</b>"
+
+    @classmethod
+    def font_red(cls, info):
+        """
+        Mark the error message in red
+        :param info: error
+        :return: red font
+        """
+        return '<font color="red"> %s </font>' % html.escape(info)

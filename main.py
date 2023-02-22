@@ -454,10 +454,10 @@ class MainUi(QtWidgets.QMainWindow):
             self.ui.stringText.setText(output_string)
 
     def start_encode(self):
-        '''
+        """
         Qtable widget for encode
         :return: null
-        '''
+        """
         TAG = 'Encode'
         Log.info(">>> %s" % TAG)
         current_index = self.ui.tabWidget_2.currentIndex()
@@ -520,14 +520,14 @@ class MainUi(QtWidgets.QMainWindow):
                 self.ui.codeOutput.setText(_output)
 
         except Exception as e:
-            self.ui.codeOutput.setText(str(e))
+            self.ui.codeOutput.setText(Helper.font_red(str(e)))
             Log.error(str(e))
 
     def start_decode(self):
-        '''
+        """
         Qtable widget for decode
         :return:
-        '''
+        """
         TAG = 'Decode'
         Log.info(">>> %s" % TAG)
         current_index = self.ui.tabWidget_2.currentIndex()
@@ -573,7 +573,7 @@ class MainUi(QtWidgets.QMainWindow):
                 self.ui.codeOutput.setText(_output)
 
         except Exception as e:
-            self.ui.codeOutput.setText(str(e))
+            self.ui.codeOutput.setText(Helper.font_red(str(e)))
             Log.error(str(e))
 
     def start_asm(self):
@@ -773,10 +773,10 @@ class AppCheckerUi(QtWidgets.QWidget):
                 _tmp = self.check(self.openfile, 'config/apk_shell.json')
                 with open(APKINFO_PATH, encoding='utf-8') as fp:
                     _result = fp.read() % (_tmp['manufacturer'], ', '.join(_tmp['data']), _tmp['url'], _tmp['url'])
+                self.ui.textBrowser.setHtml(_result)
             except Exception as e:
+                self.ui.textBrowser.setText(Helper.font_red(str(e)))
                 Log.error(str(e))
-                _result = str(e)
-            self.ui.textBrowser.setHtml(_result)
 
     def listen_action_full(self):
         """
@@ -902,16 +902,32 @@ class FormatUi(QtWidgets.QWidget):
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
         Log.info("Format input: %s" % _input)
+        _is_json = None
+        _is_xml = None
+        _error_info = ''
+
         try:
             _output = self.__log_format_json(json.loads(_input))
+            _is_json = True
         except Exception as e:
+            _is_json = False
+            _error_info = str(e)
+
+        if not _is_json:
             try:
                 _output = self.__log_format_xml(_input)
+                _is_xml = True
             except Exception as e:
-                _output = str(e)
-        finally:
+                _is_xml = False
+                _error_info = str(e)
+
+        if _is_json | _is_xml:
             Log.info("Format output: %s" % _output)
             self.ui.textBrowser.setText(_output)
+        # Print error
+        else:
+            self.ui.textBrowser.setText(Helper.font_red(_error_info))
+            Log.error(_error_info)
 
     def init_ui(self):
         """
@@ -921,13 +937,13 @@ class FormatUi(QtWidgets.QWidget):
         self.ui = Ui_FormatWindow()
         self.ui.setupUi(self)
 
-    def __log_format_json(self, json_data):
+    def __log_format_json(self, dict):
         """
         Beautify json data
-        :param json_data: raw data
+        :param dict: raw data (python dict)
         :return: format json
         """
-        return json.dumps(json_data, indent=4, ensure_ascii=False)
+        return json.dumps(dict, indent=4, ensure_ascii=False)
 
     def __log_format_xml(self, xml_data):
         """
