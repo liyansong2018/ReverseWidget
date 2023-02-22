@@ -24,23 +24,103 @@ class Ui_FormatWindow(object):
         self.gridLayout = QtWidgets.QGridLayout(FormatWindow)
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
+        self.horizontalLayout.setSpacing(7)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.formatButton = QtWidgets.QCommandLinkButton(FormatWindow)
-        self.formatButton.setMaximumSize(QtCore.QSize(100, 16777215))
+        self.groupBox = QtWidgets.QGroupBox(FormatWindow)
+        self.groupBox.setTitle("")
+        self.groupBox.setObjectName("groupBox")
+        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.groupBox)
+        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
+        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
+        self.formatButton = QtWidgets.QPushButton(self.groupBox)
+        self.formatButton.setMinimumSize(QtCore.QSize(100, 40))
         font = QtGui.QFont()
-        font.setFamily("Segoe UI")
-        font.setBold(True)
-        font.setWeight(75)
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
         self.formatButton.setFont(font)
-        self.formatButton.setMouseTracking(False)
-        self.formatButton.setLayoutDirection(QtCore.Qt.LeftToRight)
-        self.formatButton.setStyleSheet("border:5px;\n"
-"color:#ffffff;\n"
-"font-weight: bold;\n"
-"background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(95, 159, 219, 255), stop:1 rgba(0, 159, 219, 255));")
+        self.formatButton.setStyleSheet("QPushButton{\n"
+"    text-align:left;\n"
+"    text-decoration:none;\n"
+"    background:#f29c1f;\n"
+"    /* color:#000000; */\n"
+"\n"
+"    padding: 5px 10px 5px 20px;\n"
+"    font-weight:light;\n"
+"    border-radius:0px;\n"
+"    border:1px solid #c6d4e2;\n"
+"    margin: 0px;\n"
+"}\n"
+"QPushButton::checked,QToolButton::checked{\n"
+"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
+"    color:#ffffff;\n"
+"    font-weight: bold;\n"
+"}")
         self.formatButton.setCheckable(True)
+        self.formatButton.setAutoExclusive(True)
+        self.formatButton.setAutoDefault(False)
         self.formatButton.setObjectName("formatButton")
-        self.horizontalLayout.addWidget(self.formatButton)
+        self.horizontalLayout_2.addWidget(self.formatButton)
+        self.escapeButton = QtWidgets.QPushButton(self.groupBox)
+        self.escapeButton.setMinimumSize(QtCore.QSize(100, 40))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        self.escapeButton.setFont(font)
+        self.escapeButton.setStyleSheet("QPushButton{\n"
+"    text-align:left;\n"
+"    text-decoration:none;\n"
+"    background:#f29c1f;\n"
+"    /* color:#000000; */\n"
+"\n"
+"    padding: 5px 10px 5px 20px;\n"
+"    font-weight:light;\n"
+"    border-radius:0px;\n"
+"    border:1px solid #c6d4e2;\n"
+"    margin: 0px;\n"
+"}\n"
+"QPushButton::checked,QToolButton::checked{\n"
+"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
+"    color:#ffffff;\n"
+"    font-weight: bold;\n"
+"}")
+        self.escapeButton.setCheckable(True)
+        self.escapeButton.setAutoExclusive(True)
+        self.escapeButton.setObjectName("escapeButton")
+        self.horizontalLayout_2.addWidget(self.escapeButton)
+        self.unicodeButton = QtWidgets.QPushButton(self.groupBox)
+        self.unicodeButton.setMinimumSize(QtCore.QSize(100, 40))
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        self.unicodeButton.setFont(font)
+        self.unicodeButton.setStyleSheet("QPushButton{\n"
+"    text-align:left;\n"
+"    text-decoration:none;\n"
+"    background:#f29c1f;\n"
+"    /* color:#000000; */\n"
+"\n"
+"    padding: 5px 10px 5px 20px;\n"
+"    font-weight:light;\n"
+"    border-radius:0px;\n"
+"    border:1px solid #c6d4e2;\n"
+"    margin: 0px;\n"
+"}\n"
+"QPushButton::checked,QToolButton::checked{\n"
+"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
+"    color:#ffffff;\n"
+"    font-weight: bold;\n"
+"}")
+        self.unicodeButton.setCheckable(True)
+        self.unicodeButton.setAutoExclusive(True)
+        self.unicodeButton.setObjectName("unicodeButton")
+        self.horizontalLayout_2.addWidget(self.unicodeButton)
+        self.horizontalLayout.addWidget(self.groupBox)
+        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
+        self.horizontalLayout.addItem(spacerItem)
         self.label_2 = QtWidgets.QLabel(FormatWindow)
         self.label_2.setMaximumSize(QtCore.QSize(40, 40))
         self.label_2.setText("")
@@ -57,18 +137,26 @@ class Ui_FormatWindow(object):
         self.label.setAlignment(QtCore.Qt.AlignCenter)
         self.label.setObjectName("label")
         self.horizontalLayout.addWidget(self.label)
-        spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
-        self.horizontalLayout.addItem(spacerItem)
-        self.gridLayout.addLayout(self.horizontalLayout, 0, 0, 1, 1)
+        self.gridLayout.addLayout(self.horizontalLayout, 2, 0, 1, 1)
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setObjectName("gridLayout_2")
-        self.textEdit = QtWidgets.QTextEdit(FormatWindow)
-        self.textEdit.setObjectName("textEdit")
-        self.gridLayout_2.addWidget(self.textEdit, 0, 0, 1, 1)
         self.textBrowser = QtWidgets.QTextBrowser(FormatWindow)
         self.textBrowser.setObjectName("textBrowser")
-        self.gridLayout_2.addWidget(self.textBrowser, 0, 1, 1, 1)
-        self.gridLayout.addLayout(self.gridLayout_2, 1, 0, 1, 1)
+        self.gridLayout_2.addWidget(self.textBrowser, 1, 1, 1, 1)
+        self.textEdit = QtWidgets.QTextEdit(FormatWindow)
+        self.textEdit.setObjectName("textEdit")
+        self.gridLayout_2.addWidget(self.textEdit, 1, 0, 1, 1)
+        self.label_4 = QtWidgets.QLabel(FormatWindow)
+        self.label_4.setObjectName("label_4")
+        self.gridLayout_2.addWidget(self.label_4, 0, 0, 1, 1)
+        self.label_5 = QtWidgets.QLabel(FormatWindow)
+        self.label_5.setObjectName("label_5")
+        self.gridLayout_2.addWidget(self.label_5, 0, 1, 1, 1)
+        self.gridLayout.addLayout(self.gridLayout_2, 0, 0, 1, 1)
+        self.label_3 = QtWidgets.QLabel(FormatWindow)
+        self.label_3.setText("")
+        self.label_3.setObjectName("label_3")
+        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
 
         self.retranslateUi(FormatWindow)
         QtCore.QMetaObject.connectSlotsByName(FormatWindow)
@@ -77,3 +165,7 @@ class Ui_FormatWindow(object):
         _translate = QtCore.QCoreApplication.translate
         FormatWindow.setWindowTitle(_translate("FormatWindow", "Format Output"))
         self.formatButton.setText(_translate("FormatWindow", "Format"))
+        self.escapeButton.setText(_translate("FormatWindow", "Escape"))
+        self.unicodeButton.setText(_translate("FormatWindow", "Unicode"))
+        self.label_4.setText(_translate("FormatWindow", "Raw"))
+        self.label_5.setText(_translate("FormatWindow", "Format"))

@@ -83,6 +83,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_check_window = QTranslator()
         self.trans_hash_window = QTranslator()
         self.trans_checkpe_window = QTranslator()
+        self.trans_format_window = QTranslator()
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -173,6 +174,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.trans_check_window.load("ui/resources/language/appchecker_window.qm")
         self.trans_hash_window.load("ui/resources/language/hash_window.qm")
         self.trans_checkpe_window.load("ui/resources/language/pechecker_window.qm")
+        self.trans_format_window.load("ui/resources/language/format_window.qm")
         _app = QApplication.instance()
         _app.installTranslator(self.trans_main_window)
         _app.installTranslator(self.trans_dialog_window)
@@ -180,6 +182,7 @@ class MainUi(QtWidgets.QMainWindow):
         _app.installTranslator(self.trans_check_window)
         _app.installTranslator(self.trans_hash_window)
         _app.installTranslator(self.trans_checkpe_window)
+        _app.installTranslator(self.trans_format_window)
         self.ui.retranslateUi(self)
 
     def translate_english(self):
@@ -190,6 +193,7 @@ class MainUi(QtWidgets.QMainWindow):
         _app.removeTranslator(self.trans_check_window)
         _app.removeTranslator(self.trans_hash_window)
         _app.removeTranslator(self.trans_checkpe_window)
+        _app.removeTranslator(self.trans_format_window)
         self.ui.retranslateUi(self)
 
     def listen_action_about(self):
@@ -898,12 +902,14 @@ class FormatUi(QtWidgets.QWidget):
         super().__init__()
         self.init_ui()
         self.ui.formatButton.clicked.connect(self.listen_action_format)
+        self.ui.escapeButton.clicked.connect(self.listen_action_escape)
+        self.ui.unicodeButton.clicked.connect(self.listen_action_unicode)
 
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
         Log.info("Format input: %s" % _input)
-        _is_json = None
-        _is_xml = None
+        _is_json = False
+        _is_xml = False
         _error_info = ''
 
         try:
@@ -928,6 +934,12 @@ class FormatUi(QtWidgets.QWidget):
         else:
             self.ui.textBrowser.setText(Helper.font_red(_error_info))
             Log.error(_error_info)
+
+    def listen_action_escape(self):
+        pass
+
+    def listen_action_unicode(self):
+        pass
 
     def init_ui(self):
         """
