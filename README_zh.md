@@ -1,7 +1,14 @@
 # Reverse Widget
+
+[![platform](https://img.shields.io/badge/Platform-Windows%7CmacOS%7CLinux-blue?style=flat-square)](#) 
+[![Program](https://img.shields.io/github/languages/count/liyansong2018/ReverseWidget?style=flat-square)](#) 
+[![english](https://img.shields.io/badge/English(US)-100%25-blue?style=flat-square)](#) 
+[![chinese](https://img.shields.io/badge/简体中文-80%25-blue?style=flat-square)](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
+[![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
+
 Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测的**可视化**工具。具有如下特性
 - 多个分组加密和解密算法：AES, DES, 3DES, RC2
-- 编码和解码：URL, Base64
+- 编码和解码：URL, HTML, Base64, Unicode, UTF-8
 - 多个哈希算法：MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - 多种架构的汇编和反汇编器：x86, ARM, mips, Sparc, PowerPC
 - 格式化json和xml文件
@@ -60,7 +67,7 @@ Android应用加固检测
 
 如果我们使用 Burpsuite 社区版抓包，会发现常见的 xml 以及 json 文件并不能很好的展示，因此 ReverseWidget 新增了格式化资源文件的功能，方便我们查看此类文件。
 
-![disasm_en](images/format.png)
+![disasm_en](images/format_zh.png)
 
 ## 如何使用
 
@@ -74,7 +81,7 @@ Android应用加固检测
 1. 运行 `setup.sh`，安装基本库
 2. 运行程序 `run.sh`
 
-当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 
+如果你不想安装依赖包，你也可以直接下载我们已经打包好的[压缩包](https://github.com/liyansong2018/ReverseWidget/releases)。当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 
 
 
 ## 开箱即用

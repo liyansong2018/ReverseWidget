@@ -1,11 +1,15 @@
 # Reverse Widget
 
-[![platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-blue?style=flat-square)](#) [![Program](https://img.shields.io/github/languages/count/liyansong2018/ReverseWidget?style=flat-square)](#) [![english](https://img.shields.io/badge/English(US)-100%25-blue?style=flat-square)](#) [![chinese](https://img.shields.io/badge/简体中文-80%25-blue?style=flat-square)](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
+[![platform](https://img.shields.io/badge/Platform-Windows%7CmacOS%7CLinux-blue?style=flat-square)](#) 
+[![Program](https://img.shields.io/github/languages/count/liyansong2018/ReverseWidget?style=flat-square)](#) 
+[![english](https://img.shields.io/badge/English(US)-100%25-blue?style=flat-square)](#) 
+[![chinese](https://img.shields.io/badge/简体中文-80%25-blue?style=flat-square)](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
+[![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
 
 Reverse Widget is a lightweight GUI Software that implements some typical  block cipher,  coding, hashing, multi-architecture assemble/disassembly framework, PE/AndroidAPP shell checker. Highlight Features:
 
 - Some Typical Encryption Algorithms: AES, DES, 3DES, RC2
-- Useful Coding: URL, Base64
+- Useful Coding: URL, HTML, Base64, Unicode, UTF-8
 - Common Hash: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - Multi-architecture Assembler and Disassembler: x86, ARM, mips, Sparc, PowerPC
 - Beautify json or xml file
@@ -48,7 +52,7 @@ Limitations
 
 ### Encode/Decode
 
-- Support multiple hash algorithms
+- Support multiple hash algorithms,such as URL, HTML, Base64, Unicode, and UTF-8
 - Not only includes the hash calculation of ordinary strings, but also the hash of files, which can quickly calculate the hash value of large files
 
 ![hash_en](images/hash_en.png)
@@ -81,10 +85,11 @@ Json and xml are our common http resource files, which are not well displayed in
 1. run `setup.sh`
 2. run `run.sh`
 
-Of course, you can also see [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA) for how to integrate development environment. 
+If you don't want to install the dependent package, you can also download the [compressed package](https://github.com/liyansong2018/ReverseWidget/releases) that we have already packed.
+Of course, you can also see [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA) for how to integrate development environment.
 
 ## Convenient Tool
 
-**If you are a lucky dog and Windows user**, you can use the out-of-the-box version directly. See [Releases](https://github.com/liyansong2018/ReverseWidget/releases)
+**If you are a lucky dog and Windows user**, you can use the out-of-the-box version directly. See [Releases](https://github.com/liyansong2018/ReverseWidget/releases).
 
 This is a software written in my spare time. There may be some bugs which will be improved. Please understand.
