@@ -62,7 +62,7 @@ QPushButton{
     text-decoration:none;
     background:#ffffff;
 	/*color: #fff;*/
-    /* color:#000000; */
+    color:#000000;
 
     padding: 5px 10px 5px 10px;
     font-weight:light;
@@ -111,6 +111,9 @@ QPushButton::checked,QPushButton::hover{
             <strikeout>false</strikeout>
            </font>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -143,6 +146,9 @@ QPushButton::checked,QPushButton::hover{
             <strikeout>false</strikeout>
            </font>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -171,6 +177,9 @@ QPushButton::checked,QPushButton::hover{
             <underline>false</underline>
             <strikeout>false</strikeout>
            </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="styleSheet">
            <string notr="true"/>
@@ -201,6 +210,9 @@ QPushButton::checked,QPushButton::hover{
             <strikeout>false</strikeout>
            </font>
           </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
+          </property>
           <property name="styleSheet">
            <string notr="true"/>
           </property>
@@ -229,6 +241,9 @@ QPushButton::checked,QPushButton::hover{
             <underline>false</underline>
             <strikeout>false</strikeout>
            </font>
+          </property>
+          <property name="focusPolicy">
+           <enum>Qt::NoFocus</enum>
           </property>
           <property name="text">
            <string>Unicode Decode</string>
