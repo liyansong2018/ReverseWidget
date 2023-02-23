@@ -1016,6 +1016,45 @@ QPushButton::checked,QPushButton::hover{
               </item>
              </layout>
             </widget>
+            <widget class="QWidget" name="padTab">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">border: 0px;</string>
+             </property>
+             <attribute name="title">
+              <string>Padding</string>
+             </attribute>
+             <layout class="QHBoxLayout" name="horizontalLayout_24">
+              <property name="spacing">
+               <number>0</number>
+              </property>
+              <property name="leftMargin">
+               <number>0</number>
+              </property>
+              <property name="topMargin">
+               <number>0</number>
+              </property>
+              <property name="rightMargin">
+               <number>0</number>
+              </property>
+              <property name="bottomMargin">
+               <number>0</number>
+              </property>
+              <item>
+               <widget class="QTextEdit" name="padTabText">
+                <property name="font">
+                 <font>
+                  <family>微软雅黑</family>
+                 </font>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -1404,7 +1443,7 @@ background-color: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1294</width>
-     <height>23</height>
+     <height>26</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">

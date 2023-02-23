@@ -59,6 +59,7 @@ import peid
 from opensource.apk import *
 import html
 import webbrowser
+import xmltodict
 
 CRYPT = 1
 CODE = 2
@@ -476,7 +477,7 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = _input.encode("utf-8")
                 Log.info("input: %s" % _input)
                 _output = parse.quote(_input)
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setText(_output)
 
             # HTML Encode
@@ -484,7 +485,7 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = self.ui.htmlTabText.toPlainText()
                 Log.info("input: %s" % _input)
                 _output = html.escape(_input)
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setPlainText(_output)
 
             # Base64 Encode
@@ -500,7 +501,7 @@ class MainUi(QtWidgets.QMainWindow):
                         continue
                     strip_output += char
 
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setText(strip_output)
 
             # Hash from text: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
@@ -512,7 +513,7 @@ class MainUi(QtWidgets.QMainWindow):
                     _input = _input.encode("utf-8")
                     _output = code.get_str_hash(_input)
 
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setText(_output)
 
             # Unicode Encode
@@ -520,8 +521,12 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = self.ui.unicodeTabText.toPlainText()
                 Log.info("input: %s" % _input)
                 _output = _input.encode("raw_unicode_escape").decode()
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setText(_output)
+
+            # Reserve funciton
+            elif current_index == 5:
+                pass
 
         except Exception as e:
             self.ui.codeOutput.setText(Helper.font_red(str(e)))
@@ -553,7 +558,7 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = self.ui.htmlTabText.toPlainText()
                 Log.info("input: %s" % _input)
                 _output = html.unescape(_input)
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setPlainText(_output)
 
             # Base64 Decode
@@ -561,7 +566,7 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = self.ui.base64TabText.toPlainText()
                 Log.info("input: %s" % _input)
                 _output = code.base64_to_bytes(_input)
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setText(_output.decode("utf-8"))
 
             # Hash from file: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
@@ -573,8 +578,12 @@ class MainUi(QtWidgets.QMainWindow):
                 _input = self.ui.unicodeTabText.toPlainText()
                 Log.info("input: %s" % _input)
                 _output = _input.encode("utf-8").decode("unicode_escape")
-                Log.info("outupt: %s" % _output)
+                Log.info("output: %s" % _output)
                 self.ui.codeOutput.setText(_output)
+
+            # Reserve funciton
+            elif current_index == 5:
+                pass
 
         except Exception as e:
             self.ui.codeOutput.setText(Helper.font_red(str(e)))
@@ -906,6 +915,7 @@ class FormatUi(QtWidgets.QWidget):
         self.ui.unescapeButton.clicked.connect(self.listen_action_unescape)
         self.ui.unicodeButton.clicked.connect(self.listen_action_unicode)
         self.ui.unicodeDecodeButton.clicked.connect(self.listen_action_unicode_decode)
+        self.ui.covertButton.clicked.connect(self.listen_action_convert)
 
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
@@ -923,7 +933,7 @@ class FormatUi(QtWidgets.QWidget):
 
         if not _is_json:
             try:
-                _output = self.__log_format_xml(_input)
+                _output = self.__log_format_xml(_input.encode('utf-8'))
                 _is_xml = True
             except Exception as e:
                 _is_xml = False
@@ -956,6 +966,38 @@ class FormatUi(QtWidgets.QWidget):
         _tmp = self.ui.textBrowser.toPlainText()
         _out = _tmp.encode("utf-8").decode("unicode_escape")
         self.ui.textBrowser.setText(_out)
+
+    def listen_action_convert(self):
+        _is_json = False
+        _is_xml = False
+        _error_info = ''
+        _input = self.ui.textEdit.toPlainText()
+        Log.info("input: %s" % _input)
+
+        try:
+            _output = xmltodict.unparse(json.loads(_input), pretty=True)
+            _is_json = True
+        except Exception as e:
+            _is_json = False
+            _error_info = str(e)
+
+        if not _is_json:
+            try:
+                _output = xmltodict.parse(_input)
+                _output = self.__log_format_json(_output)
+                _is_xml = True
+            except Exception as e:
+                _is_xml = False
+                _error_info = str(e)
+
+        if _is_json | _is_xml:
+            Log.info("Format output: %s" % _output)
+            self.ui.textBrowser.setText(str(_output))
+
+        # Print error
+        else:
+            self.ui.textBrowser.setText(Helper.font_red(_error_info))
+            Log.error(_error_info)
 
     def init_ui(self):
         """

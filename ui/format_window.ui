@@ -44,7 +44,10 @@
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout">
      <property name="spacing">
-      <number>7</number>
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
      </property>
      <item>
       <widget class="QGroupBox" name="groupBox">
@@ -277,7 +280,7 @@ QPushButton::checked,QPushButton::hover{
        <property name="maximumSize">
         <size>
          <width>35</width>
-         <height>34</height>
+         <height>35</height>
         </size>
        </property>
        <property name="text">
@@ -295,11 +298,58 @@ QPushButton::checked,QPushButton::hover{
       </widget>
      </item>
      <item>
+      <widget class="QPushButton" name="covertButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QGroupBox{
+	border:0px
+}
+QPushButton{
+	text-align:center;
+    text-decoration:none;
+    background:#ffffff;
+	/*color: #fff;*/
+    color:#000000;
+
+	height: 36px;
+	width: 36px;    
+	
+  	border-radius: 18px;
+	/*border:1px solid #dadada;
+	white-space: nowrap;*/
+}
+
+QPushButton::checked,QPushButton::hover{
+	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
+	color:#ffffff;
+	font-weight: bold;
+}</string>
+       </property>
+       <property name="text">
+        <string>&lt;&gt;</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
       <widget class="QLabel" name="label">
        <property name="maximumSize">
         <size>
          <width>35</width>
-         <height>34</height>
+         <height>35</height>
         </size>
        </property>
        <property name="text">

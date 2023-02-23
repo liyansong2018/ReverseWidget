@@ -27,7 +27,8 @@ class Ui_FormatWindow(object):
         self.gridLayout.setVerticalSpacing(20)
         self.gridLayout.setObjectName("gridLayout")
         self.horizontalLayout = QtWidgets.QHBoxLayout()
-        self.horizontalLayout.setSpacing(7)
+        self.horizontalLayout.setContentsMargins(-1, -1, -1, 0)
+        self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.groupBox = QtWidgets.QGroupBox(FormatWindow)
         font = QtGui.QFont()
@@ -130,15 +131,45 @@ class Ui_FormatWindow(object):
         spacerItem = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem)
         self.label_2 = QtWidgets.QLabel(FormatWindow)
-        self.label_2.setMaximumSize(QtCore.QSize(35, 34))
+        self.label_2.setMaximumSize(QtCore.QSize(35, 35))
         self.label_2.setText("")
         self.label_2.setPixmap(QtGui.QPixmap("ui/resources/pictures/xml.png"))
         self.label_2.setScaledContents(True)
         self.label_2.setAlignment(QtCore.Qt.AlignCenter)
         self.label_2.setObjectName("label_2")
         self.horizontalLayout.addWidget(self.label_2)
+        self.covertButton = QtWidgets.QPushButton(FormatWindow)
+        self.covertButton.setMinimumSize(QtCore.QSize(0, 0))
+        self.covertButton.setFocusPolicy(QtCore.Qt.NoFocus)
+        self.covertButton.setStyleSheet("QGroupBox{\n"
+"    border:0px\n"
+"}\n"
+"QPushButton{\n"
+"    text-align:center;\n"
+"    text-decoration:none;\n"
+"    background:#ffffff;\n"
+"    /*color: #fff;*/\n"
+"    color:#000000;\n"
+"\n"
+"    height: 36px;\n"
+"    width: 36px;    \n"
+"    \n"
+"      border-radius: 18px;\n"
+"    /*border:1px solid #dadada;\n"
+"    white-space: nowrap;*/\n"
+"}\n"
+"\n"
+"QPushButton::checked,QPushButton::hover{\n"
+"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
+"    color:#ffffff;\n"
+"    font-weight: bold;\n"
+"}")
+        self.covertButton.setCheckable(True)
+        self.covertButton.setAutoExclusive(True)
+        self.covertButton.setObjectName("covertButton")
+        self.horizontalLayout.addWidget(self.covertButton)
         self.label = QtWidgets.QLabel(FormatWindow)
-        self.label.setMaximumSize(QtCore.QSize(35, 34))
+        self.label.setMaximumSize(QtCore.QSize(35, 35))
         self.label.setText("")
         self.label.setPixmap(QtGui.QPixmap("ui/resources/pictures/json-file.png"))
         self.label.setScaledContents(True)
@@ -180,5 +211,6 @@ class Ui_FormatWindow(object):
         self.unescapeButton.setText(_translate("FormatWindow", "Unescape"))
         self.unicodeButton.setText(_translate("FormatWindow", "Unicode Encode"))
         self.unicodeDecodeButton.setText(_translate("FormatWindow", "Unicode Decode"))
+        self.covertButton.setText(_translate("FormatWindow", "<>"))
         self.label_4.setText(_translate("FormatWindow", "Raw"))
         self.label_5.setText(_translate("FormatWindow", "Format"))
