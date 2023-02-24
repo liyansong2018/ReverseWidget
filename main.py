@@ -39,6 +39,7 @@ from util.log import *
 from ui.dialog_window import *
 from util.map import *
 from util.asm import *
+from util.highlight import *
 from urllib import parse
 
 from ui.about_window import *
@@ -68,7 +69,6 @@ ASM = 3
 FONT = None
 ABOUT_TEXT_PATH = "./ui/resources/html/about.html"
 APKINFO_PATH = "./ui/resources/html/apk_info.html"
-CODE_TEXT_PATH = "./ui/resources/html/code.html"
 
 class MainUi(QtWidgets.QMainWindow):
     def __init__(self):
@@ -796,13 +796,12 @@ class AppCheckerUi(QtWidgets.QWidget):
         Display full manifest.xml
         :return: null
         """
-        with open(CODE_TEXT_PATH) as fp:
-            try:
-                _data = fp.read() % html.escape(self.info_manif)
-            except Exception as e:
-                Log.error(str(e))
-                _data = str(e)
-            self.ui.textBrowser.setHtml(_data)
+        try:
+            self.highlighter = HighlighterXml(self.ui.textBrowser.document())
+            self.ui.textBrowser.setText(self.info_manif)
+        except Exception as e:
+            Log.error(str(e))
+            self.ui.textBrowser.setText(Helper.font_red(str(e)))
 
     def check(self, apk_file, packer):
         """
