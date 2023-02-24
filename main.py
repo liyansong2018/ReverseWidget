@@ -58,6 +58,7 @@ import locale
 import zipfile
 import peid
 from opensource.apk import *
+from opensource.QCodeEditor import *
 import html
 import webbrowser
 import xmltodict
@@ -765,16 +766,20 @@ class AppCheckerUi(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.openfile = None
         self.info_manif = None
+        self.editor_code = None
         self.ui.openButton.clicked.connect(self.listen_action_open)
         self.ui.checkButton.clicked.connect(self.listen_action_check)
         self.ui.fullInfoButton.clicked.connect(self.listen_action_full)
         self.activate_link()
 
     def listen_action_open(self):
-        self.openfile = QFileDialog.getOpenFileName(filter='APK files (*.apk)')[0]
-        self.ui.textEdit.setText(self.openfile)
-        self._axmlprinter(self.openfile)
-        self.listen_action_check()
+        try:
+            self.openfile = QFileDialog.getOpenFileName(filter='APK files (*.apk)')[0]
+            self.ui.textEdit.setText(self.openfile)
+            self._axmlprinter(self.openfile)
+            self.listen_action_check()
+        except Exception as e:
+            pass
 
     def listen_action_check(self):
         """
@@ -789,7 +794,10 @@ class AppCheckerUi(QtWidgets.QWidget):
                 self.ui.textBrowser.setHtml(_result)
             except Exception as e:
                 self.ui.textBrowser.setText(Helper.font_red(str(e)))
+                self.ui.labelHint.setText(Helper.font_red(self.tr("No valid information found!")))
                 Log.error(str(e))
+            finally:
+                self.ui.textBrowser.show()
 
     def listen_action_full(self):
         """
@@ -797,8 +805,15 @@ class AppCheckerUi(QtWidgets.QWidget):
         :return: null
         """
         try:
-            self.highlighter = HighlighterXml(self.ui.textBrowser.document())
-            self.ui.textBrowser.setText(self.info_manif)
+            #self.highlighter = HighlighterXml(self.ui.textBrowser.document())
+            #self.ui.textBrowser.setText(self.info_manif)
+            if self.editor_code == None:
+                self.editor_code = QCodeEditor(SyntaxHighlighter=HighlighterXml, parent=self.ui.widget)
+            self.editor_code.setPlainText(self.info_manif)
+            self.ui.gridLayout_2.addWidget(self.editor_code)
+            self.ui.textBrowser.hide()
+            self.editor_code.show()
+            self.resize(900, 600)
         except Exception as e:
             Log.error(str(e))
             self.ui.textBrowser.setText(Helper.font_red(str(e)))
@@ -835,17 +850,17 @@ class AppCheckerUi(QtWidgets.QWidget):
         _manifest = _buff.getElementsByTagName("manifest")
 
         if _manifest[0].hasAttribute("package"):
-            self.ui.labelPackage.setText(_manifest[0].getAttribute("package"))
+            self.ui.labelPackage.setText(Helper.font_red(_manifest[0].getAttribute("package")))
 
         if _manifest[0].hasAttribute("android:versionName"):
-            self.ui.labelVersion.setText(_manifest[0].getAttribute("android:versionName"))
+            self.ui.labelVersion.setText(Helper.font_red(_manifest[0].getAttribute("android:versionName")))
 
         _uses_sdk = _manifest[0].getElementsByTagName("uses-sdk")
         if _uses_sdk[0].hasAttribute("android:minSdkVersion"):
-            self.ui.labelMiniSDKVersion.setText(_uses_sdk[0].getAttribute("android:minSdkVersion"))
+            self.ui.labelMiniSDKVersion.setText(Helper.font_red(_uses_sdk[0].getAttribute("android:minSdkVersion")))
 
         if _uses_sdk[0].hasAttribute("android:targetSdkVersion"):
-            self.ui.labelSDKVersion.setText(_uses_sdk[0].getAttribute("android:targetSdkVersion"))
+            self.ui.labelSDKVersion.setText(Helper.font_red(_uses_sdk[0].getAttribute("android:targetSdkVersion")))
 
     def activate_link(self):
         self.ui.labelGoogle.mousePressEvent = self._clicked_google

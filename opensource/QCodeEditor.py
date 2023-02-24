@@ -17,7 +17,9 @@ testing and examples:
 
 Module is compatible with both pyQt4 and pyQt5
 
+Patch from liyansong2018
 '''
+
 try:
     import PyQt4 as PyQt
 
@@ -209,7 +211,7 @@ class QCodeEditor(QPlainTextEdit):
                 self.updateWidth()
 
     def __init__(self, DISPLAY_LINE_NUMBERS=True, HIGHLIGHT_CURRENT_LINE=True,
-                 SyntaxHighlighter=None, *args):
+                 SyntaxHighlighter=None, parent=None):
         '''
         Parameters
         ----------
@@ -221,9 +223,15 @@ class QCodeEditor(QPlainTextEdit):
             should be inherited from QSyntaxHighlighter
 
         '''
-        super(QCodeEditor, self).__init__()
+        super(QCodeEditor, self).__init__(parent)
 
-        self.setFont(QFont("Ubuntu Mono", 11))
+        # patch from liyansong2018
+        ##############################################################################
+        self.zoomsize = 2
+        self.ctrlPressed = False
+        ##############################################################################
+
+        self.setFont(QFont("微软雅黑", 10))
         self.setLineWrapMode(QPlainTextEdit.NoWrap)
 
         self.DISPLAY_LINE_NUMBERS = DISPLAY_LINE_NUMBERS
@@ -233,8 +241,8 @@ class QCodeEditor(QPlainTextEdit):
 
         if HIGHLIGHT_CURRENT_LINE:
             self.currentLineNumber = None
-            self.currentLineColor = self.palette().alternateBase()
-            # self.currentLineColor = QColor("#e8e8e8")
+            # self.currentLineColor = self.palette().alternateBase()
+            self.currentLineColor = QColor("#e8e8e8")
             self.cursorPositionChanged.connect(self.highligtCurrentLine)
 
         if SyntaxHighlighter is not None:  # add highlighter to textdocument
@@ -261,8 +269,33 @@ class QCodeEditor(QPlainTextEdit):
             hi_selection.cursor.clearSelection()
             self.setExtraSelections([hi_selection])
 
-        ##############################################################################
+    # path from liyansong2018
+    ##############################################################################
+    def wheelEvent(self, event):  # this is the rewrite of the function
+        if self.ctrlPressed:  # if the ctrl key is pressed: then deal with the defined process
+            delta = event.angleDelta()
+            oriention = delta.y() / 8
+            self.zoomsize = 0
+            if oriention > 0:
+                self.zoomsize += 1
+            else:
+                self.zoomsize -= 1
+            self.zoomIn(self.zoomsize)
+            # print(self.zoomsize)
+        else:  # if the ctrl key isn't pressed then submiting the event to it's super class
+            return super().wheelEvent(event)
 
+    def keyReleaseEvent(self, QKeyEvent):
+        if QKeyEvent.key() == Qt.Key_Control:
+            self.ctrlPressed = False
+        return super().keyReleaseEvent(QKeyEvent)
+
+    def keyPressEvent(self, QKeyEvent):
+        if QKeyEvent.key() == Qt.Key_Control:
+            self.ctrlPressed = True
+            #print("The ctrl key is holding down")
+        return super().keyPressEvent(QKeyEvent)
+    ##############################################################################
 
 if __name__ == '__main__':
 

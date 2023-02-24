@@ -88,6 +88,6 @@ src = os.getcwd() + '/ui/'
 dst = src + 'resources/language/'
 mov_lang(src, dst)
 
-src = os.getcwd()
+src = os.getcwd() + '/'
 dst = src + '/ui/resources/language/'
 mov_lang(src, dst)
