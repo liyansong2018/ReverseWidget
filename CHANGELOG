@@ -1,4 +1,11 @@
 [2023-02-19]
+    ReverseWidget 1.7
+        - Roll back to an older version(5.15.2) of pyqt5 to fix crash caused by QCodeEditor
+        - Add highlight for all kinds of code
+        - Greatly optimize the UI of appcheker and add line numbers to the code window
+        - Fix unknown errors
+
+[2023-02-19]
     ReverseWidget 1.6
         - Add function to compute CRC of file
         - Add python file comments according 'to Google Python Style Guide'
