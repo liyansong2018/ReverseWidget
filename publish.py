@@ -71,7 +71,10 @@ def get_py_path():
     """
     for i in sys.path:
         if 'site-packages' in i:
-            return i
+            if sys.platform == 'darwin' and '/Library/Python/' in i:
+                return i
+            elif sys.platform == 'linux' or sys.platform == 'win32':
+                return i
 
 
 def main():
