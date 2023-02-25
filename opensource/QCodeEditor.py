@@ -18,6 +18,9 @@ testing and examples:
 Module is compatible with both pyQt4 and pyQt5
 
 Patch from liyansong2018
+@ date: 2023-02-25
+@ add ctrl+mouse => font in/out
+@ pyqt5<=5.15.2 !
 '''
 
 try:
@@ -281,7 +284,7 @@ class QCodeEditor(QPlainTextEdit):
             else:
                 self.zoomsize -= 1
             self.zoomIn(self.zoomsize)
-            # print(self.zoomsize)
+            #print(self.zoomsize)
         else:  # if the ctrl key isn't pressed then submiting the event to it's super class
             return super().wheelEvent(event)
 

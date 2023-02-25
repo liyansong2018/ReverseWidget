@@ -6,3 +6,4 @@ build/
 dist/
 main.spec
 tmp/
+venv/

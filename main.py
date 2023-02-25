@@ -808,12 +808,11 @@ class AppCheckerUi(QtWidgets.QWidget):
             #self.highlighter = HighlighterXml(self.ui.textBrowser.document())
             #self.ui.textBrowser.setText(self.info_manif)
             if self.editor_code == None:
-                self.editor_code = QCodeEditor(SyntaxHighlighter=HighlighterXml, parent=self.ui.widget)
+                self.editor_code = QCodeEditor(SyntaxHighlighter=XMLHighlighter, parent=self.ui.widget)
             self.editor_code.setPlainText(self.info_manif)
-            self.ui.gridLayout_2.addWidget(self.editor_code)
             self.ui.textBrowser.hide()
+            self.ui.gridLayout_2.addWidget(self.editor_code, 0, 0, 1, 1)
             self.editor_code.show()
-            self.resize(900, 600)
         except Exception as e:
             Log.error(str(e))
             self.ui.textBrowser.setText(Helper.font_red(str(e)))
