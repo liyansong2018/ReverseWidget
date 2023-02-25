@@ -792,6 +792,8 @@ class AppCheckerUi(QtWidgets.QWidget):
                 with open(APKINFO_PATH, encoding='utf-8') as fp:
                     _result = fp.read() % (_tmp['manufacturer'], ', '.join(_tmp['data']), _tmp['url'], _tmp['url'])
                 self.ui.textBrowser.setHtml(_result)
+                if self.editor_code:
+                    self.editor_code.hide()
             except Exception as e:
                 self.ui.textBrowser.setText(Helper.font_red(str(e)))
                 self.ui.labelHint.setText(Helper.font_red(self.tr("No valid information found!")))
@@ -807,8 +809,8 @@ class AppCheckerUi(QtWidgets.QWidget):
         try:
             #self.highlighter = HighlighterXml(self.ui.textBrowser.document())
             #self.ui.textBrowser.setText(self.info_manif)
-            if self.editor_code == None:
-                self.editor_code = QCodeEditor(SyntaxHighlighter=XMLHighlighter, parent=self.ui.widget)
+            if not self.editor_code:
+                self.editor_code = QCodeEditor(SyntaxHighlighter=HighlighterXml2, parent=self.ui.widget)
             self.editor_code.setPlainText(self.info_manif)
             self.ui.textBrowser.hide()
             self.ui.gridLayout_2.addWidget(self.editor_code, 0, 0, 1, 1)
@@ -952,7 +954,12 @@ class FormatUi(QtWidgets.QWidget):
                 _is_xml = False
                 _error_info = str(e)
 
-        if _is_json | _is_xml:
+        if _is_json:
+            self.highlighter = HighlighterJson(self.ui.textBrowser.document())
+            Log.info("Format output: %s" % _output)
+            self.ui.textBrowser.setText(_output)
+        elif _is_xml:
+            self.highlighter = HighlighterXml2(self.ui.textBrowser.document())
             Log.info("Format output: %s" % _output)
             self.ui.textBrowser.setText(_output)
         # Print error

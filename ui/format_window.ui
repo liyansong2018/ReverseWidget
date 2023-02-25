@@ -380,6 +380,9 @@ QPushButton::checked,QPushButton::hover{
 border:1px solid #ccc;
 padding: 1px;</string>
        </property>
+       <property name="openExternalLinks">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item row="1" column="0">
