@@ -4,7 +4,7 @@
 [![macOS](https://img.shields.io/badge/macOS-10.15-blue?style=flat-square&logo=apple)](#) 
 [![windows](https://img.shields.io/badge/windows-10|11-blue?style=flat-square&logo=windows)](#) 
 [![python](https://img.shields.io/badge/python-<=v3.9-blue?style=flat-square&logo=python&logoColor=FFFFFF)](https://www.python.org/downloads/release/python-380/)
-[![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square)](#)
+[![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square&logo=qt&logoColor=FFFFFF)](#)
 [![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
 
 👉 [简体中文](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)

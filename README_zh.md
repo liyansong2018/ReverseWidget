@@ -4,7 +4,7 @@
 [![macOS](https://img.shields.io/badge/macOS-10.15-blue?style=flat-square&logo=apple)](#) 
 [![windows](https://img.shields.io/badge/windows-10|11-blue?style=flat-square&logo=windows)](#) 
 [![python](https://img.shields.io/badge/python-<=v3.9-blue?style=flat-square&logo=python&logoColor=FFFFFF)](https://www.python.org/downloads/release/python-380/)
-[![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square)](#)
+[![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square&logo=qt&logoColor=FFFFFF)](#)
 [![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
 
 Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测的**可视化**工具。具有如下特性
