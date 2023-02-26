@@ -1,9 +1,10 @@
 # Reverse Widget
 
-[![platform](https://img.shields.io/badge/Platform-Windows%7CmacOS%7CLinux-blue?style=flat-square)](#) 
-[![Program](https://img.shields.io/github/languages/count/liyansong2018/ReverseWidget?style=flat-square)](#) 
-[![english](https://img.shields.io/badge/English(US)-100%25-blue?style=flat-square)](#) 
-[![chinese](https://img.shields.io/badge/简体中文-80%25-blue?style=flat-square)](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
+[![linux](https://img.shields.io/badge/ubuntu-100%25-blue?style=flat-square&logo=ubuntu&logoColor=FFFFFF)](#)
+[![macOS](https://img.shields.io/badge/macOS-10.15-blue?style=flat-square&logo=apple)](#) 
+[![windows](https://img.shields.io/badge/windows-10|11-blue?style=flat-square&logo=windows)](#) 
+[![python](https://img.shields.io/badge/python-<=v3.9-blue?style=flat-square&logo=python&logoColor=FFFFFF)](https://www.python.org/downloads/release/python-380/)
+[![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square)](#)
 [![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
 
 Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测的**可视化**工具。具有如下特性
