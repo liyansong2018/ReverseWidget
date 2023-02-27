@@ -12,11 +12,15 @@
 
 import sys
 from PyQt5.QtWidgets import *
+from PyQt5 import QtGui
 
 
 class DialogWindow(QWidget):
     def __init__(self, parent=None):
         super(DialogWindow, self).__init__(parent)
+        icon = QtGui.QIcon()
+        icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.setWindowIcon(icon)
 
     def msg_information(self, data):
         QMessageBox.information(self, self.tr("Info"), data, QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)

@@ -39,10 +39,14 @@ map_mode = {
 
 map_endian_ks = {
     "Little Endian": KS_MODE_LITTLE_ENDIAN,
-    "Big Endian": KS_MODE_BIG_ENDIAN
+    "小端": KS_MODE_LITTLE_ENDIAN,
+    "Big Endian": KS_MODE_BIG_ENDIAN,
+    "大端": KS_MODE_BIG_ENDIAN
 }
 
 map_endian_cs = {
     "Little Endian": CS_MODE_LITTLE_ENDIAN,
-    "Big Endian": CS_MODE_BIG_ENDIAN
+    "小端": CS_MODE_LITTLE_ENDIAN,
+    "Big Endian": CS_MODE_BIG_ENDIAN,
+    "大端": CS_MODE_BIG_ENDIAN
 }
