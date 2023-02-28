@@ -1,0 +1,3 @@
+[submodule "opensource/python-dll-injector"]
+	path = opensource/python-dll-injector
+	url = https://github.com/liyansong2018/python-dll-injector.git

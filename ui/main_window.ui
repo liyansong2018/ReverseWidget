@@ -1474,6 +1474,7 @@ background-color: transparent;</string>
     </property>
     <addaction name="actionAppChecker"/>
     <addaction name="actionPEChecker"/>
+    <addaction name="actiondllInjector"/>
    </widget>
    <addaction name="menu"/>
    <addaction name="menuTools"/>
@@ -1521,6 +1522,15 @@ background-color: transparent;</string>
    </property>
    <property name="text">
     <string>PE Checker</string>
+   </property>
+  </action>
+  <action name="actiondllInjector">
+   <property name="icon">
+    <iconset>
+     <normaloff>resources/pictures/syringe.png</normaloff>resources/pictures/syringe.png</iconset>
+   </property>
+   <property name="text">
+    <string>dll injector</string>
    </property>
   </action>
  </widget>

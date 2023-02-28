@@ -105,6 +105,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.actionAbout.triggered.connect(self.listen_action_about)
         self.ui.actionAppChecker.triggered.connect(self.listen_action_appchecker)
         self.ui.actionPEChecker.triggered.connect(self.listen_action_pechecker)
+        self.ui.actiondllInjector.triggered.connect(self.listen_action_dllinjector)
 
         # Button
         self.ui.cryptButton.clicked.connect(self.init_crypt)
@@ -214,6 +215,11 @@ class MainUi(QtWidgets.QMainWindow):
     def listen_action_pechecker(self):
         self.checker_ui = PeCheckerUi()
         self.checker_ui.show()
+
+    def listen_action_dllinjector(self):
+        if sys.platform == 'win32':
+            path = './opensource/python-dll-injector'
+            os.system("cd %s && python main.py" % path)
 
     def init_crypt(self):
         self.function = CRYPT
