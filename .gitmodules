@@ -1,6 +1,6 @@
 [submodule "opensource/python-dll-injector"]
-	path = opensource/python-dll-injector
+	path = opensource/python_dll_injector
 	url = https://github.com/liyansong2018/python-dll-injector.git
 [submodule "opensource/axmlprinter"]
 	path = opensource/axmlprinter
-	url = https://github.com/tracer0tong/axmlprinter.git
+	url = https://github.com/liyansong2018/axmlprinter.git
