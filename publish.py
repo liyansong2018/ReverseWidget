@@ -33,7 +33,7 @@ import os
 import sys
 
 
-def copy_dir(src_dir, dst_dir):
+def copy_dir(src_dir, dst_dir, filter=None):
     """
     Copy src_dir to dst_dir
     :param src_dir: source directory
@@ -44,12 +44,13 @@ def copy_dir(src_dir, dst_dir):
         os.makedirs(dst_dir)
     if os.path.exists(src_dir):
         for file in os.listdir(src_dir):
-            file_path = os.path.join(src_dir, file)
-            dst_path = os.path.join(dst_dir, file)
-            if os.path.isfile(os.path.join(src_dir, file)):
-                shutil.copy(file_path, dst_path)
-            else:
-                copy_dir(file_path, dst_path)
+            if not filter or filter and filter in file:
+                file_path = os.path.join(src_dir, file)
+                dst_path = os.path.join(dst_dir, file)
+                if os.path.isfile(os.path.join(src_dir, file)):
+                    shutil.copy(file_path, dst_path)
+                else:
+                    copy_dir(file_path, dst_path)
 
 
 def copy_file(src_file, dst_dir):
@@ -107,6 +108,10 @@ def main():
     # 3.Create shortcut
     # if sys.platform == 'linux':
         # os.system('ln -s ./main/main ReverseWidget')
+
+    # Copy python_dll_inject
+    dll_path = 'opensource/python_dll_injector'
+    copy_dir(dll_path, dst_path + dll_path, filter='.py')
 
 
 if __name__ == '__main__':

@@ -47,6 +47,7 @@ from ui.hash_window import *
 from ui.format_window import *
 from ui.appchecker_window import *
 from ui.pechecker_window import *
+from ui.dllinject_window import *
 
 # For macOS: not found QThread
 from PyQt5.QtCore import *
@@ -218,8 +219,9 @@ class MainUi(QtWidgets.QMainWindow):
 
     def listen_action_dllinjector(self):
         if sys.platform == 'win32':
-            path = './opensource/python-dll-injector'
-            os.system("cd %s && python main.py" % path)
+            start_dll_window()
+        else:
+            Log.error('Not Windows!')
 
     def init_crypt(self):
         self.function = CRYPT
