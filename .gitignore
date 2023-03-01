@@ -2,6 +2,9 @@
 ui/__pycache__/
 util/__pycache__/
 opensource/__pycache__/
+opensource/axmlprinter/__pycache__/
+opensource/python_dll_injector/__pycache__/
+opensource/QCodeEditor/__pycache__/
 build/
 dist/
 main.spec

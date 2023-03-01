@@ -57,8 +57,8 @@ from lxml import etree
 import locale
 import zipfile
 import peid
-from opensource.apk import *
-from opensource.QCodeEditor import *
+from opensource.axmlprinter.apk import *
+from opensource.QCodeEditor.QCodeEditor import *
 import html
 import webbrowser
 import xmltodict
