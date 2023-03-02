@@ -947,7 +947,8 @@ class FormatUi(QtWidgets.QWidget):
         _error_info = ''
 
         try:
-            _output = self.__log_format_json(json.loads(_input))
+            # handle single quote strings
+            _output = self.__log_format_json(json.loads(json.dumps(eval(_input))))
             _is_json = True
         except Exception as e:
             _is_json = False
