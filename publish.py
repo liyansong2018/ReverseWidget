@@ -23,8 +23,16 @@
 
 This script outputs a single Python package from PyInstaller. And we also integrate
 necessary resources isolated from PyInstaller.
+
+Usage:
+python publish.py           # publish debug package with cmd window
+python publish.py release   # publish release package without cmd window
 """
 """将PythonGUI程序转换为一个包文件，解决依赖问题。
+
+用法：
+python publish.py           # 发布debug版本包，有命令行窗口
+python publish.py release   # 发布release版本包，无命令行窗口
 """
 
 # -*- coding: utf-8 -*-
@@ -78,12 +86,37 @@ def get_py_path():
                 return i
 
 
+def modify(file='main.spec', value='console=True', new_value='console=False'):
+    """
+    Modify string in config file, such as console=True -> Fasle
+    :param file: main.spec
+    :return: null
+    """
+    file_data = ''
+    need_update = False
+    try:
+        with open(file, 'r', encoding='utf-8') as fp:
+            for line in fp:
+                if value in line:
+                    need_update = True
+                    replaced = line.replace(value, new_value)
+                    file_data += replaced
+                else:
+                    file_data += line
+        if need_update:
+            with open(file, 'w', encoding='utf-8') as fp:
+                fp.write(file_data)
+    except Exception as e:
+        print(e)
+
+
 def main():
     # 1.PyInstaller bundles a Python application and all its dependencies into a single package.
     if len(sys.argv) == 1:
         os.system('pyinstaller -D -y -i ui\\resources\\pictures\\hacker.ico main.py')
     elif (sys.argv[1]) == 'release':
         # Need to modify main.spec Console=False
+        modify('main.spec', 'console=True', 'console=False')
         os.system('pyinstaller -y main.spec')
     dst_path = 'dist/main/'
     src_path = []
