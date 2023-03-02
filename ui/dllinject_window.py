@@ -11,7 +11,10 @@ if new_path not in sys.path:
 if new_path2 not in sys.path:
     sys.path.append(new_path2)
 
-from opensource.python_dll_injector.main import *
+if sys.platform == 'win32':
+    from opensource.python_dll_injector.main import *
+else:
+    print("Dll injector only available on Windows")
 
 def start_dll_window():
     processes, icons, paths = GetProcessEntries()
