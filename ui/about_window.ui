@@ -18,8 +18,8 @@
   </property>
   <property name="maximumSize">
    <size>
-    <width>515</width>
-    <height>367</height>
+    <width>16777215</width>
+    <height>16777215</height>
    </size>
   </property>
   <property name="font">
@@ -34,22 +34,33 @@
    <iconset>
     <normaloff>resources/pictures/hacker.png</normaloff>resources/pictures/hacker.png</iconset>
   </property>
-  <widget class="QTextBrowser" name="textBrowserAbout">
-   <property name="geometry">
-    <rect>
-     <x>-5</x>
-     <y>-9</y>
-     <width>521</width>
-     <height>381</height>
-    </rect>
+  <layout class="QGridLayout" name="gridLayout">
+   <property name="leftMargin">
+    <number>0</number>
    </property>
-   <property name="openExternalLinks">
-    <bool>true</bool>
+   <property name="topMargin">
+    <number>0</number>
    </property>
-   <property name="openLinks">
-    <bool>true</bool>
+   <property name="rightMargin">
+    <number>0</number>
    </property>
-  </widget>
+   <property name="bottomMargin">
+    <number>0</number>
+   </property>
+   <item row="0" column="0">
+    <widget class="QTextBrowser" name="textBrowserAbout">
+     <property name="styleSheet">
+      <string notr="true">border:0px;</string>
+     </property>
+     <property name="openExternalLinks">
+      <bool>true</bool>
+     </property>
+     <property name="openLinks">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

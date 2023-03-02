@@ -4,19 +4,25 @@
     <meta charset="UTF-8">
     <title>Reverse Widget</title>
     <style>
-        ul.list {
-          margin: 1;
-          padding: 1;
+        .list {
+          margin-bottom: 5px;
+          padding-bottom: 5px;
         }
 
         div.demo{
             border: 25px;
             margin: 25px;
         }
+
 		div.blank_demo{
             border: 25px;
-            font-size: 1px;
+            font-size: 5px;
         }
+        hr.myhrline{
+          margin: 25px;
+        }
+        .btbg{background:#e9faff !important;}
+        .btbg1{background:#f2fbfe !important;}
     </style>
 </head>
 
@@ -30,24 +36,91 @@
         </center>
     </div>
     <div class="demo">
-        Version: <span id="version">%s</span> <br />
-        Date: <span id="date">%s</span> <br />
-        Developers: liyansong2018 <br />
+        Version: <font color="green" style="font-weight: bold;"><span id="version">%s</span></font> <br />
+        Date: <font color="green" style="font-weight: bold;"><span id="date">%s</span></font> <br />
+        Developers: <font color="green" style="font-weight: bold;">liyansong2018</font> <br />
         <br />
-        <a href="https://github.com/liyansong2018/ReverseWidget">Reverse Widget</a> is a lightweight GUI Software that implements some typical block cipher, coding, hashing, and multi-architecture assemble/disassembly framework.
-        <div>
-            Open Source Dependencies:
-            <ul>
-                <li><b>QT</b>: Qt is a C++ toolkit for cross-platform application development. Copyright (C) 2023 The <a href="https://www.qt.io/">Qt Company Ltd</a> and other contributors.</li>
-                <li><b>Keystone</b>: Keystone is a lightweight multi-platform, multi-architecture assembler framework. From <a href="https://www.keystone-engine.org/">keystone engine.</a></li>
-                <li><b>Capstone</b>: Capstone is a lightweight multi-platform, multi-architecture disassembly framework. From <a href="http://www.capstone-engine.org/">capstone engine.</a> </li>
-                <li><b>Pycryptodome</b>: <a href="https://www.pycryptodome.org/">PyCryptodome</a> is a self-contained Python package of low-level cryptographic primitives.</li>
-                <li><b>peid</b>: <a href="https://github.com/packing-box/peid">peid</a> is an implementation in Python of the Packed Executable iDentifier (PEiD) in the scope of packing detection for Windows PE files based on signatures.</li>
-                <li><b>axmlprinter</b>: <a href="https://github.com/tracer0tong/axmlprinter">Android binary XML printer</a> ported to Python 3.3 from androguard project of @adesnos.</li>
-                <li><b><a href="https://github.com/martinblech/xmltodict">xmltodict</a></b>: Python module that makes working with XML feel like you are working with JSON.</li>
-            </ul>
-        </div>
+        <i>
+            <a href="https://github.com/liyansong2018/ReverseWidget">Reverse Widget</a> is a lightweight GUI Software that implements some typical block cipher, coding, hashing, and multi-architecture assemble/disassembly framework.
+        </i>
     </div>
-	<br />
+
+    <div class="demo">
+    <hr />
+    </div>
+
+    <div class="blank_demo">
+		<br />
+	</div>
+
+    <center><b>Open Source Dependencies</b></center>
+
+    <div class="demo">
+        <b>PyPI</b>
+        <ul>
+            <li class="list"><a href="https://www.qt.io/">QT</a>: Qt is a C++ toolkit for cross-platform application development. Copyright (C) 2023 The Qt Company Ltd and other contributors.</li>
+            <li class="list"><a href="https://www.keystone-engine.org/">Keystone</a>: Keystone is a lightweight multi-platform, multi-architecture assembler framework. From keystone engine.</li>
+            <li class="list"><a href="http://www.capstone-engine.org/">Capstone</a>: Capstone is a lightweight multi-platform, multi-architecture disassembly framework. From capstone engine.</li>
+            <li class="list"><a href="https://www.pycryptodome.org/">Pycryptodome</a>: a self-contained Python package of low-level cryptographic primitives.</li>
+            <li class="list"><a href="https://github.com/packing-box/peid">peid</a>: an implementation in Python of the Packed Executable iDentifier (PEiD) in the scope of packing detection for Windows PE files based on signatures.</li>
+            <br />
+            <table width="100%%" border="1" cellspacing="0" cellpadding="5" style="">
+                <tr class="btbg">
+                    <th>Dependencies</th>
+                    <th>License</th>
+                </tr>
+                <tr>
+                    <td>QT</td>
+                    <td><a href="https://www.qt.io/terms-conditions/">Qt LICENSE AGREEMENT</a></td>
+                </tr>
+                <tr>
+                    <td>Keystone</td>
+                    <td><a href="https://github.com/keystone-engine/keystone/blob/master/COPYING">GPLv2</a></td>
+                </tr>
+                <tr>
+                    <td>Capstone</td>
+                    <td><a href="https://github.com/capstone-engine/capstone/blob/master/LICENSE.TXT">Capstone License</a></td>
+                </tr>
+                <tr>
+                    <td>Pycryptodome</td>
+                    <td><a href="https://github.com/Legrandin/pycryptodome/blob/master/LICENSE.rst">BSD 2-Clause license</a></td>
+                </tr>
+                <tr>
+                    <td>peid</td>
+                    <td><a href="https://github.com/packing-box/peid/blob/main/LICENSE">GPLv3</a></td>
+                </tr>
+            </table>
+        </ul>
+    </div>
+
+    <div class="demo">
+        <b>Respitory from Github </b>
+        <ul>
+            <li class="list"><a href="https://github.com/tracer0tong/axmlprinter">axmlprinter</a>: Android binary XML printer ported to Python 3.3 from androguard project of @adesnos.</li>
+            <li class="list"><a href="https://github.com/martinblech/xmltodict">xmltodict</a>: Python module that makes working with XML feel like you are working with JSON.</li>
+            <li class="list"><a href="https://github.com/luchko/QCodeEditor">QCodeEditor</a>: Light QPlainTextEdit based widget which provides the line numbers bar and the syntax and the current line highlight (PyQt).</li>
+            <br />
+            <table width="100%%" border="1" cellspacing="0" cellpadding="5" style="">
+                <tr class="btbg">
+                    <th>Dependencies</th>
+                    <th>License</th>
+                </tr>
+                <tr>
+                    <td>axmlprinter</td>
+                    <td><a href="https://www.gnu.org/licenses/lgpl-3.0.en.html">LGPLv3</a></td>
+                </tr>
+                <tr>
+                    <td>xmltodict</td>
+                    <td><a href="https://github.com/martinblech/xmltodict/blob/master/LICENSE">MIT License</a></td>
+                </tr>
+                <tr>
+                    <td>QCodeEditor</td>
+                    <td><a href="https://github.com/luchko/QCodeEditor/blob/master/LICENSE.txt">MIT License</a></td>
+                </tr>
+            </table>
+        </ul>
+    </div>
+
+    <br />
 </body>
 </html>

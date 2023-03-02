@@ -698,7 +698,6 @@ class AboutUi(QDialog):
     def init_ui(self):
         self.ui = Ui_AboutWindow()
         self.ui.setupUi(self)
-        self.resize(400, 300)
         try:
             with open(ABOUT_TEXT_PATH) as fp:
                 Log.info("Open file %s" % ABOUT_TEXT_PATH)

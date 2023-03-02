@@ -1,4 +1,10 @@
-[2023-02-19]
+[2023-03-02]
+    ReverseWidget 1.8
+        - Add dll injector module for Windows
+        - Correct use of the open source software that has been patched
+        - Fix asm errors caused by Chinese key
+
+[2023-02-25]
     ReverseWidget 1.7
         - Roll back to an older version(5.15.2) of pyqt5 to fix crash caused by QCodeEditor
         - Add highlight for all kinds of code
