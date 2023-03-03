@@ -7,13 +7,15 @@
 [![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square&logo=qt&logoColor=FFFFFF)](#)
 [![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
 
-Reverse Wigdet 是一个完全使用 Python 实现的加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测的**可视化**工具。具有如下特性
+Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测以及DLL注入。具有如下特性
 - 多个分组加密和解密算法：AES, DES, 3DES, RC2
 - 编码和解码：URL, HTML, Base64, Unicode, UTF-8
 - 多个哈希算法：MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - 多种架构的汇编和反汇编器：x86, ARM, mips, Sparc, PowerPC
 - 格式化json和xml文件
-- Android APP加固检测，支持：梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等，Windows PE 加壳检测
+- Android APP加固检测，支持：梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等
+- Windows PE 加壳检测
+- DLL注入
 
 ## 细节性描述
 
@@ -72,14 +74,19 @@ Android应用加固检测
 
 ## 如何使用
 
+克隆项目源码
+```shell
+git clone --recursive https://github.com/liyansong2018/ReverseWidget.git
+```
+
 ### Windows
 
-1. 运行 `setup.bat`，安装基本库
+1. 运行 `setup.bat` 或者 `pip install -r requirements.txt`，安装基本库
 2. 运行程序 `run.bat`
 
 ### Linux/macOS
 
-1. 运行 `setup.sh`，安装基本库
+1. 运行 `setup.sh` 或者 `pip install -r requirements.txt`，安装基本库
 2. 运行程序 `run.sh`
 
 如果你不想安装依赖包，你也可以直接下载我们已经打包好的[压缩包](https://github.com/liyansong2018/ReverseWidget/releases)。当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 

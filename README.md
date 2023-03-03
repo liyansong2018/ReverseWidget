@@ -9,14 +9,16 @@
 
 👉 [简体中文](https://github.com/liyansong2018/ReverseWidget/blob/master/README_zh.md)
 
-Reverse Widget is a lightweight GUI Software that implements some typical  block cipher,  coding, hashing, multi-architecture assemble/disassembly framework, PE/AndroidAPP shell checker. Highlight Features:
+Reverse Widget is a lightweight GUI Software that implements some typical  block cipher, coding, hashing, multi-architecture assemble/disassembly, PE/AndroidAPP shell checker and dll injector. Highlight Features:
 
 - Some Typical Encryption Algorithms: AES, DES, 3DES, RC2
 - Useful Coding: URL, HTML, Base64, Unicode, UTF-8
 - Common Hash: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - Multi-architecture Assembler and Disassembler: x86, ARM, mips, Sparc, PowerPC
 - Beautify json or xml file
-- App(only for Chinese 梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等) checker and Windows PE checker like `PEID`
+- App(only for Chinese 梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等) checker
+- Windows PE checker like `PEID`
+- DLL Injector
 
 ## Detailed Description
 
@@ -78,14 +80,19 @@ Json and xml are our common http resource files, which are not well displayed in
 
 ## Compilation & Docs
 
+Clone repository
+```shell
+git clone --recursive https://github.com/liyansong2018/ReverseWidget.git
+```
+
 ### Windows
 
-1. run `setup.bat`
+1. run `setup.bat` or `pip install -r requirements.txt`
 2. run `run.bat`
 
 ### Linux & macOS
 
-1. run `setup.sh`
+1. run `setup.sh` or `pip install -r requirements.txt`
 2. run `run.sh`
 
 If you don't want to install the dependent package, you can also download the [compressed package](https://github.com/liyansong2018/ReverseWidget/releases) that we have already packed.
