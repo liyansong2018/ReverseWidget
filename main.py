@@ -148,6 +148,8 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.asmButton.setFont(font)
         self.ui.codeButton.setFont(font)
         self.ui.cryptButton.setFont(font)
+        self.ui.formatButton.setFont(font)
+        self.ui.hashButton.setFont(font)
 
     def listen_action_open(self):
         self.openfile = QFileDialog.getOpenFileName()[0]
