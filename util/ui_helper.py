@@ -7,6 +7,7 @@
 '''
 
 import html
+import re
 from PyQt5.Qt import *
 
 
@@ -70,3 +71,10 @@ class Helper:
         :return: red font
         """
         return '<font color="red"> %s </font>' % html.escape(info)
+
+
+class string(str):
+    def replace(self, regex, cls):
+        self = re.sub(regex, cls, self)
+        this = string(self)
+        return this

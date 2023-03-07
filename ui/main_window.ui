@@ -12,7 +12,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1294</width>
+    <width>1302</width>
     <height>946</height>
    </rect>
   </property>
@@ -235,7 +235,7 @@ QPushButton::checked,QPushButton::hover{
         </widget>
        </item>
        <item>
-        <widget class="QPushButton" name="hashButton">
+        <widget class="QPushButton" name="commentButton">
          <property name="font">
           <font>
            <family>微软雅黑</family>
@@ -247,11 +247,11 @@ QPushButton::checked,QPushButton::hover{
           <enum>Qt::NoFocus</enum>
          </property>
          <property name="text">
-          <string>File Hash</string>
+          <string>Format Comment</string>
          </property>
          <property name="icon">
           <iconset>
-           <normaloff>resources/pictures/md5.png</normaloff>resources/pictures/md5.png</iconset>
+           <normaloff>resources/pictures/comment.png</normaloff>resources/pictures/comment.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -285,6 +285,39 @@ QPushButton::checked,QPushButton::hover{
          <property name="icon">
           <iconset>
            <normaloff>resources/pictures/json-file.png</normaloff>resources/pictures/json-file.png</iconset>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>35</width>
+           <height>35</height>
+          </size>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="autoExclusive">
+          <bool>true</bool>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="hashButton">
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <underline>false</underline>
+           <strikeout>false</strikeout>
+          </font>
+         </property>
+         <property name="focusPolicy">
+          <enum>Qt::NoFocus</enum>
+         </property>
+         <property name="text">
+          <string>File Hash</string>
+         </property>
+         <property name="icon">
+          <iconset>
+           <normaloff>resources/pictures/md5.png</normaloff>resources/pictures/md5.png</iconset>
          </property>
          <property name="iconSize">
           <size>
@@ -335,6 +368,9 @@ QPushButton::checked,QPushButton::hover{
        <property name="rightMargin">
         <number>0</number>
        </property>
+       <item>
+        <layout class="QGridLayout" name="changeLayout"/>
+       </item>
        <item>
         <widget class="QGroupBox" name="cryptGroupBox">
          <property name="title">
@@ -1442,7 +1478,7 @@ background-color: transparent;</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1294</width>
+     <width>1302</width>
      <height>26</height>
     </rect>
    </property>

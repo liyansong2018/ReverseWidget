@@ -82,6 +82,7 @@ add_pic_path('ui/format_window.py')
 add_pic_path('ui/hash_window.py')
 add_pic_path('ui/appchecker_window.py')
 add_pic_path('ui/pechecker_window.py')
+add_pic_path('ui/comment_window.py')
 
 # Move language file
 src = os.getcwd() + '/ui/'

@@ -48,6 +48,7 @@ from ui.format_window import *
 from ui.appchecker_window import *
 from ui.pechecker_window import *
 from ui.dllinject_window import *
+from ui.comment_window import *
 
 # For macOS: not found QThread
 from PyQt5.QtCore import *
@@ -114,6 +115,7 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.asmButton.clicked.connect(self.init_asm)
         self.ui.hashButton.clicked.connect(self.init_hash)
         self.ui.formatButton.clicked.connect(self.init_format)
+        self.ui.commentButton.clicked.connect(self.init_comment)
 
         self.ui.outputButton_1.clicked.connect(lambda: self.listen_button(self.ui.outputButton_1))
         self.ui.outputButton_2.clicked.connect(lambda: self.listen_button(self.ui.outputButton_2))
@@ -289,6 +291,14 @@ class MainUi(QtWidgets.QMainWindow):
     def init_format(self):
         self.format_ui = FormatUi()
         self.format_ui.show()
+
+    def init_comment(self):
+        self.comment_ui = CommentUi()
+        # ui_code = []
+        # ui_helper = UiHelper(self.ui)
+        # ui_helper.groupbox_show(ui_code, self.all_groupbox)
+        # self.ui.changeLayout.addWidget(self.comment_ui)
+        self.comment_ui.show()
 
     def listen_button(self, button):
         """
@@ -1053,6 +1063,39 @@ class FormatUi(QtWidgets.QWidget):
         """
         _root = etree.XML(xml_data)
         return etree.tostring(_root, pretty_print=True).decode('utf-8')
+
+
+class CommentUi(QtWidgets.QWidget):
+    """
+    Responsible for comment format such as '# // \n'
+    """
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+        self.url = {
+            'baidu': 'https://fanyi.baidu.com/?#en/zh/',
+            'google': 'https://translate.google.com/'
+        }
+
+    def init_ui(self):
+        self.ui = Ui_CommentWindow()
+        self.ui.setupUi(self)
+        self.ui.formatButton.clicked.connect(self.listen_action_format)
+        self.ui.transButton.clicked.connect(self.listen_action_trans)
+
+    def listen_action_format(self):
+        _input = self.ui.textEdit.toPlainText()
+        _output = []
+        _tmp = string(_input)
+        _tmp = _tmp.replace('#|(//)', '').split('.')
+        for line in _tmp:
+            _output.append(string(line).replace('\s*\n', ''))
+        self.ui.textBrowser.setText('.'.join(_output).strip())
+
+    def listen_action_trans(self):
+        self.listen_action_format()
+        _input = self.ui.textBrowser.toPlainText()
+        # TODO: translation
 
 
 class PreventFastClickThreadSignal(QThread):
