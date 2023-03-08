@@ -113,6 +113,13 @@ QPushButton::checked,QPushButton::hover{
           <family>微软雅黑</family>
          </font>
         </property>
+        <property name="styleSheet">
+         <string notr="true">QTextEdit{
+	border-radius: 4px;
+	border:1px solid #ccc;
+	padding: 1px;
+}</string>
+        </property>
        </widget>
       </item>
       <item row="0" column="2">
@@ -141,6 +148,13 @@ QPushButton::checked,QPushButton::hover{
       <font>
        <family>微软雅黑</family>
       </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QTextEdit{
+	border-radius: 4px;
+	border:1px solid #ccc;
+	padding: 1px;
+}</string>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>

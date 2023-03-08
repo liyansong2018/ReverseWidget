@@ -16,7 +16,7 @@ class Ui_HashWindow(object):
         HashWindow.setObjectName("HashWindow")
         HashWindow.resize(900, 550)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         HashWindow.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(HashWindow)
         self.gridLayout_2.setContentsMargins(20, 0, 20, 0)
@@ -67,6 +67,11 @@ class Ui_HashWindow(object):
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         self.textEdit.setFont(font)
+        self.textEdit.setStyleSheet("QTextEdit{\n"
+"    border-radius: 4px;\n"
+"    border:1px solid #ccc;\n"
+"    padding: 1px;\n"
+"}")
         self.textEdit.setObjectName("textEdit")
         self.gridLayout.addWidget(self.textEdit, 0, 1, 1, 1)
         self.hashButton = QtWidgets.QPushButton(self.groupBox)
@@ -83,6 +88,11 @@ class Ui_HashWindow(object):
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         self.textBrowser.setFont(font)
+        self.textBrowser.setStyleSheet("QTextEdit{\n"
+"    border-radius: 4px;\n"
+"    border:1px solid #ccc;\n"
+"    padding: 1px;\n"
+"}")
         self.textBrowser.setOpenExternalLinks(True)
         self.textBrowser.setObjectName("textBrowser")
         self.gridLayout_2.addWidget(self.textBrowser, 1, 0, 1, 1)
