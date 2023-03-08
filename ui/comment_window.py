@@ -19,7 +19,7 @@ class Ui_CommentWindow(object):
         font.setFamily("微软雅黑")
         CommentWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         CommentWindow.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(CommentWindow)
         self.gridLayout.setContentsMargins(20, 0, 20, 0)
@@ -30,16 +30,20 @@ class Ui_CommentWindow(object):
         self.gridLayout_2.setSpacing(12)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.textBrowser = QtWidgets.QTextBrowser(CommentWindow)
-        self.textBrowser.setStyleSheet("border-radius: 4px;\n"
-"border:1px solid #ccc;\n"
-"padding: 1px;")
+        self.textBrowser.setStyleSheet("QTextEdit{\n"
+"    border-radius: 4px;\n"
+"    border:1px solid #ccc;\n"
+"    padding: 1px;\n"
+"}")
         self.textBrowser.setOpenExternalLinks(True)
         self.textBrowser.setObjectName("textBrowser")
         self.gridLayout_2.addWidget(self.textBrowser, 1, 1, 1, 1)
         self.textEdit = QtWidgets.QTextEdit(CommentWindow)
-        self.textEdit.setStyleSheet("border-radius: 4px;\n"
-"border:1px solid #ccc;\n"
-"padding: 1px;")
+        self.textEdit.setStyleSheet("QTextEdit{\n"
+"    border-radius: 4px;\n"
+"    border:1px solid #ccc;\n"
+"    padding: 1px;\n"
+"}")
         self.textEdit.setObjectName("textEdit")
         self.gridLayout_2.addWidget(self.textEdit, 1, 0, 1, 1)
         self.rawLabel = QtWidgets.QLabel(CommentWindow)
@@ -81,9 +85,11 @@ class Ui_CommentWindow(object):
         self.horizontalLayout_3.addWidget(self.transComboBox)
         self.gridLayout.addLayout(self.horizontalLayout_3, 1, 0, 1, 1)
         self.transBrowser = QtWidgets.QTextBrowser(CommentWindow)
-        self.transBrowser.setStyleSheet("border-radius: 4px;\n"
-"border:1px solid #ccc;\n"
-"padding: 1px;")
+        self.transBrowser.setStyleSheet("QTextEdit{\n"
+"    border-radius: 4px;\n"
+"    border:1px solid #ccc;\n"
+"    padding: 1px;\n"
+"}")
         self.transBrowser.setOpenExternalLinks(True)
         self.transBrowser.setObjectName("transBrowser")
         self.gridLayout.addWidget(self.transBrowser, 2, 0, 1, 1)

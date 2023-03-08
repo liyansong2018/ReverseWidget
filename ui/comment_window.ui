@@ -49,9 +49,11 @@
      <item row="1" column="1">
       <widget class="QTextBrowser" name="textBrowser">
        <property name="styleSheet">
-        <string notr="true">border-radius: 4px;
-border:1px solid #ccc;
-padding: 1px;</string>
+        <string notr="true">QTextEdit{
+	border-radius: 4px;
+	border:1px solid #ccc;
+	padding: 1px;
+}</string>
        </property>
        <property name="openExternalLinks">
         <bool>true</bool>
@@ -61,9 +63,11 @@ padding: 1px;</string>
      <item row="1" column="0">
       <widget class="QTextEdit" name="textEdit">
        <property name="styleSheet">
-        <string notr="true">border-radius: 4px;
-border:1px solid #ccc;
-padding: 1px;</string>
+        <string notr="true">QTextEdit{
+	border-radius: 4px;
+	border:1px solid #ccc;
+	padding: 1px;
+}</string>
        </property>
       </widget>
      </item>
@@ -146,9 +150,11 @@ padding: 1px;</string>
    <item row="2" column="0">
     <widget class="QTextBrowser" name="transBrowser">
      <property name="styleSheet">
-      <string notr="true">border-radius: 4px;
-border:1px solid #ccc;
-padding: 1px;</string>
+      <string notr="true">QTextEdit{
+	border-radius: 4px;
+	border:1px solid #ccc;
+	padding: 1px;
+}</string>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>
