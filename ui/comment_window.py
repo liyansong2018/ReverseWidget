@@ -19,7 +19,7 @@ class Ui_CommentWindow(object):
         font.setFamily("微软雅黑")
         CommentWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         CommentWindow.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(CommentWindow)
         self.gridLayout.setContentsMargins(20, 0, 20, 0)

@@ -85,13 +85,8 @@ class MainUi(QtWidgets.QMainWindow):
     def init_ui(self):
         QtWidgets.QMainWindow.__init__(self)
         # QTranslator object
-        self.trans_main_window = QTranslator()
-        self.trans_dialog_window = QTranslator()
-        self.trans_main = QTranslator()
-        self.trans_check_window = QTranslator()
-        self.trans_hash_window = QTranslator()
-        self.trans_checkpe_window = QTranslator()
-        self.trans_format_window = QTranslator()
+        self.trans = []
+        self.trans_num = 0
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
@@ -167,32 +162,20 @@ class MainUi(QtWidgets.QMainWindow):
         self.init_ui_language()
 
     def translate_chinese(self):
-        self.trans_main_window.load("ui/resources/language/main_window.qm")
-        self.trans_dialog_window.load("ui/resources/language/dialog_window.qm")
-        self.trans_main.load("ui/resources/language/main.qm")
-        self.trans_check_window.load("ui/resources/language/appchecker_window.qm")
-        self.trans_hash_window.load("ui/resources/language/hash_window.qm")
-        self.trans_checkpe_window.load("ui/resources/language/pechecker_window.qm")
-        self.trans_format_window.load("ui/resources/language/format_window.qm")
         _app = QApplication.instance()
-        _app.installTranslator(self.trans_main_window)
-        _app.installTranslator(self.trans_dialog_window)
-        _app.installTranslator(self.trans_main)
-        _app.installTranslator(self.trans_check_window)
-        _app.installTranslator(self.trans_hash_window)
-        _app.installTranslator(self.trans_checkpe_window)
-        _app.installTranslator(self.trans_format_window)
+        for file in os.listdir(os.path.join(os.getcwd(), 'ui/resources/language')):
+            if file.endswith('.qm'):
+                print(file)
+                self.trans.append(QTranslator())
+                self.trans[self.trans_num].load('ui/resources/language/%s' % file)
+                _app.installTranslator(self.trans[self.trans_num])
+                self.trans_num += 1
         self.ui.retranslateUi(self)
 
     def translate_english(self):
         _app = QApplication.instance()
-        _app.removeTranslator(self.trans_main_window)
-        _app.removeTranslator(self.trans_dialog_window)
-        _app.removeTranslator(self.trans_main)
-        _app.removeTranslator(self.trans_check_window)
-        _app.removeTranslator(self.trans_hash_window)
-        _app.removeTranslator(self.trans_checkpe_window)
-        _app.removeTranslator(self.trans_format_window)
+        for tran in self.trans:
+            _app.removeTranslator(tran)
         self.ui.retranslateUi(self)
 
     def listen_action_about(self):
@@ -1208,7 +1191,7 @@ class ParamProcess():
 
             # padding
             # (pkcs7padding, iso7816, ansix923) -> (pkcs7, iso7816, x923)
-            if padding == "pkcs7padding":
+            if padding == "pkcs7":
                 padding = "pkcs7"
             elif padding == "iso7816":
                 padding = "iso7816"

@@ -278,7 +278,7 @@ class Ui_CryptoWindow(object):
         self.modelComboBox.setItemText(10, _translate("CryptoWindow", "GCM"))
         self.modelComboBox.setItemText(11, _translate("CryptoWindow", "OCB"))
         self.paddingLabel.setText(_translate("CryptoWindow", "padding"))
-        self.paddingComboBox.setItemText(0, _translate("CryptoWindow", "pkcs7padding"))
+        self.paddingComboBox.setItemText(0, _translate("CryptoWindow", "pkcs7"))
         self.paddingComboBox.setItemText(1, _translate("CryptoWindow", "iso7816"))
         self.paddingComboBox.setItemText(2, _translate("CryptoWindow", "ansix923"))
         self.keyLabel_2.setText(_translate("CryptoWindow", "length"))

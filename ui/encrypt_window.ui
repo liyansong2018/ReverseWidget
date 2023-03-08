@@ -241,7 +241,7 @@
         </property>
         <item>
          <property name="text">
-          <string>pkcs7padding</string>
+          <string>pkcs7</string>
          </property>
         </item>
         <item>
