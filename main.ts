@@ -6,7 +6,7 @@
     <message>
         <location filename="main.py" line="797"/>
         <source>No valid information found!</source>
-        <translation type="unfinished">未发现有效的加壳信息！可能当前应用的壳信息还未收录在ReverseWidget</translation>
+        <translation type="unfinished">未发现有效的加壳信息！</translation>
     </message>
 </context>
 <context>

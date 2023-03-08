@@ -823,7 +823,7 @@ class AppCheckerUi(QtWidgets.QWidget):
             #self.highlighter = HighlighterXml(self.ui.textBrowser.document())
             #self.ui.textBrowser.setText(self.info_manif)
             if not self.editor_code:
-                self.editor_code = QCodeEditor(SyntaxHighlighter=HighlighterXml2, parent=self.ui.widget)
+                self.editor_code = QCodeEditor(SyntaxHighlighter=HighlighterXml2, parent=self.ui.groupBox_2)
             self.editor_code.setPlainText(self.info_manif)
             self.ui.textBrowser.hide()
             self.ui.gridLayout_2.addWidget(self.editor_code, 0, 0, 1, 1)

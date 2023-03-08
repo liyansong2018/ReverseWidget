@@ -16,7 +16,7 @@ class Ui_HashWindow(object):
         HashWindow.setObjectName("HashWindow")
         HashWindow.resize(900, 550)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         HashWindow.setWindowIcon(icon)
         self.gridLayout_2 = QtWidgets.QGridLayout(HashWindow)
         self.gridLayout_2.setContentsMargins(20, 0, 20, 0)
