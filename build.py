@@ -76,13 +76,9 @@ def mov_lang(src, dst):
 
 
 # Modify pic path
-add_pic_path('ui/main_window.py')
-add_pic_path('ui/about_window.py')
-add_pic_path('ui/format_window.py')
-add_pic_path('ui/hash_window.py')
-add_pic_path('ui/appchecker_window.py')
-add_pic_path('ui/pechecker_window.py')
-add_pic_path('ui/comment_window.py')
+for file in os.listdir(os.path.join(os.getcwd(), 'ui')):
+    if file.endswith('.py'):
+        add_pic_path('ui/%s' % file)
 
 # Move language file
 src = os.getcwd() + '/ui/'

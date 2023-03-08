@@ -12,8 +12,12 @@ from PyQt5.Qt import *
 
 
 class UiHelper:
-    def __init__(self, ui):
+    all_widget = []
+
+    def __init__(self, ui, present_widget=None):
         self.ui = ui
+        if present_widget:
+            UiHelper.all_widget.append(present_widget)
 
     def combobox_item_disable(self, qcom_box,  *args):
         """
@@ -52,6 +56,28 @@ class UiHelper:
         self.ui.welcomeGroupBox.close()
         self.ui.formGroupBox.show()
 
+
+    def widget_show(self, widgets):
+        """
+        Show target and close unnecessary widgets
+        :param widgets: target widgets
+        :return: null
+        """
+        # add widget to all_widget
+        # add widget to changeLayout
+        for widget in widgets:
+            if widget not in UiHelper.all_widget:
+                UiHelper.all_widget.append(widget)
+                self.ui.changeLayout.addWidget(widget, 0, 0, 1, 1)
+
+        # close other widget
+        for widget in UiHelper.all_widget:
+            if widget not in widgets:
+                widget.close()
+
+        # show widget
+        for widget in widgets:
+            widget.show()
 
 class Helper:
     @staticmethod

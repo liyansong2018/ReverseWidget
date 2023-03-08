@@ -27,16 +27,19 @@
     <number>20</number>
    </property>
    <property name="topMargin">
-    <number>20</number>
+    <number>0</number>
    </property>
    <property name="rightMargin">
     <number>20</number>
    </property>
    <property name="bottomMargin">
-    <number>20</number>
+    <number>0</number>
    </property>
-   <property name="spacing">
-    <number>6</number>
+   <property name="horizontalSpacing">
+    <number>7</number>
+   </property>
+   <property name="verticalSpacing">
+    <number>15</number>
    </property>
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">

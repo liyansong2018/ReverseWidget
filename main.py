@@ -42,6 +42,10 @@ from util.asm import *
 from util.highlight import *
 from urllib import parse
 
+from ui.encrypt_window import *
+from ui.code_window import *
+from ui.asm_window import *
+
 from ui.about_window import *
 from ui.hash_window import *
 from ui.format_window import *
@@ -91,10 +95,7 @@ class MainUi(QtWidgets.QMainWindow):
 
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        self.resize(900, 600)
-
-        self.ui.formGroupBox.close()
-        self.ui.welcomeGroupBox.show()
+        UiHelper(self.ui, self.ui.welcomeGroupBox).widget_show([self.ui.welcomeGroupBox])
 
         # Menu
         self.ui.actionOpen.triggered.connect(self.listen_action_open)
@@ -116,16 +117,6 @@ class MainUi(QtWidgets.QMainWindow):
         self.ui.hashButton.clicked.connect(self.init_hash)
         self.ui.formatButton.clicked.connect(self.init_format)
         self.ui.commentButton.clicked.connect(self.init_comment)
-
-        self.ui.outputButton_1.clicked.connect(lambda: self.listen_button(self.ui.outputButton_1))
-        self.ui.outputButton_2.clicked.connect(lambda: self.listen_button(self.ui.outputButton_2))
-
-        # self.ui.tabWidget.currentChanged.connect(self.listen_output)
-        self.ui.choiceAlgorithm.currentIndexChanged.connect(self.listen_algorithm)
-
-        self.all_groupbox = [self.ui.cryptGroupBox, self.ui.cryptGroupBox2, self.ui.asmGroupBox, self.ui.inputGroupBox, \
-                             self.ui.codeGroupBox, self.ui.asmEndian, self.ui.cryptInputBox, self.ui.outputCryptBox, \
-                             self.ui.outputAsmBox, self.ui.codeOutputGroupBox]
 
         self.openfile = None
         self.function = None
@@ -228,104 +219,54 @@ class MainUi(QtWidgets.QMainWindow):
             Log.error('Not Windows!')
 
     def init_crypt(self):
-        self.function = CRYPT
-        ui_code = [self.ui.cryptGroupBox, self.ui.cryptGroupBox2, self.ui.inputGroupBox, self.ui.cryptInputBox,
-                   self.ui.outputCryptBox]
-        ui_helper = UiHelper(self.ui)
-        ui_helper.groupbox_show(ui_code, self.all_groupbox)
-
-        self.listen_algorithm()
-
-        self.ui.lineEdit_2.setPlaceholderText("CBC/CFB/OFB/OPENPGP")
-        self.ui.outputButton_1.setText(self.tr("Encrypt"))
-        self.ui.outputButton_2.setText(self.tr("Decrypt"))
+        self.crypto_ui = CryptoUi()
+        UiHelper(self.ui).widget_show([self.crypto_ui])
 
     def init_code(self):
-        self.function = CODE
-        ui_code = [self.ui.codeGroupBox, self.ui.codeOutputGroupBox]
-        ui_helper = UiHelper(self.ui)
-        ui_helper.groupbox_show(ui_code, self.all_groupbox)
-
-        self.ui.outputButton_1.setText(self.tr("Encode"))
-        self.ui.outputButton_2.setText(self.tr("Decode"))
+        self.code_ui = CodeUi()
+        UiHelper(self.ui).widget_show([self.code_ui])
 
     def init_asm(self):
-        self.function = ASM
-        ui_code = [self.ui.asmGroupBox, self.ui.inputGroupBox, self.ui.asmEndian, self.ui.outputAsmBox]
-        ui_helper = UiHelper(self.ui)
-        ui_helper.groupbox_show(ui_code, self.all_groupbox)
-
-        # defalut options
-        self.ui.x86Button.click()
-        self.ui.mode32Button.click()
-        self.ui.littleButton.click()
-        global ARCH_BEFORE
-        global MODE_BEFORE
-        global ENDIAN_BEFORE
-        ARCH_BEFORE = self.ui.x86Button.text()
-        MODE_BEFORE = self.ui.mode32Button.text()
-        ENDIAN_BEFORE = self.ui.littleButton.text()
-        self.ui.lineEditBaseAddr.setText("0x0804800")
-
-        self.listen_arch(self.ui.x86Button)
-        self.ui.x86Button.toggled.connect(lambda: self.listen_arch(self.ui.x86Button))
-        self.ui.armButton.toggled.connect(lambda: self.listen_arch(self.ui.armButton))
-        self.ui.mipsButton.toggled.connect(lambda: self.listen_arch(self.ui.mipsButton))
-        self.ui.sparcButton.toggled.connect(lambda: self.listen_arch(self.ui.sparcButton))
-        self.ui.powerPcButton.toggled.connect(lambda: self.listen_arch(self.ui.powerPcButton))
-
-        self.ui.mode16Button.toggled.connect(lambda: self.listen_mode(self.ui.mode16Button))
-        self.ui.mode32Button.toggled.connect(lambda: self.listen_mode(self.ui.mode32Button))
-        self.ui.mode64Button.toggled.connect(lambda: self.listen_mode(self.ui.mode64Button))
-
-        self.ui.littleButton.toggled.connect(lambda: self.listen_endian(self.ui.littleButton))
-        self.ui.bigButton.toggled.connect(lambda: self.listen_endian(self.ui.bigButton))
-
-        self.ui.outputButton_1.setText(self.tr("Assemble"))
-        self.ui.outputButton_2.setText(self.tr("Disassemble"))
+        self.asm_ui = AsmUi()
+        UiHelper(self.ui).widget_show([self.asm_ui])
 
     def init_hash(self):
         self.hash_ui = HashUi()
-        self.hash_ui.show()
+        UiHelper(self.ui).widget_show([self.hash_ui])
 
     def init_format(self):
         self.format_ui = FormatUi()
-        self.format_ui.show()
+        UiHelper(self.ui).widget_show([self.format_ui])
 
     def init_comment(self):
         self.comment_ui = CommentUi()
-        # ui_code = []
-        # ui_helper = UiHelper(self.ui)
-        # ui_helper.groupbox_show(ui_code, self.all_groupbox)
-        # self.ui.changeLayout.addWidget(self.comment_ui)
-        self.comment_ui.show()
+        UiHelper(self.ui).widget_show([self.comment_ui])
 
-    def listen_button(self, button):
-        """
-        Listen ouput Button
-        :param button: output_button_1 or output_button_2
-        :return: null
-        """
-        output_choice = button.objectName()
+
+class CryptoUi(QtWidgets.QWidget):
+    """
+    Responsible for crypto
+    """
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_CryptoWindow()
+        self.ui.setupUi(self)
+
+        self.ui.choiceAlgorithm.currentIndexChanged.connect(self.listen_algorithm)
+        self.ui.lineEdit_2.setPlaceholderText("CBC/CFB/OFB/OPENPGP")
+        self.ui.outputButton_1.clicked.connect(self.listen_action_encrypt)
+        self.ui.outputButton_2.clicked.connect(self.listen_action_decrypt)
+
+    def listen_action_encrypt(self):
         algorithm_choice = self.ui.choiceAlgorithm.currentText()
+        self.start_encrypt(algorithm_choice)
 
-        if self.function == CRYPT:
-            if output_choice == "outputButton_1":
-                self.start_encrypt(algorithm_choice, output_choice)
-            else:
-                self.start_decrypt(algorithm_choice, output_choice)
-
-        elif self.function == CODE:
-            if output_choice == "outputButton_1":
-                self.start_encode()
-            else:
-                self.start_decode()
-
-        elif self.function == ASM:
-            if output_choice == "outputButton_1":
-                self.start_asm()
-            else:
-                self.start_disasm()
+    def listen_action_decrypt(self):
+        algorithm_choice = self.ui.choiceAlgorithm.currentText()
+        self.start_decrypt(algorithm_choice)
 
     def listen_algorithm(self):
         ui_helper = UiHelper(self.ui)
@@ -353,73 +294,8 @@ class MainUi(QtWidgets.QMainWindow):
             ui_helper.combobox_item_able(self.ui.keySizeComboBox, KEY_128, KEY_192)
             self.ui.keySizeComboBox.setCurrentIndex(KEY_128 - 1)
 
-    def listen_arch(self, arch):
-        """
-        Monitor architecture changes selected by users.
-        :param arch: x86, ARM, MIPS, Sparc, PowerPC
-        :return: null
-        """
-        if True:
-            global ARCH_BEFORE
-            ARCH_BEFORE = arch.text()
-
-            # x86 or ARM64 architecture only supports little endian
-            if ARCH_BEFORE == "x86" or (ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit"):
-                self.ui.bigButton.close()
-                self.ui.littleButton.click()
-            else:
-                self.ui.bigButton.show()
-
-            # 32 bit PowerPC architecture only supports big endian
-            if ARCH_BEFORE == "PowerPC" and MODE_BEFORE == "32bit":
-                self.ui.littleButton.close()
-                self.ui.bigButton.click()
-            else:
-                self.ui.littleButton.show()
-
-    def listen_mode(self, mode):
-        """
-        Monitor mode changes selected by users.
-        :param mode: 32bit, 64bit
-        :return: null
-        """
-        if True:
-            global MODE_BEFORE
-            MODE_BEFORE = mode.text()
-
-            # x86 or ARM64 architecture only supports little endian
-            if ARCH_BEFORE == "x86" or (ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit"):
-                self.ui.bigButton.close()
-                self.ui.littleButton.click()
-            else:
-                self.ui.bigButton.show()
-
-            # 32 bit PowerPC architecture only supports big endian
-            if ARCH_BEFORE == "PowerPC" and MODE_BEFORE == "32bit":
-                self.ui.littleButton.close()
-                self.ui.bigButton.click()
-            else:
-                self.ui.littleButton.show()
-
-            if MODE_BEFORE == "16bit":
-                self.ui.lineEditBaseAddr.setText("0x1000")
-            elif MODE_BEFORE == "32bit":
-                self.ui.lineEditBaseAddr.setText("0x0804800")
-            else:
-                self.ui.lineEditBaseAddr.setText("0x400000")
-
-    def listen_endian(self, endian):
-        """
-        Monitor endian changes selected by users.
-        :param endian: little, big endian
-        :return: null
-        """
-        if endian.isChecked():
-            global ENDIAN_BEFORE
-            ENDIAN_BEFORE = endian.text()
-
-    def start_encrypt(self, algorithm_choice, output_choice):
-        Log.debug("start_encrypt", algorithm_choice, output_choice)
+    def start_encrypt(self, algorithm_choice):
+        Log.debug("start_encrypt", algorithm_choice)
         param_process = ParamProcess(self.ui)
         param_process.set_param(algorithm_choice)
         param = param_process.get_param()
@@ -446,8 +322,8 @@ class MainUi(QtWidgets.QMainWindow):
             output_base64 = code.bytes_to_base64(encrypted_data)
             self.ui.base64Text.setText(output_base64)
 
-    def start_decrypt(self, algorithm_choice, output_choice):
-        Log.debug("start_decrypt", algorithm_choice, output_choice)
+    def start_decrypt(self, algorithm_choice):
+        Log.debug("start_decrypt", algorithm_choice)
         param_process = ParamProcess(self.ui)
         param_process.set_param(algorithm_choice)
         param = param_process.get_param()
@@ -478,6 +354,28 @@ class MainUi(QtWidgets.QMainWindow):
             # output string
             output_string = plaintext.decode("utf-8")
             self.ui.stringText.setText(output_string)
+
+
+class CodeUi(QtWidgets.QWidget):
+    """
+    Responsible for code
+    """
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_CodeWindow()
+        self.ui.setupUi(self)
+
+        self.ui.outputButton_1.clicked.connect(self.listen_action_encode)
+        self.ui.outputButton_2.clicked.connect(self.listen_action_decode)
+
+    def listen_action_encode(self):
+        self.start_encode()
+
+    def listen_action_decode(self):
+        self.start_decode()
 
     def start_encode(self):
         """
@@ -609,6 +507,119 @@ class MainUi(QtWidgets.QMainWindow):
         except Exception as e:
             self.ui.codeOutput.setText(Helper.font_red(str(e)))
             Log.error(str(e))
+
+
+class AsmUi(QtWidgets.QWidget):
+    """
+    Responsible for assemble
+    """
+    def __init__(self):
+        super().__init__()
+        self.init_ui()
+
+    def init_ui(self):
+        self.ui = Ui_AsmWindow()
+        self.ui.setupUi(self)
+
+        # Set defalut options
+        self.ui.x86Button.click()
+        self.ui.mode32Button.click()
+        self.ui.littleButton.click()
+        global ARCH_BEFORE
+        global MODE_BEFORE
+        global ENDIAN_BEFORE
+        ARCH_BEFORE = self.ui.x86Button.text()
+        MODE_BEFORE = self.ui.mode32Button.text()
+        ENDIAN_BEFORE = self.ui.littleButton.text()
+        self.ui.lineEditBaseAddr.setText("0x0804800")
+
+        self.listen_arch(self.ui.x86Button)
+        self.ui.x86Button.toggled.connect(lambda: self.listen_arch(self.ui.x86Button))
+        self.ui.armButton.toggled.connect(lambda: self.listen_arch(self.ui.armButton))
+        self.ui.mipsButton.toggled.connect(lambda: self.listen_arch(self.ui.mipsButton))
+        self.ui.sparcButton.toggled.connect(lambda: self.listen_arch(self.ui.sparcButton))
+        self.ui.powerPcButton.toggled.connect(lambda: self.listen_arch(self.ui.powerPcButton))
+
+        self.ui.mode16Button.toggled.connect(lambda: self.listen_mode(self.ui.mode16Button))
+        self.ui.mode32Button.toggled.connect(lambda: self.listen_mode(self.ui.mode32Button))
+        self.ui.mode64Button.toggled.connect(lambda: self.listen_mode(self.ui.mode64Button))
+
+        self.ui.littleButton.toggled.connect(lambda: self.listen_endian(self.ui.littleButton))
+        self.ui.bigButton.toggled.connect(lambda: self.listen_endian(self.ui.bigButton))
+
+        self.ui.outputButton_1.clicked.connect(self.listen_action_asm)
+        self.ui.outputButton_2.clicked.connect(self.listen_action_disasm)
+
+    def listen_action_asm(self):
+        self.start_asm()
+
+    def listen_action_disasm(self):
+        self.start_disasm()
+
+    def listen_arch(self, arch):
+        """
+        Monitor architecture changes selected by users.
+        :param arch: x86, ARM, MIPS, Sparc, PowerPC
+        :return: null
+        """
+        if True:
+            global ARCH_BEFORE
+            ARCH_BEFORE = arch.text()
+
+            # x86 or ARM64 architecture only supports little endian
+            if ARCH_BEFORE == "x86" or (ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit"):
+                self.ui.bigButton.close()
+                self.ui.littleButton.click()
+            else:
+                self.ui.bigButton.show()
+
+            # 32 bit PowerPC architecture only supports big endian
+            if ARCH_BEFORE == "PowerPC" and MODE_BEFORE == "32bit":
+                self.ui.littleButton.close()
+                self.ui.bigButton.click()
+            else:
+                self.ui.littleButton.show()
+
+    def listen_mode(self, mode):
+        """
+        Monitor mode changes selected by users.
+        :param mode: 32bit, 64bit
+        :return: null
+        """
+        if True:
+            global MODE_BEFORE
+            MODE_BEFORE = mode.text()
+
+            # x86 or ARM64 architecture only supports little endian
+            if ARCH_BEFORE == "x86" or (ARCH_BEFORE == "ARM" and MODE_BEFORE == "64bit"):
+                self.ui.bigButton.close()
+                self.ui.littleButton.click()
+            else:
+                self.ui.bigButton.show()
+
+            # 32 bit PowerPC architecture only supports big endian
+            if ARCH_BEFORE == "PowerPC" and MODE_BEFORE == "32bit":
+                self.ui.littleButton.close()
+                self.ui.bigButton.click()
+            else:
+                self.ui.littleButton.show()
+
+            if MODE_BEFORE == "16bit":
+                self.ui.lineEditBaseAddr.setText("0x1000")
+            elif MODE_BEFORE == "32bit":
+                self.ui.lineEditBaseAddr.setText("0x0804800")
+            else:
+                self.ui.lineEditBaseAddr.setText("0x400000")
+
+    def listen_endian(self, endian):
+        """
+        Monitor endian changes selected by users.
+        :param endian: little, big endian
+        :return: null
+        """
+        if endian.isChecked():
+            global ENDIAN_BEFORE
+            ENDIAN_BEFORE = endian.text()
 
     def start_asm(self):
         arch = map_arch_ks.get(ARCH_BEFORE)

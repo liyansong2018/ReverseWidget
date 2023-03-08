@@ -12,8 +12,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1302</width>
-    <height>946</height>
+    <width>950</width>
+    <height>600</height>
    </rect>
   </property>
   <property name="baseSize">
@@ -41,23 +41,8 @@
      <family>微软雅黑</family>
     </font>
    </property>
-   <layout class="QHBoxLayout" name="horizontalLayout">
-    <property name="spacing">
-     <number>0</number>
-    </property>
-    <property name="leftMargin">
-     <number>0</number>
-    </property>
-    <property name="topMargin">
-     <number>0</number>
-    </property>
-    <property name="rightMargin">
-     <number>0</number>
-    </property>
-    <property name="bottomMargin">
-     <number>0</number>
-    </property>
-    <item>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
      <widget class="QGroupBox" name="gridGroupBox">
       <property name="minimumSize">
        <size>
@@ -136,7 +121,7 @@ QPushButton::checked,QPushButton::hover{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Encrypt_Decrypt</string>
+          <string>Crypto</string>
          </property>
          <property name="icon">
           <iconset>
@@ -172,7 +157,7 @@ QPushButton::checked,QPushButton::hover{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Encode_Decode</string>
+          <string>Code</string>
          </property>
          <property name="icon">
           <iconset>
@@ -208,7 +193,7 @@ QPushButton::checked,QPushButton::hover{
           <string notr="true"/>
          </property>
          <property name="text">
-          <string>Asm_Disasm</string>
+          <string>Assemble</string>
          </property>
          <property name="icon">
           <iconset>
@@ -349,1136 +334,123 @@ QPushButton::checked,QPushButton::hover{
       </layout>
      </widget>
     </item>
-    <item>
-     <widget class="QGroupBox" name="formGroupBox">
-      <property name="font">
-       <font>
-        <family>微软雅黑</family>
-       </font>
+    <item row="0" column="1">
+     <layout class="QGridLayout" name="changeLayout">
+      <property name="spacing">
+       <number>0</number>
       </property>
-      <property name="styleSheet">
-       <string notr="true">QGroupBox {
-	border: 0px;
-}</string>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout">
-       <property name="leftMargin">
-        <number>0</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <layout class="QGridLayout" name="changeLayout"/>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="cryptGroupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <property name="flat">
-          <bool>false</bool>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_4">
-          <item>
-           <widget class="QLabel" name="nameLable">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>AES</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_2">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QComboBox" name="choiceAlgorithm">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>AES</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>DES</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>3DES</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>RC2</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="cryptGroupBox2">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_2">
-          <item>
-           <widget class="QLabel" name="patternLabel">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>model</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="modelComboBox">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>ECB</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>CBC</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>CFB</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>Other</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>OFB</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>CTR</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>OPENPGP</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>CCM</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>EAX</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>SIV</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>GCM</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>OCB</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="paddingLabel">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>padding</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="paddingComboBox">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>pkcs7padding</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>iso7816</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ansix923</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="keyLabel_2">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>length</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="keySizeComboBox">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <item>
-             <property name="text">
-              <string>64bit</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>128bit</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>192bit</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>256bit</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="keyLabel">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>key</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="ivLabel">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>iv</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLineEdit" name="lineEdit_2">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="asmGroupBox">
-         <property name="inputMethodHints">
-          <set>Qt::ImhNone</set>
-         </property>
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
-          <property name="leftMargin">
-           <number>9</number>
-          </property>
-          <property name="topMargin">
-           <number>9</number>
-          </property>
-          <property name="rightMargin">
-           <number>9</number>
-          </property>
-          <property name="bottomMargin">
-           <number>9</number>
-          </property>
-          <item>
-           <widget class="QGroupBox" name="archGroupBox">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_11">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QRadioButton" name="x86Button">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>x86</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="armButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>ARM</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="mipsButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>MIPS</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="sparcButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>Sparc</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="powerPcButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>PowerPC</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer_3">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="modeGroupBox">
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_12">
-             <property name="leftMargin">
-              <number>0</number>
-             </property>
-             <property name="topMargin">
-              <number>0</number>
-             </property>
-             <property name="rightMargin">
-              <number>0</number>
-             </property>
-             <property name="bottomMargin">
-              <number>0</number>
-             </property>
-             <item>
-              <widget class="QRadioButton" name="mode16Button">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>16bit</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="mode32Button">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>32bit</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="mode64Button">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>64bit</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="inputGroupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_5">
-          <item>
-           <widget class="QPlainTextEdit" name="inputData">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="codeGroupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_16">
-          <item>
-           <widget class="QTabWidget" name="tabWidget_2">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true"/>
-            </property>
-            <property name="currentIndex">
-             <number>0</number>
-            </property>
-            <widget class="QWidget" name="urlTab">
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>URL</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_17">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextEdit" name="urlTabText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-                <property name="styleSheet">
-                 <string notr="true"/>
-                </property>
-                <property name="lineWidth">
-                 <number>0</number>
-                </property>
-                <property name="cursorWidth">
-                 <number>1</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="htmlTab">
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>HTML</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_22">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextEdit" name="htmlTabText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-                <property name="lineWidth">
-                 <number>0</number>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="base64Tab_2">
-             <property name="font">
-              <font>
-               <family>微软雅黑</family>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>Base64</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_18">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextEdit" name="base64TabText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="hashTab">
-             <property name="font">
-              <font>
-               <family>微软雅黑</family>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>Hash</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_20">
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextEdit" name="hashTabText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="unicodeTab">
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>Unicode</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_23">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextEdit" name="unicodeTabText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="padTab">
-             <property name="font">
-              <font>
-               <family>微软雅黑</family>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>Padding</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_24">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextEdit" name="padTabText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="outputButtonBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_3">
-          <item>
-           <widget class="QPushButton" name="outputButton_1">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>Encrypt</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QPushButton" name="outputButton_2">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="text">
-             <string>Decrypt</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="asmEndian">
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_14">
-             <item>
-              <widget class="QLabel" name="label_2">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>Base Address</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QLineEdit" name="lineEditBaseAddr">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <layout class="QHBoxLayout" name="horizontalLayout_21"/>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="littleButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>Little Endian</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QRadioButton" name="bigButton">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>Big Endian</string>
-               </property>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-          <item>
-           <widget class="QGroupBox" name="cryptInputBox">
-            <property name="title">
-             <string/>
-            </property>
-            <layout class="QHBoxLayout" name="horizontalLayout_15">
-             <item>
-              <widget class="QLabel" name="formatLabel">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <property name="text">
-                <string>input format</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QComboBox" name="inputComboBox">
-               <property name="font">
-                <font>
-                 <family>微软雅黑</family>
-                </font>
-               </property>
-               <item>
-                <property name="text">
-                 <string>Hex</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>Base64</string>
-                </property>
-               </item>
-               <item>
-                <property name="text">
-                 <string>String</string>
-                </property>
-               </item>
-              </widget>
-             </item>
-            </layout>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="outputCryptBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_6">
-          <item>
-           <widget class="QTabWidget" name="tabWidget">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-            <property name="styleSheet">
-             <string notr="true">border: 0px;</string>
-            </property>
-            <property name="currentIndex">
-             <number>0</number>
-            </property>
-            <widget class="QWidget" name="hexTab">
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>Hex</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_7">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextBrowser" name="hexText">
-                <property name="font">
-                 <font>
-                  <family>微软雅黑</family>
-                 </font>
-                </property>
-               </widget>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="base64Tab">
-             <attribute name="title">
-              <string>Base64</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_8">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextBrowser" name="base64Text"/>
-              </item>
-             </layout>
-            </widget>
-            <widget class="QWidget" name="stringTab">
-             <property name="styleSheet">
-              <string notr="true">border: 0px;</string>
-             </property>
-             <attribute name="title">
-              <string>String</string>
-             </attribute>
-             <layout class="QHBoxLayout" name="horizontalLayout_9">
-              <property name="spacing">
-               <number>0</number>
-              </property>
-              <property name="leftMargin">
-               <number>0</number>
-              </property>
-              <property name="topMargin">
-               <number>0</number>
-              </property>
-              <property name="rightMargin">
-               <number>0</number>
-              </property>
-              <property name="bottomMargin">
-               <number>0</number>
-              </property>
-              <item>
-               <widget class="QTextBrowser" name="stringText"/>
-              </item>
-             </layout>
-            </widget>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="outputAsmBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_13">
-          <item>
-           <widget class="QTextBrowser" name="outputAsmHex">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QTextBrowser" name="outputAsmEscaped">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-       <item>
-        <widget class="QGroupBox" name="codeOutputGroupBox">
-         <property name="title">
-          <string/>
-         </property>
-         <layout class="QHBoxLayout" name="horizontalLayout_19">
-          <item>
-           <widget class="QTextBrowser" name="codeOutput">
-            <property name="font">
-             <font>
-              <family>微软雅黑</family>
-             </font>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </widget>
-       </item>
-      </layout>
-     </widget>
-    </item>
-    <item>
-     <widget class="QGroupBox" name="welcomeGroupBox">
-      <property name="styleSheet">
-       <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(95, 159, 219, 255), stop:1 rgba(0, 159, 219, 255));
+      <item row="0" column="0">
+       <widget class="QGroupBox" name="welcomeGroupBox">
+        <property name="styleSheet">
+         <string notr="true">background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(95, 159, 219, 255), stop:1 rgba(0, 159, 219, 255));
 </string>
-      </property>
-      <property name="title">
-       <string/>
-      </property>
-      <layout class="QVBoxLayout" name="verticalLayout_3">
-       <property name="leftMargin">
-        <number>9</number>
-       </property>
-       <property name="topMargin">
-        <number>9</number>
-       </property>
-       <property name="rightMargin">
-        <number>0</number>
-       </property>
-       <property name="bottomMargin">
-        <number>0</number>
-       </property>
-       <item>
-        <spacer name="verticalSpacer">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
+        </property>
+        <property name="title">
+         <string/>
+        </property>
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="leftMargin">
+          <number>9</number>
          </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
+         <property name="topMargin">
+          <number>9</number>
          </property>
-        </spacer>
-       </item>
-       <item>
-        <widget class="QLabel" name="label">
-         <property name="styleSheet">
-          <string notr="true">color:#ffffff;
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label">
+           <property name="styleSheet">
+            <string notr="true">color:#ffffff;
 font-weight: bold;
 font-family:Microsoft YaHei;
 font-size: 30px;
 font-style: italic;
 
 background-color: transparent;</string>
-         </property>
-         <property name="text">
-          <string>Reverse Widget</string>
-         </property>
-         <property name="alignment">
-          <set>Qt::AlignCenter</set>
-         </property>
-        </widget>
-       </item>
-       <item>
-        <widget class="QTextBrowser" name="paddingText">
-         <property name="styleSheet">
-          <string notr="true"> border:0px;
+           </property>
+           <property name="text">
+            <string>Reverse Widget</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTextBrowser" name="paddingText">
+           <property name="styleSheet">
+            <string notr="true"> border:0px;
 background-color: transparent;</string>
-         </property>
-         <property name="lineWidth">
-          <number>0</number>
-         </property>
-        </widget>
-       </item>
-      </layout>
-     </widget>
+           </property>
+           <property name="lineWidth">
+            <number>0</number>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </item>
+     </layout>
     </item>
    </layout>
+   <widget class="QGroupBox" name="formGroupBox">
+    <property name="geometry">
+     <rect>
+      <x>200</x>
+      <y>0</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+     </font>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QGroupBox {
+	border: 0px;
+}</string>
+    </property>
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1302</width>
+     <width>950</width>
      <height>26</height>
     </rect>
    </property>
