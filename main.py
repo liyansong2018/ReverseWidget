@@ -775,6 +775,11 @@ class AppCheckerUi(QtWidgets.QWidget):
         super().__init__()
         self.init_ui()
 
+        self.apk_package = ''
+        self.apk_version = ''
+        self.apk_minisdk = ''
+        self.apk_targetsdk = ''
+
     def init_ui(self):
         self.ui = Ui_AppcheckerWindow()
         self.ui.setupUi(self)
@@ -862,20 +867,23 @@ class AppCheckerUi(QtWidgets.QWidget):
         _ap = AXMLPrinter(_zip.read("AndroidManifest.xml"))
         _buff = _ap.get_xml_obj()
         self.info_manif =_ap.get_xml()
+
         _manifest = _buff.getElementsByTagName("manifest")
-
         if _manifest[0].hasAttribute("package"):
-            self.ui.labelPackage.setText(Helper.font_red(_manifest[0].getAttribute("package")))
-
+            self.apk_package = _manifest[0].getAttribute("package")
         if _manifest[0].hasAttribute("android:versionName"):
-            self.ui.labelVersion.setText(Helper.font_red(_manifest[0].getAttribute("android:versionName")))
+            self.apk_version = _manifest[0].getAttribute("android:versionName")
 
         _uses_sdk = _manifest[0].getElementsByTagName("uses-sdk")
         if _uses_sdk[0].hasAttribute("android:minSdkVersion"):
-            self.ui.labelMiniSDKVersion.setText(Helper.font_red(_uses_sdk[0].getAttribute("android:minSdkVersion")))
-
+            self.apk_minisdk = _uses_sdk[0].getAttribute("android:minSdkVersion")
         if _uses_sdk[0].hasAttribute("android:targetSdkVersion"):
-            self.ui.labelSDKVersion.setText(Helper.font_red(_uses_sdk[0].getAttribute("android:targetSdkVersion")))
+            self.apk_targetsdk = _uses_sdk[0].getAttribute("android:targetSdkVersion")
+
+        self.ui.labelPackage.setText(Helper.font_red(self.apk_package))
+        self.ui.labelVersion.setText(Helper.font_red(self.apk_version))
+        self.ui.labelMiniSDKVersion.setText(Helper.font_red(self.apk_minisdk))
+        self.ui.labelSDKVersion.setText(Helper.font_red(self.apk_targetsdk))
 
     def activate_link(self):
         self.ui.labelGoogle.mousePressEvent = self._clicked_google
@@ -887,21 +895,21 @@ class AppCheckerUi(QtWidgets.QWidget):
         Click google label to open link
         :return: null
         """
-        webbrowser.open('https://play.google.com/store/apps/details?id=%s' % self.ui.labelPackage.text())
+        webbrowser.open('https://play.google.com/store/apps/details?id=%s' % self.apk_package)
 
     def _clicked_apkpure(self, unkonwn):
         """
         Click apkpure label to open link
         :return: null
         """
-        webbrowser.open('https://apkpure.com/a/%s' % self.ui.labelPackage.text())
+        webbrowser.open('https://apkpure.com/a/%s' % self.apk_package)
 
     def _clicked_apkcombo(self, unkonwn):
         """
         Click apkcombo label to open link
         :return: null
         """
-        webbrowser.open('https://apkcombo.com/a/%s' % self.ui.labelPackage.text())
+        webbrowser.open('https://apkcombo.com/a/%s' % self.apk_package)
 
 
 class PeCheckerUi(QtWidgets.QWidget):
