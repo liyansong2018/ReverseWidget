@@ -22,9 +22,6 @@ class Ui_CommentWindow(object):
         icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         CommentWindow.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(CommentWindow)
-        self.gridLayout.setContentsMargins(20, 0, 20, 0)
-        self.gridLayout.setHorizontalSpacing(7)
-        self.gridLayout.setVerticalSpacing(15)
         self.gridLayout.setObjectName("gridLayout")
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setSpacing(12)
@@ -60,7 +57,46 @@ class Ui_CommentWindow(object):
         self.horizontalLayout_3.addWidget(self.transLabel)
         spacerItem = QtWidgets.QSpacerItem(108, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_3.addItem(spacerItem)
+        self.toComboBox = QtWidgets.QComboBox(CommentWindow)
+        self.toComboBox.setEnabled(True)
+        font = QtGui.QFont()
+        font.setFamily("微软雅黑")
+        font.setUnderline(False)
+        font.setStrikeOut(False)
+        self.toComboBox.setFont(font)
+        self.toComboBox.setStyleSheet("QComboBox{\n"
+"    text-align:center;\n"
+"    text-decoration:none;\n"
+"    background:#ffffff;\n"
+"    /*color: #fff;*/\n"
+"    color:#000000;\n"
+"\n"
+"    padding: 5px 10px 5px 10px;\n"
+"    font-weight:light;\n"
+"    border-radius:4px;\n"
+"    border:1px solid #dadada;\n"
+"    white-space: nowrap;\n"
+"}")
+        self.toComboBox.setFrame(True)
+        self.toComboBox.setObjectName("toComboBox")
+        icon1 = QtGui.QIcon()
+        icon1.addPixmap(QtGui.QPixmap("ui/resources/pictures/country/china.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toComboBox.addItem(icon1, "")
+        icon2 = QtGui.QIcon()
+        icon2.addPixmap(QtGui.QPixmap("ui/resources/pictures/country/japan.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toComboBox.addItem(icon2, "")
+        icon3 = QtGui.QIcon()
+        icon3.addPixmap(QtGui.QPixmap("ui/resources/pictures/country/south-korea.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toComboBox.addItem(icon3, "")
+        icon4 = QtGui.QIcon()
+        icon4.addPixmap(QtGui.QPixmap("ui/resources/pictures/country/spain.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toComboBox.addItem(icon4, "")
+        icon5 = QtGui.QIcon()
+        icon5.addPixmap(QtGui.QPixmap("ui/resources/pictures/country/italy.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.toComboBox.addItem(icon5, "")
+        self.horizontalLayout_3.addWidget(self.toComboBox)
         self.transComboBox = QtWidgets.QComboBox(CommentWindow)
+        self.transComboBox.setEnabled(True)
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -79,9 +115,14 @@ class Ui_CommentWindow(object):
 "    border:1px solid #dadada;\n"
 "    white-space: nowrap;\n"
 "}")
+        self.transComboBox.setFrame(True)
         self.transComboBox.setObjectName("transComboBox")
-        self.transComboBox.addItem("")
-        self.transComboBox.addItem("")
+        icon6 = QtGui.QIcon()
+        icon6.addPixmap(QtGui.QPixmap("ui/resources/pictures/baidu.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.transComboBox.addItem(icon6, "")
+        icon7 = QtGui.QIcon()
+        icon7.addPixmap(QtGui.QPixmap("ui/resources/pictures/google.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        self.transComboBox.addItem(icon7, "")
         self.horizontalLayout_3.addWidget(self.transComboBox)
         self.gridLayout.addLayout(self.horizontalLayout_3, 1, 0, 1, 1)
         self.transBrowser = QtWidgets.QTextBrowser(CommentWindow)
@@ -200,6 +241,11 @@ class Ui_CommentWindow(object):
         self.rawLabel.setText(_translate("CommentWindow", "Raw Comment"))
         self.formatLabel.setText(_translate("CommentWindow", "Format"))
         self.transLabel.setText(_translate("CommentWindow", "Translation"))
+        self.toComboBox.setItemText(0, _translate("CommentWindow", "Chinese"))
+        self.toComboBox.setItemText(1, _translate("CommentWindow", "Jpanese"))
+        self.toComboBox.setItemText(2, _translate("CommentWindow", "Korean"))
+        self.toComboBox.setItemText(3, _translate("CommentWindow", "Spanish"))
+        self.toComboBox.setItemText(4, _translate("CommentWindow", "Italian"))
         self.transComboBox.setItemText(0, _translate("CommentWindow", "Baidu"))
         self.transComboBox.setItemText(1, _translate("CommentWindow", "Google"))
         self.formatButton.setText(_translate("CommentWindow", "Format"))

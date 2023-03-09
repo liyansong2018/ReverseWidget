@@ -68,6 +68,8 @@ from opensource.QCodeEditor.QCodeEditor import *
 import html
 import webbrowser
 import xmltodict
+import random
+import requests
 
 CRYPT = 1
 CODE = 2
@@ -165,7 +167,6 @@ class MainUi(QtWidgets.QMainWindow):
         _app = QApplication.instance()
         for file in os.listdir(os.path.join(os.getcwd(), 'ui/resources/language')):
             if file.endswith('.qm'):
-                print(file)
                 self.trans.append(QTranslator())
                 self.trans[self.trans_num].load('ui/resources/language/%s' % file)
                 _app.installTranslator(self.trans[self.trans_num])
@@ -1081,7 +1082,7 @@ class CommentUi(QtWidgets.QWidget):
         _input = self.ui.textEdit.toPlainText()
         _output = []
         _tmp = string(_input)
-        _tmp = _tmp.replace('#|(//)', '').split('.')
+        _tmp = _tmp.replace('#|(//)|\*', '').split('.')
         for line in _tmp:
             _output.append(string(line).replace('\s*\n', ''))
         self.ui.textBrowser.setText('.'.join(_output).strip())
@@ -1090,6 +1091,59 @@ class CommentUi(QtWidgets.QWidget):
         self.listen_action_format()
         _input = self.ui.textBrowser.toPlainText()
         # TODO: translation
+        # select language
+        # icon: https://www.flaticon.com/search?author_id=1&style_id=118&type=standard&word=flag
+        # lang: https://fanyi-api.baidu.com/doc/21
+        if self.ui.toComboBox.currentText() == 'Chinese':
+            _to_ = 'zh'
+        elif self.ui.toComboBox.currentText() == 'Jpanese':
+            _to_ = 'jp'
+        elif self.ui.toComboBox.currentText() == 'Korean':
+            _to_ = 'kor'
+        elif self.ui.toComboBox.currentText() == 'Spanish':
+            _to_ = 'spa'
+        elif self.ui.toComboBox.currentText() == 'Italian':
+            _to_ = 'it'
+
+        # select translator
+        try:
+            if self.ui.transComboBox.currentText() == 'Baidu':
+                _out = self.baidu_trans(_input, 'auto', _to_)
+            elif self.ui.transComboBox.currentText() == 'Google':
+                pass
+            self.ui.transBrowser.setText(_out)
+        except Exception as e:
+            Log.error(str(e))
+            self.ui.transBrowser.setText(Helper.font_red(str(e)))
+
+    def baidu_trans(self, query, from_, to_):
+        """
+        为保证翻译质量，请将单次请求长度控制在 6000 bytes以内（汉字约为输入参数 2000 个）
+        :param query: 请求翻译query	UTF-8编码
+        :param from_: 翻译源语言	可设置为auto
+        :param to_: 翻译目标语言	不可设置为auto
+        :return: 翻译结果
+        """
+        appid = '20230309001593277'
+        secret = 'uy48JQfdUcbNmMkGZ5At'
+        salt = ''.join(random.sample('0123456789', 10))
+        sign = self.get_sign(appid, query, salt, secret).hexdigest()
+        url = 'http://api.fanyi.baidu.com/api/trans/vip/translate?q=%s&from=%s&to=%s&appid=%s&salt=%s&sign=%s' \
+            % (query, from_, to_, appid, salt, sign)
+        response = requests.get(url)
+        retval = response.json()['trans_result'][0]['dst']
+        return retval
+
+    def get_sign(self, appid, q, salt, secret):
+        """
+        百度翻译API签名计算，来源于 https://fanyi-api.baidu.com/doc/21
+        :param appid: 应用ID
+        :param q: 请求翻译query	UTF-8编码
+        :param salt: 10位随机数
+        :param secret: 密钥
+        :return: sign
+        """
+        return hashlib.md5((appid + q + salt + secret).encode())
 
 
 class PreventFastClickThreadSignal(QThread):

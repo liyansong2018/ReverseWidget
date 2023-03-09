@@ -23,24 +23,6 @@
     <normaloff>resources/pictures/hacker.png</normaloff>resources/pictures/hacker.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
-   <property name="leftMargin">
-    <number>20</number>
-   </property>
-   <property name="topMargin">
-    <number>0</number>
-   </property>
-   <property name="rightMargin">
-    <number>20</number>
-   </property>
-   <property name="bottomMargin">
-    <number>0</number>
-   </property>
-   <property name="horizontalSpacing">
-    <number>7</number>
-   </property>
-   <property name="verticalSpacing">
-    <number>15</number>
-   </property>
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
      <property name="spacing">
@@ -110,7 +92,10 @@
       </spacer>
      </item>
      <item>
-      <widget class="QComboBox" name="transComboBox">
+      <widget class="QComboBox" name="toComboBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
@@ -133,14 +118,102 @@
 	white-space: nowrap;
 }</string>
        </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
+       <item>
+        <property name="text">
+         <string>Chinese</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/country/china.png</normaloff>resources/pictures/country/china.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Jpanese</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/country/japan.png</normaloff>resources/pictures/country/japan.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Korean</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/country/south-korea.png</normaloff>resources/pictures/country/south-korea.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Spanish</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/country/spain.png</normaloff>resources/pictures/country/spain.png</iconset>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Italian</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/country/italy.png</normaloff>resources/pictures/country/italy.png</iconset>
+        </property>
+       </item>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="transComboBox">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QComboBox{
+	text-align:center;
+    text-decoration:none;
+    background:#ffffff;
+	/*color: #fff;*/
+    color:#000000;
+
+    padding: 5px 10px 5px 10px;
+    font-weight:light;
+    border-radius:4px;
+	border:1px solid #dadada;
+	white-space: nowrap;
+}</string>
+       </property>
+       <property name="frame">
+        <bool>true</bool>
+       </property>
        <item>
         <property name="text">
          <string>Baidu</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/baidu.png</normaloff>resources/pictures/baidu.png</iconset>
         </property>
        </item>
        <item>
         <property name="text">
          <string>Google</string>
+        </property>
+        <property name="icon">
+         <iconset>
+          <normaloff>resources/pictures/google.png</normaloff>resources/pictures/google.png</iconset>
         </property>
        </item>
       </widget>

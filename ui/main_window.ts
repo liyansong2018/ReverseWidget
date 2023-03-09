@@ -81,7 +81,7 @@
     <message>
         <location filename="main_window.ui" line="235"/>
         <source>Format Comment</source>
-        <translation type="unfinished">格式化换行</translation>
+        <translation type="unfinished">格式化翻译</translation>
     </message>
     <message>
         <location filename="main_window.ui" line="124"/>
