@@ -172,12 +172,18 @@ class MainUi(QtWidgets.QMainWindow):
                 _app.installTranslator(self.trans[self.trans_num])
                 self.trans_num += 1
         self.ui.retranslateUi(self)
+        for widget in UiHelper.all_widget:
+            if widget != self.ui.welcomeGroupBox:
+                widget.ui.retranslateUi(self)
 
     def translate_english(self):
         _app = QApplication.instance()
         for tran in self.trans:
             _app.removeTranslator(tran)
         self.ui.retranslateUi(self)
+        for widget in UiHelper.all_widget:
+            if widget != self.ui.welcomeGroupBox:
+                widget.ui.retranslateUi(self)
 
     def listen_action_about(self):
         """
