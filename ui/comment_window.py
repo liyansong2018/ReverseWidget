@@ -22,6 +22,7 @@ class Ui_CommentWindow(object):
         icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         CommentWindow.setWindowIcon(icon)
         self.gridLayout = QtWidgets.QGridLayout(CommentWindow)
+        self.gridLayout.setContentsMargins(20, 0, 20, 0)
         self.gridLayout.setObjectName("gridLayout")
         self.gridLayout_2 = QtWidgets.QGridLayout()
         self.gridLayout_2.setSpacing(12)
