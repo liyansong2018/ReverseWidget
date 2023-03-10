@@ -19,7 +19,7 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
-"""The entry of ReverseWidget application .
+"""The entry of ReverseWidget application.
 
 This script contains the main running logic of the program. When I first wrote
 this tool, the coding style was a bit confusing. Over time, the style of the code
@@ -231,9 +231,22 @@ class CryptoUi(QtWidgets.QWidget):
     """
     Responsible for crypto
     """
+    def __new__(cls, *args, **kwargs):
+        """
+        Singleton: only one window is allowed.
+        """
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(CryptoUi, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self):
-        super().__init__()
-        self.init_ui()
+        """
+        Singleton: only once init
+        """
+        if not hasattr(CryptoUi, '_init'):
+            super().__init__()
+            self.init_ui()
+            CryptoUi._init = True
 
     def init_ui(self):
         self.ui = Ui_CryptoWindow()
@@ -344,9 +357,22 @@ class CodeUi(QtWidgets.QWidget):
     """
     Responsible for code
     """
+    def __new__(cls, *args, **kwargs):
+        """
+        Singleton: only one window is allowed.
+        """
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(CodeUi, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self):
-        super().__init__()
-        self.init_ui()
+        """
+        Singleton: only once init
+        """
+        if not hasattr(CodeUi, '_init'):
+            super().__init__()
+            self.init_ui()
+            CodeUi._init = True
 
     def init_ui(self):
         self.ui = Ui_CodeWindow()
@@ -497,9 +523,22 @@ class AsmUi(QtWidgets.QWidget):
     """
     Responsible for assemble
     """
+    def __new__(cls, *args, **kwargs):
+        """
+        Singleton: only one window is allowed.
+        """
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(AsmUi, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self):
-        super().__init__()
-        self.init_ui()
+        """
+        Singleton: only once init
+        """
+        if not hasattr(AsmUi, '_init'):
+            super().__init__()
+            self.init_ui()
+            AsmUi._init = True
 
     def init_ui(self):
         self.ui = Ui_AsmWindow()
@@ -720,9 +759,22 @@ class AboutUi(QDialog):
 
 
 class HashUi(QtWidgets.QWidget):
+    def __new__(cls, *args, **kwargs):
+        """
+        Singleton: only one window is allowed.
+        """
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(HashUi, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
     def __init__(self):
-        super().__init__()
-        self.init_ui()
+        """
+        Singleton: only once init
+        """
+        if not hasattr(HashUi, '_init'):
+            super().__init__()
+            self.init_ui()
+            HashUi._init = True
 
     def init_ui(self):
         self.ui = Ui_HashWindow()
@@ -768,6 +820,238 @@ class HashUi(QtWidgets.QWidget):
         if self.thread_num == 2:
             self.ui.hashButton.setEnabled(True)
             self.ui.textBrowser.setText(self.value)
+
+
+class FormatUi(QtWidgets.QWidget):
+    def __new__(cls, *args, **kwargs):
+        """
+        Singleton: only one window is allowed.
+        """
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(FormatUi, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+    def __init__(self):
+        """
+        Singleton: only once init
+        """
+        if not hasattr(FormatUi, '_init'):
+            super().__init__()
+            self.init_ui()
+            FormatUi._init = True
+
+    def listen_action_format(self):
+        _input = self.ui.textEdit.toPlainText()
+        Log.info("Format input: %s" % _input)
+        _is_json = False
+        _is_xml = False
+        _error_info = ''
+
+        try:
+            # handle single quote strings
+            _output = self.__log_format_json(json.loads(json.dumps(eval(_input))))
+            _is_json = True
+        except Exception as e:
+            _is_json = False
+            _error_info = str(e)
+
+        if not _is_json:
+            try:
+                _output = self.__log_format_xml(_input.encode('utf-8'))
+                _is_xml = True
+            except Exception as e:
+                _is_xml = False
+                _error_info = str(e)
+
+        if _is_json:
+            self.highlighter = HighlighterJson(self.ui.textBrowser.document())
+            Log.info("Format output: %s" % _output)
+            self.ui.textBrowser.setText(_output)
+        elif _is_xml:
+            self.highlighter = HighlighterXml2(self.ui.textBrowser.document())
+            Log.info("Format output: %s" % _output)
+            self.ui.textBrowser.setText(_output)
+        # Print error
+        else:
+            self.ui.textBrowser.setText(Helper.font_red(_error_info))
+            Log.error(_error_info)
+
+    def listen_action_escape(self):
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.replace('\"', '\\\"')
+        self.ui.textBrowser.setText(_out)
+
+    def listen_action_unescape(self):
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.replace('\\\"', '\"')
+        self.ui.textBrowser.setText(_out)
+
+    def listen_action_unicode(self):
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.encode("raw_unicode_escape").decode()
+        self.ui.textBrowser.setText(_out)
+
+    def listen_action_unicode_decode(self):
+        _tmp = self.ui.textBrowser.toPlainText()
+        _out = _tmp.encode("utf-8").decode("unicode_escape")
+        self.ui.textBrowser.setText(_out)
+
+    def listen_action_convert(self):
+        _is_json = False
+        _is_xml = False
+        _error_info = ''
+        _input = self.ui.textEdit.toPlainText()
+        Log.info("input: %s" % _input)
+
+        try:
+            _output = xmltodict.unparse(json.loads(_input), pretty=True)
+            _is_json = True
+        except Exception as e:
+            _is_json = False
+            _error_info = str(e)
+
+        if not _is_json:
+            try:
+                _output = xmltodict.parse(_input)
+                _output = self.__log_format_json(_output)
+                _is_xml = True
+            except Exception as e:
+                _is_xml = False
+                _error_info = str(e)
+
+        if _is_json | _is_xml:
+            Log.info("Format output: %s" % _output)
+            self.ui.textBrowser.setText(str(_output))
+
+        # Print error
+        else:
+            self.ui.textBrowser.setText(Helper.font_red(_error_info))
+            Log.error(_error_info)
+
+    def init_ui(self):
+        """
+        Init format json ui
+        """
+        self.ui = Ui_FormatWindow()
+        self.ui.setupUi(self)
+        self.ui.formatButton.clicked.connect(self.listen_action_format)
+        self.ui.escapeButton.clicked.connect(self.listen_action_escape)
+        self.ui.unescapeButton.clicked.connect(self.listen_action_unescape)
+        self.ui.unicodeButton.clicked.connect(self.listen_action_unicode)
+        self.ui.unicodeDecodeButton.clicked.connect(self.listen_action_unicode_decode)
+        self.ui.covertButton.clicked.connect(self.listen_action_convert)
+
+    def __log_format_json(self, dict):
+        """
+        Beautify json data
+        :param dict: raw data (python dict)
+        :return: format json
+        """
+        return json.dumps(dict, indent=4, ensure_ascii=False)
+
+    def __log_format_xml(self, xml_data):
+        """
+        Beautify xml data
+        :param xml_data:
+        :return: format xml
+        """
+        _root = etree.XML(xml_data)
+        return etree.tostring(_root, pretty_print=True).decode('utf-8')
+
+
+class CommentUi(QtWidgets.QWidget):
+    """
+    Responsible for comment format such as '# // \n'
+    """
+    def __new__(cls, *args, **kwargs):
+        """
+        Singleton: only one window is allowed.
+        """
+        if not hasattr(cls, '_instance'):
+            cls._instance = super(CommentUi, cls).__new__(cls, *args, **kwargs)
+        return cls._instance
+
+    def __init__(self):
+        """
+        Singleton: only once init
+        """
+        if not hasattr(CommentUi, '_init'):
+            super().__init__()
+            self.init_ui()
+            CommentUi._init = True
+
+    def init_ui(self):
+        self.ui = Ui_CommentWindow()
+        self.ui.setupUi(self)
+        self.ui.formatButton.clicked.connect(self.listen_action_format)
+        self.ui.transButton.clicked.connect(self.listen_action_trans)
+
+    def listen_action_format(self):
+        _input = self.ui.textEdit.toPlainText()
+        _output = []
+        _tmp = string(_input)
+        _tmp = _tmp.replace('#|(//)|\*', '').split('.')
+        for line in _tmp:
+            _output.append(string(line).replace('\s*\n', ''))
+        self.ui.textBrowser.setText('.'.join(_output).strip())
+
+    def listen_action_trans(self):
+        self.listen_action_format()
+        _input = self.ui.textBrowser.toPlainText()
+        # TODO: translation
+        # select language
+        # icon: https://www.flaticon.com/search?author_id=1&style_id=118&type=standard&word=flag
+        # lang: https://fanyi-api.baidu.com/doc/21
+        if self.ui.toComboBox.currentText() == 'Chinese':
+            _to_ = 'zh'
+        elif self.ui.toComboBox.currentText() == 'Jpanese':
+            _to_ = 'jp'
+        elif self.ui.toComboBox.currentText() == 'Korean':
+            _to_ = 'kor'
+        elif self.ui.toComboBox.currentText() == 'Spanish':
+            _to_ = 'spa'
+        elif self.ui.toComboBox.currentText() == 'Italian':
+            _to_ = 'it'
+
+        # select translator
+        try:
+            if self.ui.transComboBox.currentText() == 'Baidu':
+                _out = self.baidu_trans(_input, 'auto', _to_)
+            elif self.ui.transComboBox.currentText() == 'Google':
+                pass
+            self.ui.transBrowser.setText(_out)
+        except Exception as e:
+            Log.error(str(e))
+            self.ui.transBrowser.setText(Helper.font_red(str(e)))
+
+    def baidu_trans(self, query, from_, to_):
+        """
+        为保证翻译质量，请将单次请求长度控制在 6000 bytes以内（汉字约为输入参数 2000 个）
+        :param query: 请求翻译query	UTF-8编码
+        :param from_: 翻译源语言	可设置为auto
+        :param to_: 翻译目标语言	不可设置为auto
+        :return: 翻译结果
+        """
+        appid = '20230309001593277'
+        secret = 'uy48JQfdUcbNmMkGZ5At'
+        salt = ''.join(random.sample('0123456789', 10))
+        sign = self.get_sign(appid, query, salt, secret).hexdigest()
+        url = 'http://api.fanyi.baidu.com/api/trans/vip/translate?q=%s&from=%s&to=%s&appid=%s&salt=%s&sign=%s' \
+            % (query, from_, to_, appid, salt, sign)
+        response = requests.get(url)
+        retval = response.json()['trans_result'][0]['dst']
+        return retval
+
+    def get_sign(self, appid, q, salt, secret):
+        """
+        百度翻译API签名计算，来源于 https://fanyi-api.baidu.com/doc/21
+        :param appid: 应用ID
+        :param q: 请求翻译query	UTF-8编码
+        :param salt: 10位随机数
+        :param secret: 密钥
+        :return: sign
+        """
+        return hashlib.md5((appid + q + salt + secret).encode())
 
 
 class AppCheckerUi(QtWidgets.QWidget):
@@ -941,217 +1225,6 @@ class PeCheckerUi(QtWidgets.QWidget):
     def set_btn(self, value):
         self.ui.checkButton.setEnabled(True)
         self.ui.textBrowser.setText(value)
-
-
-class FormatUi(QtWidgets.QWidget):
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
-        self.ui.formatButton.clicked.connect(self.listen_action_format)
-        self.ui.escapeButton.clicked.connect(self.listen_action_escape)
-        self.ui.unescapeButton.clicked.connect(self.listen_action_unescape)
-        self.ui.unicodeButton.clicked.connect(self.listen_action_unicode)
-        self.ui.unicodeDecodeButton.clicked.connect(self.listen_action_unicode_decode)
-        self.ui.covertButton.clicked.connect(self.listen_action_convert)
-
-    def listen_action_format(self):
-        _input = self.ui.textEdit.toPlainText()
-        Log.info("Format input: %s" % _input)
-        _is_json = False
-        _is_xml = False
-        _error_info = ''
-
-        try:
-            # handle single quote strings
-            _output = self.__log_format_json(json.loads(json.dumps(eval(_input))))
-            _is_json = True
-        except Exception as e:
-            _is_json = False
-            _error_info = str(e)
-
-        if not _is_json:
-            try:
-                _output = self.__log_format_xml(_input.encode('utf-8'))
-                _is_xml = True
-            except Exception as e:
-                _is_xml = False
-                _error_info = str(e)
-
-        if _is_json:
-            self.highlighter = HighlighterJson(self.ui.textBrowser.document())
-            Log.info("Format output: %s" % _output)
-            self.ui.textBrowser.setText(_output)
-        elif _is_xml:
-            self.highlighter = HighlighterXml2(self.ui.textBrowser.document())
-            Log.info("Format output: %s" % _output)
-            self.ui.textBrowser.setText(_output)
-        # Print error
-        else:
-            self.ui.textBrowser.setText(Helper.font_red(_error_info))
-            Log.error(_error_info)
-
-    def listen_action_escape(self):
-        _tmp = self.ui.textBrowser.toPlainText()
-        _out = _tmp.replace('\"', '\\\"')
-        self.ui.textBrowser.setText(_out)
-
-    def listen_action_unescape(self):
-        _tmp = self.ui.textBrowser.toPlainText()
-        _out = _tmp.replace('\\\"', '\"')
-        self.ui.textBrowser.setText(_out)
-
-    def listen_action_unicode(self):
-        _tmp = self.ui.textBrowser.toPlainText()
-        _out = _tmp.encode("raw_unicode_escape").decode()
-        self.ui.textBrowser.setText(_out)
-
-    def listen_action_unicode_decode(self):
-        _tmp = self.ui.textBrowser.toPlainText()
-        _out = _tmp.encode("utf-8").decode("unicode_escape")
-        self.ui.textBrowser.setText(_out)
-
-    def listen_action_convert(self):
-        _is_json = False
-        _is_xml = False
-        _error_info = ''
-        _input = self.ui.textEdit.toPlainText()
-        Log.info("input: %s" % _input)
-
-        try:
-            _output = xmltodict.unparse(json.loads(_input), pretty=True)
-            _is_json = True
-        except Exception as e:
-            _is_json = False
-            _error_info = str(e)
-
-        if not _is_json:
-            try:
-                _output = xmltodict.parse(_input)
-                _output = self.__log_format_json(_output)
-                _is_xml = True
-            except Exception as e:
-                _is_xml = False
-                _error_info = str(e)
-
-        if _is_json | _is_xml:
-            Log.info("Format output: %s" % _output)
-            self.ui.textBrowser.setText(str(_output))
-
-        # Print error
-        else:
-            self.ui.textBrowser.setText(Helper.font_red(_error_info))
-            Log.error(_error_info)
-
-    def init_ui(self):
-        """
-        Init format json ui
-        :return:
-        """
-        self.ui = Ui_FormatWindow()
-        self.ui.setupUi(self)
-
-    def __log_format_json(self, dict):
-        """
-        Beautify json data
-        :param dict: raw data (python dict)
-        :return: format json
-        """
-        return json.dumps(dict, indent=4, ensure_ascii=False)
-
-    def __log_format_xml(self, xml_data):
-        """
-        Beautify xml data
-        :param xml_data:
-        :return: format xml
-        """
-        _root = etree.XML(xml_data)
-        return etree.tostring(_root, pretty_print=True).decode('utf-8')
-
-
-class CommentUi(QtWidgets.QWidget):
-    """
-    Responsible for comment format such as '# // \n'
-    """
-    def __init__(self):
-        super().__init__()
-        self.init_ui()
-        self.url = {
-            'baidu': 'https://fanyi.baidu.com/?#en/zh/',
-            'google': 'https://translate.google.com/'
-        }
-
-    def init_ui(self):
-        self.ui = Ui_CommentWindow()
-        self.ui.setupUi(self)
-        self.ui.formatButton.clicked.connect(self.listen_action_format)
-        self.ui.transButton.clicked.connect(self.listen_action_trans)
-
-    def listen_action_format(self):
-        _input = self.ui.textEdit.toPlainText()
-        _output = []
-        _tmp = string(_input)
-        _tmp = _tmp.replace('#|(//)|\*', '').split('.')
-        for line in _tmp:
-            _output.append(string(line).replace('\s*\n', ''))
-        self.ui.textBrowser.setText('.'.join(_output).strip())
-
-    def listen_action_trans(self):
-        self.listen_action_format()
-        _input = self.ui.textBrowser.toPlainText()
-        # TODO: translation
-        # select language
-        # icon: https://www.flaticon.com/search?author_id=1&style_id=118&type=standard&word=flag
-        # lang: https://fanyi-api.baidu.com/doc/21
-        if self.ui.toComboBox.currentText() == 'Chinese':
-            _to_ = 'zh'
-        elif self.ui.toComboBox.currentText() == 'Jpanese':
-            _to_ = 'jp'
-        elif self.ui.toComboBox.currentText() == 'Korean':
-            _to_ = 'kor'
-        elif self.ui.toComboBox.currentText() == 'Spanish':
-            _to_ = 'spa'
-        elif self.ui.toComboBox.currentText() == 'Italian':
-            _to_ = 'it'
-
-        # select translator
-        try:
-            if self.ui.transComboBox.currentText() == 'Baidu':
-                _out = self.baidu_trans(_input, 'auto', _to_)
-            elif self.ui.transComboBox.currentText() == 'Google':
-                pass
-            self.ui.transBrowser.setText(_out)
-        except Exception as e:
-            Log.error(str(e))
-            self.ui.transBrowser.setText(Helper.font_red(str(e)))
-
-    def baidu_trans(self, query, from_, to_):
-        """
-        为保证翻译质量，请将单次请求长度控制在 6000 bytes以内（汉字约为输入参数 2000 个）
-        :param query: 请求翻译query	UTF-8编码
-        :param from_: 翻译源语言	可设置为auto
-        :param to_: 翻译目标语言	不可设置为auto
-        :return: 翻译结果
-        """
-        appid = '20230309001593277'
-        secret = 'uy48JQfdUcbNmMkGZ5At'
-        salt = ''.join(random.sample('0123456789', 10))
-        sign = self.get_sign(appid, query, salt, secret).hexdigest()
-        url = 'http://api.fanyi.baidu.com/api/trans/vip/translate?q=%s&from=%s&to=%s&appid=%s&salt=%s&sign=%s' \
-            % (query, from_, to_, appid, salt, sign)
-        response = requests.get(url)
-        retval = response.json()['trans_result'][0]['dst']
-        return retval
-
-    def get_sign(self, appid, q, salt, secret):
-        """
-        百度翻译API签名计算，来源于 https://fanyi-api.baidu.com/doc/21
-        :param appid: 应用ID
-        :param q: 请求翻译query	UTF-8编码
-        :param salt: 10位随机数
-        :param secret: 密钥
-        :return: sign
-        """
-        return hashlib.md5((appid + q + salt + secret).encode())
 
 
 class PreventFastClickThreadSignal(QThread):
