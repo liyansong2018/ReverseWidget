@@ -1,3 +1,12 @@
+[2023-03-11]
+    ReverseWidget 1.9
+        - Add code comment format module for deleting '#&//' in code comment or '\n'
+        - Add baidu-fanyi api to translate code comment or paper pdf
+        - Flat some window ui for more modern operating system such as Win11
+        - Singleton: only one child window is allowed at the same time
+        - Fix issue about incomplete translation because of singleton
+        - Fix unknown errors
+
 [2023-03-02]
     ReverseWidget 1.8
         - Add dll injector module for Windows
