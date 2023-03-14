@@ -32,7 +32,7 @@ Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码�
 
 ### 编解码
 
-- 支持多个哈希算法
+支持多种编解码
 
 ![code_zh](images/code_zh.png)
 
@@ -74,7 +74,7 @@ Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码�
 
 格式化json或者xml文件，如下图所示，还可以进行json和xml的互转。如果我们使用 Burpsuite 社区版抓包，会发现常见的 xml 以及 json 文件并不能很好的展示，因此 ReverseWidget 新增了格式化资源文件的功能，方便我们查看此类文件。
 
-![format_en](images/format_en.png)
+![format_en](images/format_zh.png)
 
 
 
