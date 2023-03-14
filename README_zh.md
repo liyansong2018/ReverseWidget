@@ -10,11 +10,12 @@
 Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测以及DLL注入。具有如下特性
 - 多个分组加密和解密算法：AES, DES, 3DES, RC2
 - 编码和解码：URL, HTML, Base64, Unicode, UTF-8
-- 多个哈希算法：MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - 多种架构的汇编和反汇编器：x86, ARM, mips, Sparc, PowerPC
+- 格式化代码注释
 - 格式化json和xml文件
+- 文件哈希：MD5, SHA1, SHA224, SHA256, SHA384, SHA512, CRC32
 - Android APP加固检测，支持：梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等
-- Windows PE 加壳检测
+- Windows PE加壳检测
 - DLL注入
 
 ## 细节性描述
@@ -26,6 +27,16 @@ Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码�
 - 支持三种填充模式：pkcs7, iso7816 和 ansix923
 
 ![encrypt_zh](images/encrypt_zh.png)
+
+
+
+### 编解码
+
+- 支持多个哈希算法
+
+![code_zh](images/code_zh.png)
+
+
 
 ### 汇编和反汇编
 
@@ -49,28 +60,53 @@ Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码�
 - ARM64 只有小端模式（当前 AArch64 架构本身只有小端 ）
 - PowerPC32 只有大端模式（当前 PowerPC32 架构本身只有小端）
 
+
+
+### 格式化翻译
+
+此模块用于快速格式化代码中的注释，论文中的换行，方便翻译。（ `# // \n`）
+
+![comment_en](images/comment_zh.png)
+
+
+
+### 格式化 json
+
+格式化json或者xml文件，如下图所示，还可以进行json和xml的互转。如果我们使用 Burpsuite 社区版抓包，会发现常见的 xml 以及 json 文件并不能很好的展示，因此 ReverseWidget 新增了格式化资源文件的功能，方便我们查看此类文件。
+
+![format_en](images/format_en.png)
+
+
+
+### 文件哈希
+
+可快速计算大文件的哈希值。
+
+![hash_file_en](images/hash_zh.png)
+
+
+
 ### 应用加固检测器
 
-Windows PE二进制程序检测
+Windows PE二进制程序检测。
 
 ![pe_checker](images/pe_checker_zh.png)
+
+
 
 Android应用加固检测
 
 ![app_checker](images/app_checker_zh.png)
 
-### 编解码
 
-- 支持多个哈希算法
-- 不仅包含对普通字符串的哈希计算，也包括对文件的哈希，可快速计算大文件的哈希值
 
-![hash_file_en](images/hash_zh.png)
+### DLL注入
 
-### 格式化 json/xml 文件
+无毒版本的 DLL 注入，使用 python 模块调用 win32，不依赖三方库。
 
-如果我们使用 Burpsuite 社区版抓包，会发现常见的 xml 以及 json 文件并不能很好的展示，因此 ReverseWidget 新增了格式化资源文件的功能，方便我们查看此类文件。
+![dll](images/dll.png)
 
-![disasm_en](images/format_zh.png)
+
 
 ## 如何使用
 
@@ -89,8 +125,8 @@ git clone --recursive https://github.com/liyansong2018/ReverseWidget.git
 1. 运行 `setup.sh` 或者 `pip install -r requirements.txt`，安装基本库
 2. 运行程序 `run.sh`
 
-如果你不想安装依赖包，你也可以直接下载我们已经打包好的[压缩包](https://github.com/liyansong2018/ReverseWidget/releases)。当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 
+如果你不想安装依赖包，你也可以直接下载我们已经编译好的[压缩包](https://github.com/liyansong2018/ReverseWidget/releases)。当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 
 
 
 ## 开箱即用
-如果你是幸运的Windows用户，那么可以直接使用我们已经打包好环境的`exe`可执行程序。请在此处下载 [Releases](https://github.com/liyansong2018/ReverseWidget/releases) 可用的 Windows 可执行程序。这是业余时间编写的一个软件，可能存在一些Bug，正在不断完善中，请谅解。
+如果你是幸运的Windows用户，那么可以直接使用我们已经精简好的`exe`可执行程序。请在此处下载 [Releases](https://github.com/liyansong2018/ReverseWidget/releases) 可用的 Windows 可执行程序。这是业余时间编写的一个软件，可能存在一些Bug，正在不断完善中，请谅解。

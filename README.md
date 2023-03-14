@@ -13,12 +13,13 @@ Reverse Widget is a lightweight GUI Software that implements some typical  block
 
 - Some Typical Encryption Algorithms: AES, DES, 3DES, RC2
 - Useful Coding: URL, HTML, Base64, Unicode, UTF-8
-- Common Hash: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
 - Multi-architecture Assembler and Disassembler: x86, ARM, mips, Sparc, PowerPC
+- Beautify code comment
 - Beautify json or xml file
-- App(only for Chinese 梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等) checker
+- Common Hash: MD5, SHA1, SHA224, SHA256, SHA384, SHA512, CRC32
+- Android App(only for Chinese 梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等) checker
 - Windows PE checker like `PEID`
-- DLL Injector
+- Windows DLL Injector
 
 ## Detailed Description
 
@@ -30,9 +31,20 @@ Reverse Widget is a lightweight GUI Software that implements some typical  block
 
 ![encrypt_en](images/encrypt_en.png)
 
+
+
+### Encode/Decode
+
+- Support multiple hash algorithms,such as URL, HTML, Base64, Unicode, and UTF-8
+- Not only includes the hash calculation of ordinary strings, but also the hash of files, which can quickly calculate the hash value of large files
+
+![code_en](images/code_en.png)
+
+
+
 ### Assemble/Disassemble
 
-Support multiple architectures (x86, ARM, mips, Sparc, PowerPC), word length (16/32/64bit), big and little endian
+Support multiple architectures (x86, ARM, mips, Sparc, PowerPC), word length (16/32/64bit), big and little endian.
 
 ![disasm_en](images/disasm_en.png)
 
@@ -55,14 +67,33 @@ Limitations
 
 - Powerpc32 only supports big endian (currently powerpc32 architecture only has big endian)
 
-### Encode/Decode
 
-- Support multiple hash algorithms,such as URL, HTML, Base64, Unicode, and UTF-8
-- Not only includes the hash calculation of ordinary strings, but also the hash of files, which can quickly calculate the hash value of large files
+
+### Format Comment
+
+Beautify code comment and splice it into a complete sentence. (e.g. `# // \n`)
+
+![comment_en](images/comment_en.png)
+
+
+
+### Beautify json/xml
+
+Json and xml are our common http resource files, which are not well displayed in Burpsuite Community Edition. We can easily format them in ReverseWidget.
+
+![format_en](images/format_en.png)
+
+
+
+### File Hash
+
+quickly calculate the hash value of large files.
 
 ![hash_en](images/hash_en.png)
 
-### Windows/Android APP checker
+
+
+### APP checker
 
 Check Windows PE file like `PEID`
 
@@ -72,11 +103,15 @@ Check Android APP shell
 
 ![app_checker](images/app_checker.png)
 
-### Beautify json/xml
 
-Json and xml are our common http resource files, which are not well displayed in Burpsuite Community Edition. We can easily format them in ReverseWidget.
 
-![disasm_en](images/format.png)
+### DLL injector
+
+DLL injector without back door: Use python module to call win32 without relying on third-party libraries.
+
+![dll](images/dll.png)
+
+
 
 ## Compilation & Docs
 
