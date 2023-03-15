@@ -7,16 +7,38 @@
 [![repo-size](https://img.shields.io/github/repo-size/liyansong2018/reversewidget?&style=flat-square&logo=qt&logoColor=FFFFFF)](#)
 [![platform](https://img.shields.io/github/downloads/liyansong2018/reversewidget/total?color=blue&logo=github&style=flat-square)](https://github.com/liyansong2018/ReverseWidget/releases)
 
-Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid和Windows应用加固检测以及DLL注入。具有如下特性
+Reverse Wigdet 是一组常用的逆向小工具，包括加解密、编解码、哈希、支持多种架构的汇编和反汇编引擎、Andoid 和Windows 应用加固检测以及 DLL 注入。具有如下特性
 - 多个分组加密和解密算法：AES, DES, 3DES, RC2
 - 编码和解码：URL, HTML, Base64, Unicode, UTF-8
 - 多种架构的汇编和反汇编器：x86, ARM, mips, Sparc, PowerPC
 - 格式化代码注释
-- 格式化json和xml文件
+- 格式化 json 和 xml 文件
 - 文件哈希：MD5, SHA1, SHA224, SHA256, SHA384, SHA512, CRC32
 - Android APP加固检测，支持：梆梆安全/爱加密/360加固保/通付盾/阿里/腾讯应用加固等
 - Windows PE加壳检测
 - DLL注入
+
+
+
+## FAQ
+
+**已有一些在线网站实现了加解密、编解码以及哈希，我们为什么还要重复造轮子？**
+
+> 有时候，涉及到加解密的数据可能比较敏感，在线网站可能会导致信息泄露。Reverse Widget 完全使用 Python 实现，**完全本地化**，可保证敏感数据的机密性。
+
+**汇编和反汇编引擎适用哪些场合？**
+
+> IDA/Ghidra 等工具完美的实现了完美的反汇编，但是对于汇编，可能要借助一些插件，而且它们主要针对整个二进制，而非偏好段指令。Reverse Widget 实现了多架构的汇编和反汇编器，对于二进制指令的修改十分便利。
+
+**App 加固检测有什么特色？**
+
+> Reverse Widget 支持检测 Android 常见的加固方案，当前也并不完善，后续会继续扩充一些功能。但是可以帮助我们在未反编译情况下，快速识别常见的 APP 壳。
+
+**DLL 注入与其他工具相比有什么特点？**
+
+> DLL 注入的工具有很多，但是有一些会存在病毒和后门，我们利用 win32 原生 API，在不依赖其他模块的情况下，编写了 DLL 注入器。如果你想体验各种各样的 DLL 注入方式，如 manual map，此工具可能并不适合你。如果你只是单纯的想往某些进程注入 DLL，那么 Reverse Widget 将会是你不二的选择！
+
+
 
 ## 细节性描述
 
