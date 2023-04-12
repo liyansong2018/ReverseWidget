@@ -1000,10 +1000,12 @@ class CommentUi(QtWidgets.QWidget):
         _input = self.ui.textEdit.toPlainText()
         _output = []
         _tmp = string(_input)
-        _tmp = _tmp.replace('#|(//)|\*', '').split('.')
-        for line in _tmp:
-            _output.append(string(line).replace('\s*\n', ''))
-        self.ui.textBrowser.setText('.'.join(_output).strip())
+        _tmp = _tmp.replace('#|(//)|\*', '').split('\n\n')
+        for period in _tmp:
+            my = period.strip().replace('\n', ' ').replace('  ', ' ')
+            _output.append(my)
+
+        self.ui.textBrowser.setText('\n\n'.join(_output).strip())
 
     def listen_action_trans(self):
         self.listen_action_format()
@@ -1026,7 +1028,10 @@ class CommentUi(QtWidgets.QWidget):
         # select translator
         try:
             if self.ui.transComboBox.currentText() == 'Baidu':
-                _out = self.baidu_trans(_input, 'auto', _to_)
+                _tmp = _input.split('\n\n')
+                _out = ''
+                for period in _tmp:
+                    _out += self.baidu_trans(period, 'auto', _to_) + '\n\n'
             elif self.ui.transComboBox.currentText() == 'Google':
                 pass
             self.ui.transBrowser.setText(_out)
