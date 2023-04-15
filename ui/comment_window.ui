@@ -35,25 +35,14 @@
    <property name="bottomMargin">
     <number>0</number>
    </property>
+   <property name="spacing">
+    <number>6</number>
+   </property>
    <item row="0" column="0">
     <layout class="QGridLayout" name="gridLayout_2">
      <property name="spacing">
       <number>12</number>
      </property>
-     <item row="1" column="1">
-      <widget class="QTextBrowser" name="textBrowser">
-       <property name="styleSheet">
-        <string notr="true">QTextEdit{
-	border-radius: 4px;
-	border:1px solid #ccc;
-	padding: 1px;
-}</string>
-       </property>
-       <property name="openExternalLinks">
-        <bool>true</bool>
-       </property>
-      </widget>
-     </item>
      <item row="1" column="0">
       <widget class="QTextEdit" name="textEdit">
        <property name="styleSheet">
@@ -62,6 +51,12 @@
 	border:1px solid #ccc;
 	padding: 1px;
 }</string>
+       </property>
+       <property name="overwriteMode">
+        <bool>false</bool>
+       </property>
+       <property name="acceptRichText">
+        <bool>false</bool>
        </property>
       </widget>
      </item>
@@ -79,10 +74,35 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QTextEdit" name="textEditFormat">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">QTextEdit{
+	border-radius: 4px;
+	border:1px solid #ccc;
+	padding: 1px;
+}</string>
+       </property>
+      </widget>
+     </item>
     </layout>
    </item>
    <item row="1" column="0">
     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <property name="spacing">
+      <number>6</number>
+     </property>
+     <property name="topMargin">
+      <number>6</number>
+     </property>
+     <property name="bottomMargin">
+      <number>6</number>
+     </property>
      <item>
       <widget class="QLabel" name="transLabel">
        <property name="text">
@@ -115,20 +135,14 @@
          <strikeout>false</strikeout>
         </font>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
-        <string notr="true">QComboBox{
-	text-align:center;
-    text-decoration:none;
-    background:#ffffff;
-	/*color: #fff;*/
-    color:#000000;
-
-    padding: 5px 10px 5px 10px;
-    font-weight:light;
-    border-radius:4px;
-	border:1px solid #dadada;
-	white-space: nowrap;
-}</string>
+        <string notr="true"/>
+       </property>
+       <property name="insertPolicy">
+        <enum>QComboBox::InsertAtBottom</enum>
        </property>
        <property name="frame">
         <bool>true</bool>
@@ -192,20 +206,11 @@
          <strikeout>false</strikeout>
         </font>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
-        <string notr="true">QComboBox{
-	text-align:center;
-    text-decoration:none;
-    background:#ffffff;
-	/*color: #fff;*/
-    color:#000000;
-
-    padding: 5px 10px 5px 10px;
-    font-weight:light;
-    border-radius:4px;
-	border:1px solid #dadada;
-	white-space: nowrap;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="frame">
         <bool>true</bool>

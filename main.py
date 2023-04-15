@@ -70,6 +70,7 @@ import webbrowser
 import xmltodict
 import random
 import requests
+import re
 
 CRYPT = 1
 CODE = 2
@@ -1000,16 +1001,17 @@ class CommentUi(QtWidgets.QWidget):
         _input = self.ui.textEdit.toPlainText()
         _output = []
         _tmp = string(_input)
-        _tmp = _tmp.replace('#|(//)|\*', '').split('\n\n')
+        # delete # // /* */ <!-- -->
+        _tmp = re.sub(r'/\*|\*/|//|#|<!--|-->', "", _tmp).strip().split('\n\n')
         for period in _tmp:
             my = period.strip().replace('\n', ' ').replace('  ', ' ')
             _output.append(my)
 
-        self.ui.textBrowser.setText('\n\n'.join(_output).strip())
+        self.ui.textEditFormat.setText('\n\n'.join(_output).strip())
 
     def listen_action_trans(self):
         self.listen_action_format()
-        _input = self.ui.textBrowser.toPlainText()
+        _input = self.ui.textEditFormat.toPlainText()
         # TODO: translation
         # select language
         # icon: https://www.flaticon.com/search?author_id=1&style_id=118&type=standard&word=flag
