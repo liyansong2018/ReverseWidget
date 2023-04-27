@@ -29,11 +29,7 @@ class Ui_CommentWindow(object):
         self.gridLayout_2.setSpacing(12)
         self.gridLayout_2.setObjectName("gridLayout_2")
         self.textEdit = QtWidgets.QTextEdit(CommentWindow)
-        self.textEdit.setStyleSheet("QTextEdit{\n"
-"    border-radius: 4px;\n"
-"    border:1px solid #ccc;\n"
-"    padding: 1px;\n"
-"}")
+        self.textEdit.setStyleSheet("")
         self.textEdit.setOverwriteMode(False)
         self.textEdit.setAcceptRichText(False)
         self.textEdit.setObjectName("textEdit")
@@ -48,11 +44,7 @@ class Ui_CommentWindow(object):
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         self.textEditFormat.setFont(font)
-        self.textEditFormat.setStyleSheet("QTextEdit{\n"
-"    border-radius: 4px;\n"
-"    border:1px solid #ccc;\n"
-"    padding: 1px;\n"
-"}")
+        self.textEditFormat.setStyleSheet("")
         self.textEditFormat.setObjectName("textEditFormat")
         self.gridLayout_2.addWidget(self.textEditFormat, 1, 1, 1, 1)
         self.gridLayout.addLayout(self.gridLayout_2, 0, 0, 1, 1)
@@ -113,11 +105,7 @@ class Ui_CommentWindow(object):
         self.horizontalLayout_3.addWidget(self.transComboBox)
         self.gridLayout.addLayout(self.horizontalLayout_3, 1, 0, 1, 1)
         self.transBrowser = QtWidgets.QTextBrowser(CommentWindow)
-        self.transBrowser.setStyleSheet("QTextEdit{\n"
-"    border-radius: 4px;\n"
-"    border:1px solid #ccc;\n"
-"    padding: 1px;\n"
-"}")
+        self.transBrowser.setStyleSheet("")
         self.transBrowser.setOpenExternalLinks(True)
         self.transBrowser.setObjectName("transBrowser")
         self.gridLayout.addWidget(self.transBrowser, 2, 0, 1, 1)
@@ -125,40 +113,8 @@ class Ui_CommentWindow(object):
         self.horizontalLayout.setContentsMargins(-1, -1, -1, 0)
         self.horizontalLayout.setSpacing(0)
         self.horizontalLayout.setObjectName("horizontalLayout")
-        self.groupBox = QtWidgets.QGroupBox(CommentWindow)
-        font = QtGui.QFont()
-        font.setFamily("微软雅黑")
-        self.groupBox.setFont(font)
-        self.groupBox.setStyleSheet("QGroupBox{\n"
-"    border:0px\n"
-"}\n"
-"QPushButton{\n"
-"    text-align:center;\n"
-"    text-decoration:none;\n"
-"    background:#ffffff;\n"
-"    /*color: #fff;*/\n"
-"    color:#000000;\n"
-"\n"
-"    padding: 5px 10px 5px 10px;\n"
-"    font-weight:light;\n"
-"    border-radius:4px;\n"
-"    border:1px solid #dadada;\n"
-"    white-space: nowrap;\n"
-"}\n"
-"\n"
-"QPushButton::checked,QPushButton::hover{\n"
-"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
-"    color:#ffffff;\n"
-"    font-weight: bold;\n"
-"}")
-        self.groupBox.setTitle("")
-        self.groupBox.setObjectName("groupBox")
-        self.horizontalLayout_2 = QtWidgets.QHBoxLayout(self.groupBox)
-        self.horizontalLayout_2.setContentsMargins(0, 0, 0, 0)
-        self.horizontalLayout_2.setSpacing(0)
-        self.horizontalLayout_2.setObjectName("horizontalLayout_2")
-        self.formatButton = QtWidgets.QPushButton(self.groupBox)
-        self.formatButton.setMinimumSize(QtCore.QSize(100, 35))
+        self.formatButton = QtWidgets.QPushButton(CommentWindow)
+        self.formatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -170,9 +126,9 @@ class Ui_CommentWindow(object):
         self.formatButton.setAutoExclusive(True)
         self.formatButton.setAutoDefault(False)
         self.formatButton.setObjectName("formatButton")
-        self.horizontalLayout_2.addWidget(self.formatButton)
-        self.transButton = QtWidgets.QPushButton(self.groupBox)
-        self.transButton.setMinimumSize(QtCore.QSize(100, 35))
+        self.horizontalLayout.addWidget(self.formatButton)
+        self.transButton = QtWidgets.QPushButton(CommentWindow)
+        self.transButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily("微软雅黑")
         font.setUnderline(False)
@@ -183,40 +139,9 @@ class Ui_CommentWindow(object):
         self.transButton.setCheckable(True)
         self.transButton.setAutoExclusive(True)
         self.transButton.setObjectName("transButton")
-        self.horizontalLayout_2.addWidget(self.transButton)
-        self.horizontalLayout.addWidget(self.groupBox)
+        self.horizontalLayout.addWidget(self.transButton)
         spacerItem1 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout.addItem(spacerItem1)
-        self.covertButton = QtWidgets.QPushButton(CommentWindow)
-        self.covertButton.setMinimumSize(QtCore.QSize(0, 0))
-        self.covertButton.setFocusPolicy(QtCore.Qt.NoFocus)
-        self.covertButton.setStyleSheet("QGroupBox{\n"
-"    border:0px\n"
-"}\n"
-"QPushButton{\n"
-"    text-align:center;\n"
-"    text-decoration:none;\n"
-"    background:#ffffff;\n"
-"    /*color: #fff;*/\n"
-"    color:#000000;\n"
-"\n"
-"    height: 36px;\n"
-"    width: 36px;    \n"
-"    \n"
-"      border-radius: 18px;\n"
-"    /*border:1px solid #dadada;\n"
-"    white-space: nowrap;*/\n"
-"}\n"
-"\n"
-"QPushButton::checked,QPushButton::hover{\n"
-"    background-image: url(\"ui/resources/pictures/blue_menu.png\");\n"
-"    color:#ffffff;\n"
-"    font-weight: bold;\n"
-"}")
-        self.covertButton.setCheckable(True)
-        self.covertButton.setAutoExclusive(True)
-        self.covertButton.setObjectName("covertButton")
-        self.horizontalLayout.addWidget(self.covertButton)
         self.gridLayout.addLayout(self.horizontalLayout, 3, 0, 1, 1)
 
         self.retranslateUi(CommentWindow)
@@ -237,4 +162,3 @@ class Ui_CommentWindow(object):
         self.transComboBox.setItemText(1, _translate("CommentWindow", "Google"))
         self.formatButton.setText(_translate("CommentWindow", "Format"))
         self.transButton.setText(_translate("CommentWindow", "Translation"))
-        self.covertButton.setText(_translate("CommentWindow", "<>"))

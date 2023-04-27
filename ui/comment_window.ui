@@ -46,11 +46,7 @@
      <item row="1" column="0">
       <widget class="QTextEdit" name="textEdit">
        <property name="styleSheet">
-        <string notr="true">QTextEdit{
-	border-radius: 4px;
-	border:1px solid #ccc;
-	padding: 1px;
-}</string>
+        <string notr="true"/>
        </property>
        <property name="overwriteMode">
         <bool>false</bool>
@@ -82,11 +78,7 @@
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">QTextEdit{
-	border-radius: 4px;
-	border:1px solid #ccc;
-	padding: 1px;
-}</string>
+        <string notr="true"/>
        </property>
       </widget>
      </item>
@@ -240,11 +232,7 @@
    <item row="2" column="0">
     <widget class="QTextBrowser" name="transBrowser">
      <property name="styleSheet">
-      <string notr="true">QTextEdit{
-	border-radius: 4px;
-	border:1px solid #ccc;
-	padding: 1px;
-}</string>
+      <string notr="true"/>
      </property>
      <property name="openExternalLinks">
       <bool>true</bool>
@@ -260,123 +248,70 @@
       <number>0</number>
      </property>
      <item>
-      <widget class="QGroupBox" name="groupBox">
+      <widget class="QPushButton" name="formatButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
        <property name="font">
         <font>
          <family>微软雅黑</family>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
         </font>
        </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
        <property name="styleSheet">
-        <string notr="true">QGroupBox{
-	border:0px
-}
-QPushButton{
-	text-align:center;
-    text-decoration:none;
-    background:#ffffff;
-	/*color: #fff;*/
-    color:#000000;
-
-    padding: 5px 10px 5px 10px;
-    font-weight:light;
-    border-radius:4px;
-	border:1px solid #dadada;
-	white-space: nowrap;
-}
-
-QPushButton::checked,QPushButton::hover{
-	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
-	color:#ffffff;
-	font-weight: bold;
-}</string>
+        <string notr="true"/>
        </property>
-       <property name="title">
-        <string/>
+       <property name="text">
+        <string>Format</string>
        </property>
-       <layout class="QHBoxLayout" name="horizontalLayout_2">
-        <property name="spacing">
-         <number>0</number>
-        </property>
-        <property name="leftMargin">
-         <number>0</number>
-        </property>
-        <property name="topMargin">
-         <number>0</number>
-        </property>
-        <property name="rightMargin">
-         <number>0</number>
-        </property>
-        <property name="bottomMargin">
-         <number>0</number>
-        </property>
-        <item>
-         <widget class="QPushButton" name="formatButton">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>微软雅黑</family>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>Format</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-          <property name="autoDefault">
-           <bool>false</bool>
-          </property>
-         </widget>
-        </item>
-        <item>
-         <widget class="QPushButton" name="transButton">
-          <property name="minimumSize">
-           <size>
-            <width>100</width>
-            <height>35</height>
-           </size>
-          </property>
-          <property name="font">
-           <font>
-            <family>微软雅黑</family>
-            <underline>false</underline>
-            <strikeout>false</strikeout>
-           </font>
-          </property>
-          <property name="focusPolicy">
-           <enum>Qt::NoFocus</enum>
-          </property>
-          <property name="styleSheet">
-           <string notr="true"/>
-          </property>
-          <property name="text">
-           <string>Translation</string>
-          </property>
-          <property name="checkable">
-           <bool>true</bool>
-          </property>
-          <property name="autoExclusive">
-           <bool>true</bool>
-          </property>
-         </widget>
-        </item>
-       </layout>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
+       <property name="autoDefault">
+        <bool>false</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="transButton">
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>0</height>
+        </size>
+       </property>
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <underline>false</underline>
+         <strikeout>false</strikeout>
+        </font>
+       </property>
+       <property name="focusPolicy">
+        <enum>Qt::NoFocus</enum>
+       </property>
+       <property name="styleSheet">
+        <string notr="true"/>
+       </property>
+       <property name="text">
+        <string>Translation</string>
+       </property>
+       <property name="checkable">
+        <bool>true</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>true</bool>
+       </property>
       </widget>
      </item>
      <item>
@@ -391,53 +326,6 @@ QPushButton::checked,QPushButton::hover{
         </size>
        </property>
       </spacer>
-     </item>
-     <item>
-      <widget class="QPushButton" name="covertButton">
-       <property name="minimumSize">
-        <size>
-         <width>0</width>
-         <height>0</height>
-        </size>
-       </property>
-       <property name="focusPolicy">
-        <enum>Qt::NoFocus</enum>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">QGroupBox{
-	border:0px
-}
-QPushButton{
-	text-align:center;
-    text-decoration:none;
-    background:#ffffff;
-	/*color: #fff;*/
-    color:#000000;
-
-	height: 36px;
-	width: 36px;    
-	
-  	border-radius: 18px;
-	/*border:1px solid #dadada;
-	white-space: nowrap;*/
-}
-
-QPushButton::checked,QPushButton::hover{
-	background-image: url(&quot;ui/resources/pictures/blue_menu.png&quot;);
-	color:#ffffff;
-	font-weight: bold;
-}</string>
-       </property>
-       <property name="text">
-        <string>&lt;&gt;</string>
-       </property>
-       <property name="checkable">
-        <bool>true</bool>
-       </property>
-       <property name="autoExclusive">
-        <bool>true</bool>
-       </property>
-      </widget>
      </item>
     </layout>
    </item>
