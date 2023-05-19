@@ -390,8 +390,7 @@ QPushButton::checked,QPushButton::hover{
         </font>
        </property>
        <property name="styleSheet">
-        <string notr="true">
-</string>
+        <string notr="true"/>
        </property>
        <property name="lineWidth">
         <number>0</number>
@@ -406,6 +405,11 @@ QPushButton::checked,QPushButton::hover{
      </item>
      <item row="0" column="0">
       <widget class="QLabel" name="label_4">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+        </font>
+       </property>
        <property name="text">
         <string>Raw</string>
        </property>
@@ -413,6 +417,11 @@ QPushButton::checked,QPushButton::hover{
      </item>
      <item row="0" column="1">
       <widget class="QLabel" name="label_5">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+        </font>
+       </property>
        <property name="text">
         <string>Format</string>
        </property>
