@@ -853,6 +853,7 @@ class FormatUi(QtWidgets.QWidget):
 
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
+        _input = _input.replace('\\\"', '\"')
         Log.info("Format input: %s" % _input)
         _is_json = False
         _is_xml = False
