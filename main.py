@@ -888,6 +888,11 @@ class FormatUi(QtWidgets.QWidget):
             self.ui.textBrowser.setText(Helper.font_red(_error_info))
             Log.error(_error_info)
 
+    def listen_action_compress(self):
+        _text = self.ui.textBrowser.toPlainText()
+        _out = _text.replace(' ', "").replace('\n', "")
+        self.ui.textBrowser.setText(_out)
+
     def listen_action_escape(self):
         _tmp = self.ui.textBrowser.toPlainText()
         _out = _tmp.replace('\"', '\\\"')
@@ -947,6 +952,7 @@ class FormatUi(QtWidgets.QWidget):
         self.ui = Ui_FormatWindow()
         self.ui.setupUi(self)
         self.ui.formatButton.clicked.connect(self.listen_action_format)
+        self.ui.compressButton.clicked.connect(self.listen_action_compress)
         self.ui.escapeButton.clicked.connect(self.listen_action_escape)
         self.ui.unescapeButton.clicked.connect(self.listen_action_unescape)
         self.ui.unicodeButton.clicked.connect(self.listen_action_unicode)
