@@ -1,3 +1,11 @@
+[2023-06-02]
+    ReverseWidget 1.10
+        - Use QT native UI to increase ReverseWidget compatibility across different operating systems
+        - Add function to compress json text on format module
+        - Fix language translation issues
+        - Fix word concatenation issues caused by line breaks and support for multiple paragraph translations
+        - Fix other unknown errors
+
 [2023-03-11]
     ReverseWidget 1.9
         - Add code comment format module for deleting '#&//' in code comment or '\n'
