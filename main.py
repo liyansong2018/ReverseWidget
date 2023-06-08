@@ -685,7 +685,7 @@ class AsmUi(QtWidgets.QWidget):
 
         try:
             asm = Asm(arch, mode, asm_code, endian)
-            result = asm.assemble()
+            result = asm.assemble(int(self.ui.lineEditBaseAddr.text(), 16))
 
             # Format Result
             trans = Code()

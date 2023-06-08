@@ -24,7 +24,7 @@ class Asm():
         self.data = data
         self.endian = endian
 
-    def assemble(self):
+    def assemble(self, base_addr):
         # ARM
         if self.arch == KS_ARCH_ARM:
             if self.mode == 2:
@@ -56,7 +56,7 @@ class Asm():
         ks = Ks(self.arch, self.mode)
 
         try:
-            encoding, count = ks.asm(self.data)
+            encoding, count = ks.asm(self.data, base_addr)
             return encoding
         except Exception as e:
             pass
@@ -65,7 +65,7 @@ class Asm():
         try:
             if self.arch == KS_ARCH_X86:
                 ks.syntax = KS_OPT_SYNTAX_ATT
-                encoding, count = ks.asm(self.data)
+                encoding, count = ks.asm(self.data, base_addr)
                 return encoding
         except Exception as e:
             # must raise
