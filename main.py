@@ -1040,6 +1040,7 @@ class CommentUi(QtWidgets.QWidget):
                 _tmp = _input.split('\n\n')
                 _out = ''
                 for period in _tmp:
+                    period = period.replace('+', "plus")    # Fix '+' in url
                     _out += self.baidu_trans(period, 'auto', _to_) + '\n\n'
             elif self.ui.transComboBox.currentText() == 'Google':
                 pass
