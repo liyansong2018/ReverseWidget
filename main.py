@@ -1040,7 +1040,6 @@ class CommentUi(QtWidgets.QWidget):
                 _tmp = _input.split('\n\n')
                 _out = ''
                 for period in _tmp:
-                    period = period.replace('+', "plus")    # Fix '+' in url
                     _out += self.baidu_trans(period, 'auto', _to_) + '\n\n'
             elif self.ui.transComboBox.currentText() == 'Google':
                 pass
@@ -1061,11 +1060,23 @@ class CommentUi(QtWidgets.QWidget):
         secret = 'uy48JQfdUcbNmMkGZ5At'
         salt = ''.join(random.sample('0123456789', 10))
         sign = self.get_sign(appid, query, salt, secret).hexdigest()
-        url = 'http://api.fanyi.baidu.com/api/trans/vip/translate?q=%s&from=%s&to=%s&appid=%s&salt=%s&sign=%s' \
-            % (query, from_, to_, appid, salt, sign)
-        response = requests.get(url)
-        retval = response.json()['trans_result'][0]['dst']
-        return retval
+
+        # Use the standard API provided by the request library instead of format url
+        # which will auto format special characters in URL
+        while True:
+            GET = False
+            url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
+            headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+            payload = {'appid': appid, 'q': query, 'from': from_, 'to': to_, 'salt': salt, 'sign': sign}
+            # Get
+            if GET:
+                response = requests.get(url, params=payload)
+            # Post
+            else:
+                response = requests.post(url, data=payload, headers=headers)
+
+            retval = response.json()['trans_result'][0]['dst']
+            return retval
 
     def get_sign(self, appid, q, salt, secret):
         """
