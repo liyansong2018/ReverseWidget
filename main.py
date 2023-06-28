@@ -1003,6 +1003,7 @@ class CommentUi(QtWidgets.QWidget):
         self.ui.setupUi(self)
         self.ui.formatButton.clicked.connect(self.listen_action_format)
         self.ui.transButton.clicked.connect(self.listen_action_trans)
+        self.api_exhusted = False
 
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
@@ -1041,6 +1042,8 @@ class CommentUi(QtWidgets.QWidget):
                 _out = ''
                 for period in _tmp:
                     _out += self.baidu_trans(period, 'auto', _to_) + '\n\n'
+                    if self.api_exhusted:
+                        return
             elif self.ui.transComboBox.currentText() == 'Google':
                 pass
             self.ui.transBrowser.setText(_out)
@@ -1063,20 +1066,33 @@ class CommentUi(QtWidgets.QWidget):
 
         # Use the standard API provided by the request library instead of format url
         # which will auto format special characters in URL
-        while True:
-            GET = False
-            url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
-            headers = {'Content-Type': 'application/x-www-form-urlencoded'}
-            payload = {'appid': appid, 'q': query, 'from': from_, 'to': to_, 'salt': salt, 'sign': sign}
-            # Get
-            if GET:
-                response = requests.get(url, params=payload)
-            # Post
-            else:
-                response = requests.post(url, data=payload, headers=headers)
+        GET = False
+        url = 'http://api.fanyi.baidu.com/api/trans/vip/translate'
+        headers = {'Content-Type': 'application/x-www-form-urlencoded'}
+        payload = {'appid': appid, 'q': query, 'from': from_, 'to': to_, 'salt': salt, 'sign': sign}
+        # Get
+        if GET:
+            response = requests.get(url, params=payload)
+        # Post
+        else:
+            response = requests.post(url, data=payload, headers=headers)
 
-            retval = response.json()['trans_result'][0]['dst']
-            return retval
+        if 'error_code' in response.json():
+            if response.json()['error_code'] == '54004':
+                # TODO: 如果API资源耗尽，则需要计算sign
+                self.api_exhusted = True
+                self.thread_trans = PreventFastClickThreadSignal(None, 'trans', query, from_, to_)
+                self.thread_trans._signal.connect(self.get_ret)
+                self.thread_trans.start()
+                hint = 'Free API resources have been exhausted, switching to alternate routes is slow! Please be patient and wait...'
+                Log.error(str(hint))
+                self.ui.transBrowser.setText(Helper.font_red(str(hint)))
+                return ''
+                # retval = self.baidu_trans_free(query, from_, to_)
+                # return retval
+
+        retval = response.json()['trans_result'][0]['dst']
+        return retval
 
     def get_sign(self, appid, q, salt, secret):
         """
@@ -1088,6 +1104,9 @@ class CommentUi(QtWidgets.QWidget):
         :return: sign
         """
         return hashlib.md5((appid + q + salt + secret).encode())
+
+    def get_ret(self, value):
+        self.ui.transBrowser.setText(value)
 
 
 class AppCheckerUi(QtWidgets.QWidget):
@@ -1269,7 +1288,7 @@ class PreventFastClickThreadSignal(QThread):
     """
     _signal = pyqtSignal(str)
 
-    def __init__(self, path, task):
+    def __init__(self, path, task, query=None, from_=None, to_=None):
         """
         Constructor
         :param path: file path
@@ -1278,6 +1297,10 @@ class PreventFastClickThreadSignal(QThread):
         super().__init__()
         self.path = path
         self.task = task
+        # Translate
+        self.query = query
+        self.from_ = from_
+        self.to_ = to_
 
     def run(self):
         # Caculate file hash
@@ -1293,6 +1316,10 @@ class PreventFastClickThreadSignal(QThread):
         # Check PE file
         elif self.task == 'pecheck':
             ret = self._check(self.path)
+
+        # Translate
+        elif self.task == 'trans':
+            ret = self._trans(self.query, self.from_, self.to_)
 
         self._signal.emit(ret)
 
@@ -1314,6 +1341,46 @@ class PreventFastClickThreadSignal(QThread):
         except Exception as e:
             _ret = str(e)
         return _ret
+
+    def _trans(self, query, from_, to_):
+        """
+        这是自己实现的模拟百度翻译Web浏览器的翻译请求，不使用API，而是利用JS计算认证凭据和Cookie
+        :param query: 请求翻译query	UTF-8编码
+        :param from_: 翻译源语言	可设置为auto
+        :param to_: 翻译目标语言	不可设置为auto
+        :return: 翻译结果
+        """
+        # 1. Get cookie
+        url_baidu = 'http://passport.baidu.com/v2/api/?login'
+        headers = {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'
+        }
+        response = requests.get(url=url_baidu, headers=headers)
+        cookie = response.headers['Set-Cookie']
+
+        # 2. Get token
+        url_baidu_token = 'https://fanyi.baidu.com/'
+        headers['Cookie'] = cookie
+        response = requests.get(url=url_baidu_token, headers=headers)
+        b = re.search(r"token: '.*'", response.text)
+        c = re.search(r"'.*'", b.group())
+        token = c.group()[1:-1]
+
+        # 3. Get sign
+        from baidu_sign import baidu_sign
+        sign = baidu_sign(query)
+
+        url = 'https://fanyi.baidu.com/v2transapi'
+        headers['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8'
+        payload = {'query': query, 'from': from_, 'to': to_, 'sign': sign, 'token': token}
+
+        retval = 'Unkonwn error.'
+        for i in range(20):
+            response = requests.post(url=url, data=payload, headers=headers)
+            if 'trans_result' in response.json():
+                retval = response.json()['trans_result']['data'][0]['dst']
+                break
+        return retval
 
 
 class ParamProcess():

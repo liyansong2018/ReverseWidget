@@ -5,3 +5,4 @@ PyCryptodome==3.17
 lxml==4.9.2
 peid==1.2.7
 xmltodict==0.13.0
+baidu-sign
