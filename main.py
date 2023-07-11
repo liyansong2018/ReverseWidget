@@ -1004,6 +1004,7 @@ class CommentUi(QtWidgets.QWidget):
         self.ui.formatButton.clicked.connect(self.listen_action_format)
         self.ui.transButton.clicked.connect(self.listen_action_trans)
         self.api_exhusted = False
+        self.out = None
 
     def listen_action_format(self):
         _input = self.ui.textEdit.toPlainText()
@@ -1039,14 +1040,14 @@ class CommentUi(QtWidgets.QWidget):
         try:
             if self.ui.transComboBox.currentText() == 'Baidu':
                 _tmp = _input.split('\n\n')
-                _out = ''
+                self.out = ''
                 for period in _tmp:
-                    _out += self.baidu_trans(period, 'auto', _to_) + '\n\n'
-                    if self.api_exhusted:
-                        return
+                    self.baidu_trans(period, 'auto', _to_) + '\n\n'
             elif self.ui.transComboBox.currentText() == 'Google':
                 pass
-            self.ui.transBrowser.setText(_out)
+            if self.api_exhusted:
+                return
+            self.ui.transBrowser.setText(self.out)
         except Exception as e:
             Log.error(str(e))
             self.ui.transBrowser.setText(Helper.font_red(str(e)))
@@ -1084,14 +1085,15 @@ class CommentUi(QtWidgets.QWidget):
                 self.thread_trans = PreventFastClickThreadSignal(None, 'trans', query, from_, to_)
                 self.thread_trans._signal.connect(self.get_ret)
                 self.thread_trans.start()
-                hint = 'Free API resources have been exhausted, switching to alternate routes is slow! Please be patient and wait...'
-                Log.error(str(hint))
-                self.ui.transBrowser.setText(Helper.font_red(str(hint)))
+                hint = self.tr("Free API resources have been exhausted, switching to alternate routes is slow! Please be patient and wait...")
+                Log.error(hint)
+                self.ui.transBrowser.setText(Helper.font_red(hint))
                 return ''
                 # retval = self.baidu_trans_free(query, from_, to_)
                 # return retval
 
         retval = response.json()['trans_result'][0]['dst']
+        self.out += retval
         return retval
 
     def get_sign(self, appid, q, salt, secret):
@@ -1106,7 +1108,9 @@ class CommentUi(QtWidgets.QWidget):
         return hashlib.md5((appid + q + salt + secret).encode())
 
     def get_ret(self, value):
-        self.ui.transBrowser.setText(value)
+        self.out += value
+        self.out += '\n'
+        self.ui.transBrowser.setText(self.out)
 
 
 class AppCheckerUi(QtWidgets.QWidget):
