@@ -1,3 +1,10 @@
+[2023-07-12]
+    ReverseWidget 1.11
+        - To correctly calculate the offset of the jump instruction, add the base address of the assembly code
+        - Add backup translation routes for Baidu Translation to prevent denial of service caused by API resource depletion
+        - Fix other unknown errors
+        - Known issues: Using VPN may cause application crash
+
 [2023-06-02]
     ReverseWidget 1.10
         - Use QT native UI to increase ReverseWidget compatibility across different operating systems
