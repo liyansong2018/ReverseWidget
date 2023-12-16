@@ -791,6 +791,7 @@ class HashUi(QtWidgets.QWidget):
         self.ui = Ui_HashWindow()
         self.ui.setupUi(self)
         self.openfile = None
+        self.load_window = None  # loading window
         self.ui.openButton.clicked.connect(self.listen_action_open)
         self.ui.hashButton.clicked.connect(self.listen_action_hash)
 
@@ -808,6 +809,8 @@ class HashUi(QtWidgets.QWidget):
             self.ui.hashButton.setEnabled(False)
             if os.path.getsize(self.openfile) > 1024 * 1024 * 100:
                 self.ui.textBrowser.setText("The file size is large, please waitting...")
+                self.load_window = LoadingGif()
+                self.load_window.show()
 
             self.value = ''         # multi thread result
             self.thread_num = 0     # thread stop num
@@ -831,6 +834,8 @@ class HashUi(QtWidgets.QWidget):
         if self.thread_num == 2:
             self.ui.hashButton.setEnabled(True)
             self.ui.textBrowser.setText(self.value)
+            if self.load_window:
+                self.load_window.close()
 
 
 class FormatUi(QtWidgets.QWidget):
@@ -1470,6 +1475,20 @@ class ParamProcess():
         :return: Parameters after processing
         """
         return self.param
+
+
+class LoadingGif(QWidget):
+    def __init__(self):
+        super(LoadingGif, self).__init__()
+        self.label=QLabel("",self)
+        # self.setFixedSize(100,100)
+        self.resize(100, 100)
+        self.setWindowFlags(Qt.CustomizeWindowHint | Qt.FramelessWindowHint | Qt.Dialog | Qt.WindowStaysOnTopHint | Qt.Tool)
+        self.setAttribute(Qt.WA_TranslucentBackground)
+        self.movie=QMovie('ui/resources/pictures/loading.gif')
+        self.movie.setScaledSize(QSize(75, 75))
+        self.label.setMovie(self.movie)
+        self.movie.start()
 
 
 if __name__ == '__main__':
