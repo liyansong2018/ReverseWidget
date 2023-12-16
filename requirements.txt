@@ -6,3 +6,5 @@ lxml==4.9.2
 peid==1.2.7
 xmltodict==0.13.0
 baidu-sign
+requests
+pyinstaller==6.3.0

@@ -39,6 +39,7 @@ python publish.py release   # 发布release版本包，无命令行窗口
 import shutil
 import os
 import sys
+import zipfile
 
 
 def copy_dir(src_dir, dst_dir, filter=None):
@@ -109,12 +110,25 @@ def modify(file='main.spec', value='console=True', new_value='console=False'):
     except Exception as e:
         print(e)
 
+def compress_folder(folder_path, zip_name):
+    with zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED) as zipf:
+        for root, dirs, files in os.walk(folder_path):
+            for file in files:
+                file_path = os.path.join(root, file)
+                zipf.write(file_path, os.path.relpath(file_path, folder_path))
+
+
+def get_version():
+    with open("VERSION") as fp:
+        return fp.readline().strip()
 
 def main():
     # 1.PyInstaller bundles a Python application and all its dependencies into a single package.
+    is_debug = True
     if len(sys.argv) == 1:
         os.system('pyinstaller -D -y -i ui\\resources\\pictures\\hacker.ico main.py')
     elif (sys.argv[1]) == 'release':
+        is_debug = False
         # Need to modify main.spec Console=False
         modify('main.spec', 'console=True', 'console=False')
         os.system('pyinstaller -y main.spec')
@@ -144,7 +158,16 @@ def main():
 
     # Copy python_dll_inject
     dll_path = 'opensource/python_dll_injector'
-    copy_dir(dll_path, dst_path + dll_path, filter='.py')
+    copy_dir(dll_path, 'dist/main/_internal/' + dll_path, filter='.py')
+
+    os.rename('dist/main/main.exe', 'dist/main/ReverseWidget.exe')
+
+    if is_debug:
+        name = 'ReverseWidget-v%s-windows-debug.zip' % get_version()
+    else:
+        name = 'ReverseWidget-v%s-windows-release.zip' % get_version()
+
+    compress_folder('dist/main', 'dist/%s' % name)
 
 
 if __name__ == '__main__':
