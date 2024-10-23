@@ -430,10 +430,10 @@ class CodeUi(QtWidgets.QWidget):
 
             # Base64 Encode
             elif current_index == 2:
+                # Input: Hex stream 001122
                 _input = self.ui.base64TabText.toPlainText()
-                _input = _input.encode("utf-8")
                 Log.info("input: %s" % _input)
-                _output = code.bytes_to_base64(_input)
+                _output = code.bytes_to_base64(code.hex_to_bytes(_input))
                 # delete CR LF
                 strip_output = ''
                 for char in _output:
@@ -507,7 +507,7 @@ class CodeUi(QtWidgets.QWidget):
                 Log.info("input: %s" % _input)
                 _output = code.base64_to_bytes(_input)
                 Log.info("output: %s" % _output)
-                self.ui.codeOutput.setText(_output.decode("utf-8"))
+                self.ui.codeOutput.setText(code.bytes_to_hex(_output))
 
             # Hash from file: MD5, SHA1, SHA224, SHA256, SHA384, SHA512
             elif current_index == 3:
