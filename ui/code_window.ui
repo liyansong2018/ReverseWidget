@@ -352,7 +352,7 @@
        <string notr="true">border: 0px;</string>
       </property>
       <attribute name="title">
-       <string>Padding</string>
+       <string>Convert</string>
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_24">
        <property name="spacing">

@@ -39,6 +39,20 @@ class Code():
     def __init__(self):
         pass
 
+    def hexdump(self, file_path, bytes_per_line=16):
+        ret = ""
+        with open(file_path, 'rb') as file:
+            data = file.read()
+
+        for i in range(0, len(data), bytes_per_line):
+            line = data[i:i + bytes_per_line]
+            hex_str = ' '.join(f'{byte:02X}' for byte in line)
+            ascii_str = ''.join(chr(byte) if 32 <= byte < 127 else '.' for byte in line)
+            # print(f'{i:08X}  {hex_str.ljust(3 * bytes_per_line)}  |{ascii_str}|')
+            ret += f'{i:08X}  {hex_str.ljust(3 * bytes_per_line)}  |{ascii_str}|' + "\n"
+
+        return ret
+
     def bytes_to_hex(self, bytes):
         """
         bytes -> hexadecimal string, e.g, b'\x11\x12' -> "1112"
@@ -63,6 +77,21 @@ class Code():
             else:
                 ret += hex_string[i] + " "
         return ret
+
+    def bytes_to_hex_print(self, bytes):
+        """
+        bytes -> hexadecimal string, e.g, abc -> "\x41\x42\x43"
+        :param bytes: bytes
+        :return: hexadecimal string
+        """
+        ret = "\\x"
+        hex_string = self.bytes_to_hex(bytes)
+        for i in range(len(hex_string)):
+            if i % 2 == 0:
+                ret += hex_string[i]
+            else:
+                ret += hex_string[i] + "\\x"
+        return ret[:-2]
 
     def hex_to_bytes(self, hex_string):
         """

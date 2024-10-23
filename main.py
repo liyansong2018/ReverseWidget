@@ -26,6 +26,8 @@ this tool, the coding style was a bit confusing. Over time, the style of the cod
 added later has been optimized. If time permits, we will optimize the overall
 architecture of the program later.
 """
+import binascii
+
 """程序入口
 
 这个脚本包含了程序的主要运行逻辑。最初编写这个工具的时候，编码风格有些混乱。随着时间的推移，
@@ -466,7 +468,18 @@ class CodeUi(QtWidgets.QWidget):
 
             # Reserve funciton
             elif current_index == 5:
-                pass
+                # Input: String
+                _input = self.ui.padTabText.toPlainText()
+                Log.info("input: %s" % _input)
+                _input = _input.encode("utf-8")
+                _output += "Hex stream\n"
+                _output += code.bytes_to_hex(_input) + "\n\n"
+                _output += "Hex dump\n"
+                _output += code.bytes_to_hex_space(_input) + "\n\n"
+                _output += "C Sting\n"
+                _output += code.bytes_to_hex_print(_input) + "\n\n"
+                Log.info("output: %s" % _output)
+                self.ui.codeOutput.setText(_output)
 
         except Exception as e:
             self.ui.codeOutput.setText(Helper.font_red(str(e)))
@@ -523,7 +536,36 @@ class CodeUi(QtWidgets.QWidget):
 
             # Reserve funciton
             elif current_index == 5:
-                pass
+                _input = self.ui.padTabText.toPlainText().strip()
+                Log.info("input: %s" % _input)
+                # Input: c string \x00\x11\x22
+                TEMP_FILE = "tmp.bin"
+                if "\\x" in _input:
+                    with open(TEMP_FILE, "wb") as fp:
+                        fp.write(binascii.unhexlify(_input.replace("\\x", "").strip()))
+                    _output = "Hex Stream\n"
+                    _output += _input.replace("\\x", "").strip() + "\n\n"
+                    _output += "Hex Dump\n"
+                    _output += _input.replace("\\x", " ").strip() + "\n\n"
+                # Input: hex dump 001122
+                elif " " in _input:
+                    with open(TEMP_FILE, "wb") as fp:
+                        fp.write(binascii.unhexlify(_input.replace(" ", "").strip()))
+                    _output = "Hex Stream\n"
+                    _output += _input.replace(" ", "").strip() + "\n\n"
+                    _output += "C String \n"
+                    _output += "\\x" + _input.replace(" ", "\\x") + "\n\n"
+                # Input: hex stream
+                else:
+                    with open(TEMP_FILE, "wb") as fp:
+                        fp.write(binascii.unhexlify(_input.strip()))
+                    _output = "Hex Dump\n"
+                    _output += code.bytes_to_hex_space(code.hex_to_bytes(_input)) + "\n\n"
+                    _output += "C Sting\n"
+                    _output += code.bytes_to_hex_print(code.hex_to_bytes(_input)) + "\n\n"
+                Log.info("output: %s" % _output)
+                _output += code.hexdump(TEMP_FILE)
+                self.ui.codeOutput.setText(_output)
 
         except Exception as e:
             self.ui.codeOutput.setText(Helper.font_red(str(e)))
