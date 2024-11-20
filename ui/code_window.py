@@ -19,7 +19,7 @@ class Ui_CodeWindow(object):
         font.setFamily("微软雅黑")
         CodeWindow.setFont(font)
         icon = QtGui.QIcon()
-        icon.addPixmap(QtGui.QPixmap("resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
+        icon.addPixmap(QtGui.QPixmap("ui/resources/pictures/hacker.png"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         CodeWindow.setWindowIcon(icon)
         CodeWindow.setStyleSheet("QGroupBox {\n"
 "    border: 0px;\n"

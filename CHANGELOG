@@ -1,3 +1,9 @@
+[2024-11-20]
+    ReverseWidget 1.12
+        - Add the function of converting various data formats to each other
+        - Unify icon image style
+        - Upgrade the version of pyinstaller to streamline the program packaging process
+
 [2023-07-12]
     ReverseWidget 1.11
         - To correctly calculate the offset of the jump instruction, add the base address of the assembly code
