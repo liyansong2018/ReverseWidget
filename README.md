@@ -131,18 +131,19 @@ git clone --recursive https://github.com/liyansong2018/ReverseWidget.git
 2. run `run.sh`
 
 ### Ubuntu 20.04
-
+```shell
 apt-get install libxcb-xinerama0 
 export PATH=$PATH:/home/tom/.local/bin/
+```
+
+### Publish binary
+```shell
+python publish.py debug
+python publish.py release
+```
 
 If you don't want to install the dependent package, you can also download the [compressed package](https://github.com/liyansong2018/ReverseWidget/releases) that we have already packed.
 Of course, you can also see [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA) for how to integrate development environment.
-
-
-### Dependent Package
-
-python publish.py debug
-python publish.py release
 
 ## Convenient Tool
 
