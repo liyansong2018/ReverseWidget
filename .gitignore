@@ -1,9 +1,9 @@
 .idea
 ui/__pycache__/
 util/__pycache__/
-opensource/*
 build/
 dist/
 main.spec
 tmp/
 venv/
+.DS_Store

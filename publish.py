@@ -81,7 +81,7 @@ def get_py_path():
     """
     for i in sys.path:
         if 'site-packages' in i:
-            if sys.platform == 'darwin' and '/Library/Python/' in i:
+            if sys.platform == 'darwin' and '/Library/Frameworks/Python' in i:
                 return i
             elif sys.platform == 'linux' or sys.platform == 'win32':
                 return i
@@ -125,6 +125,7 @@ def get_version():
 def main():
     # 1.PyInstaller bundles a Python application and all its dependencies into a single package.
     is_debug = True
+    platform = ""
     if len(sys.argv) == 1:
         os.system('pyinstaller -D -y -i ui\\resources\\pictures\\hacker.ico main.py')
     elif (sys.argv[1]) == 'release':
@@ -143,12 +144,15 @@ def main():
     if sys.platform == 'win32':
         src_path.append(get_py_path() + '/keystone/keystone.dll')
         src_path.append(get_py_path() + '/capstone/lib/capstone.dll')
+        platform = "windows"
     elif sys.platform == 'linux':
         src_path.append(get_py_path() + '/keystone/libkeystone.so')
         src_path.append(get_py_path() + '/capstone/lib/libcapstone.so')
+        platform = "linux"
     elif sys.platform == 'darwin':
         src_path.append(get_py_path() + '/keystone/libkeystone.dylib')
         src_path.append(get_py_path() + '/capstone/lib/libcapstone.dylib')
+        platform = "macOS"
     for i in src_path:
         shutil.copy(i, dst_path)
 
@@ -160,12 +164,15 @@ def main():
     dll_path = 'opensource/python_dll_injector'
     copy_dir(dll_path, 'dist/main/_internal/' + dll_path, filter='.py')
 
-    os.rename('dist/main/main.exe', 'dist/main/ReverseWidget.exe')
+    if sys.platform == 'win32':
+        os.rename('dist/main/main.exe', 'dist/main/ReverseWidget.exe')
+    else:
+        os.rename('dist/main/main', 'dist/main/ReverseWidget')
 
     if is_debug:
-        name = 'ReverseWidget-v%s-windows-debug.zip' % get_version()
+        name = 'ReverseWidget-v%s-%s-debug.zip' % (get_version(), platform)
     else:
-        name = 'ReverseWidget-v%s-windows-release.zip' % get_version()
+        name = 'ReverseWidget-v%s-%s-release.zip' % (get_version(), platform)
 
     compress_folder('dist/main', 'dist/%s' % name)
 

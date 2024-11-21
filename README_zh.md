@@ -147,6 +147,20 @@ git clone --recursive https://github.com/liyansong2018/ReverseWidget.git
 1. 运行 `setup.sh` 或者 `pip install -r requirements.txt`，安装基本库
 2. 运行程序 `run.sh`
 
+### Ubuntu 20.04
+
+```shell
+# Ubuntu需要安装依赖和设置环境变量
+apt-get install libxcb-xinerama0 
+export PATH=$PATH:/home/tom/.local/bin/
+```
+
+### 如何将项目打包成可执行程序
+```shell
+python publish.py debug
+python publish.py release
+```
+
 如果你不想安装依赖包，你也可以直接下载我们已经编译好的[压缩包](https://github.com/liyansong2018/ReverseWidget/releases)。当然，如果你想修改源码，新增功能，也可以查看我们的环境搭建指导 → [WIKI](https://github.com/liyansong2018/ReverseWidget/wiki/%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA)。 
 
 
